@@ -22,4 +22,6 @@ public class Quiz {
     private String quizName;
     @CreationTimestamp
     private LocalDateTime regTime;
+    @OneToMany(mappedBy = "quiz")
+    private List<Problem> problemList=new ArrayList<>();
 }

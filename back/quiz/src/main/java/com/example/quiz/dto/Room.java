@@ -16,7 +16,8 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long roomNo;
     private String roomName;
-    private int endCode;
+    private long owner_no;
+    private String endCode;
     private int capacity;
     private boolean isPrivate;
     @CreationTimestamp

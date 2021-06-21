@@ -21,4 +21,6 @@ public class Problem {
     @ManyToOne
     @JoinColumn(name = "quiz_no")
     private Quiz quiz;
+    @OneToMany(mappedBy = "problem")
+    private List<Example> exampleList=new ArrayList<>();
 }
