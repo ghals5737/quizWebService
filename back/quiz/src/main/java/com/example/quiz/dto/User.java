@@ -11,14 +11,13 @@ import java.util.List;
 
 @Entity
 @Data
-public class Room {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long roomNo;
-    private String roomName;
-    private int endCode;
-    private int capacity;
-    private boolean isPrivate;
+    private long userNo;
+    private String userId;
+    private String userPw;
+    private int userScore;
     @CreationTimestamp
     private LocalDateTime regTime;
 }

@@ -1,9 +1,10 @@
 package com.example.quiz.repository;
 
-import com.example.quiz.dto.Room;
+import com.example.quiz.dto.Answer;
+import com.example.quiz.dto.AnswerId;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoomRepository extends CrudRepository<Room,Long> {
+public interface AnswerRepository extends CrudRepository<Answer, AnswerId> {
 }

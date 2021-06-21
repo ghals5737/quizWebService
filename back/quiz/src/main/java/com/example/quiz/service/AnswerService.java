@@ -1,4 +1,4 @@
 package com.example.quiz.service;
 
-public interface RoomService {
+public interface AnswerService {
 }
