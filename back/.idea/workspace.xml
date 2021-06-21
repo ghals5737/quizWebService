@@ -5,22 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/advice/ControllerAdvice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/exception/RestException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomEntryServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/RoomQuizNo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomQuizServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/quizWebService.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/QuizController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/RoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Problem.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Problem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Quiz.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomEntryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomEntryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomQuizService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomQuizService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +109,7 @@
       <workItem from="1624202372945" duration="44000" />
       <workItem from="1624202427452" duration="699000" />
       <workItem from="1624203146481" duration="189000" />
-      <workItem from="1624203348060" duration="31993000" />
+      <workItem from="1624203348060" duration="34909000" />
     </task>
     <servers />
   </component>
