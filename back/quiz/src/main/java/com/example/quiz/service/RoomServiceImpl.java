@@ -16,4 +16,10 @@ public class RoomServiceImpl implements  RoomService{
     public Room createRoom(Room room) {
         return roomRepository.save(room);
     }
+
+    @Override
+    public void deleteRoom(Long roomNo) {
+        Room room=roomRepository.findRoomByRoomNo(roomNo);
+        roomRepository.delete(room);
+    }
 }

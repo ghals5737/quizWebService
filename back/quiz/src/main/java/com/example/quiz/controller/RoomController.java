@@ -28,6 +28,11 @@ public class RoomController {
     @Resource(name = "roomQuizService")
     private final RoomQuizService roomQuizService;
 
+    @GetMapping()
+    private List<Room> getRoomListByUser(Long userNo){
+        return roomEntryService.findAllByUserNo(userNo);
+    }
+
     @PostMapping()
     private Room createRoom(@RequestBody Room room){
         try{
@@ -39,13 +44,19 @@ public class RoomController {
         }
     }
 
-    @PostMapping("/enter")
-    private RoomEntry EnterRoom(@RequestBody RoomEntry roomEntry){
-        return roomEntryService.createRoomEntry(roomEntry);
-    }
-
     @PutMapping("/quizs")
     private void addRoomQuiz(@RequestBody RoomQuizNo roomQuizNo){
         roomQuizService.createRoomQuiz(roomQuizNo);
+    }
+
+    @DeleteMapping()
+    private void deleteRoom(long roomNo){
+        try{
+            roomEntryService.deleteRoomEntriesByRoom(roomNo);
+            roomQuizService.deleteRoomQuizsByRoom(roomNo);
+            roomService.deleteRoom(roomNo);
+        }catch (Exception e){
+            throw new RestException(HttpStatus.SERVICE_UNAVAILABLE,e.getMessage());
+        }
     }
 }

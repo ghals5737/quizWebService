@@ -1,5 +1,7 @@
 package com.example.quiz.service;
 
+import com.example.quiz.dto.Example;
+import com.example.quiz.dto.Problem;
 import com.example.quiz.dto.Quiz;
 import com.example.quiz.repository.ExampleRepository;
 import com.example.quiz.repository.ProblemRepository;
@@ -8,7 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service("quizService")
@@ -24,16 +26,33 @@ public class QuizServiceImpl implements QuizService{
 
     @Override
     public Quiz createQuiz(Quiz quiz) {
-        quiz.getProblemList().forEach(el->{
-            problemRepository.save(el);
-            el.getExampleList().forEach(exampleRepository::save);
-        });
-        return quizRepository.save(quiz);
+        Quiz result=quizRepository.save(quiz);
+        Quiz fkQuiz=Quiz.builder().quizNo(result.getQuizNo()).build();
+        for(Problem prb:quiz.getProblemList()){
+            prb.setQuiz(fkQuiz);
+            Problem savePrb=problemRepository.save(prb);
+            Problem fkPrb=Problem.builder().prbNo(savePrb.getPrbNo()).build();
+            for(Example exam:savePrb.getExampleList()){
+                exam.setProblem(fkPrb);
+                exampleRepository.save(exam);
+            }
+        }
+        return result;
     }
 
     @Override
-    public List<Quiz> finfByRoomNo(long roomNo) {
+    public Quiz getQuizByNo(Long quizNo) {
+        return quizRepository.findQuizByQuizNo(quizNo);
+    }
 
-        return null;
+    @Override
+    public void deleteQuiz(long quizNo) {
+        Quiz quiz=quizRepository.findQuizByQuizNo(quizNo);
+        quiz.getProblemList().forEach(el->{
+            el.getExampleList().forEach(exampleRepository::delete);
+            problemRepository.delete(el);
+        });
+        quizRepository.delete(quiz);
+
     }
 }

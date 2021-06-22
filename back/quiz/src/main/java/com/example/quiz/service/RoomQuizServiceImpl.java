@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -32,5 +33,26 @@ public class RoomQuizServiceImpl implements RoomQuizService{
             roomQuiz.setQuizOrder(order++);
             roomQuizRepository.save(roomQuiz);
         }
+    }
+
+    @Override
+    public List<Quiz> findAllByRoomNo(long roomNo) {
+        Room room=Room.builder().roomNo(roomNo).build();
+        List<RoomQuiz> roomQuizList=roomQuizRepository.findRoomQuizByRoomOrderByQuizOrder(room);
+        List<Quiz>result=new ArrayList<>();
+        roomQuizList.forEach(el->result.add(el.getQuiz()));
+        return result;
+    }
+
+    @Override
+    public void deleteRoomQuizsByQuiz(Long quizNo) {
+        Quiz quiz=Quiz.builder().quizNo(quizNo).build();
+        roomQuizRepository.deleteRoomQuizsByQuiz(quiz);
+    }
+
+    @Override
+    public void deleteRoomQuizsByRoom(Long roomNo) {
+        Room room=Room.builder().roomNo(roomNo).build();
+        roomQuizRepository.deleteRoomQuizsByRoom(room);
     }
 }

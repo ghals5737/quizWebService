@@ -1,16 +1,14 @@
 package com.example.quiz.dto;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Data
 public class Room {

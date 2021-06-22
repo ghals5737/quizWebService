@@ -1,12 +1,18 @@
 package com.example.quiz.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @IdClass(RoomEntryId.class)
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class RoomEntry {
     @Id
     @ManyToOne
@@ -16,5 +22,6 @@ public class RoomEntry {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    private long userScore;
     private boolean isOwner;
 }

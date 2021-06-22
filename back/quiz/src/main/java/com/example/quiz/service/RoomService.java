@@ -4,4 +4,5 @@ import com.example.quiz.dto.Room;
 
 public interface RoomService {
     Room createRoom(Room room);
+    void deleteRoom(Long roomNo);
 }
