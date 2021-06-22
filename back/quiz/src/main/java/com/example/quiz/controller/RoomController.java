@@ -5,6 +5,7 @@ import com.example.quiz.dto.RoomEntry;
 import com.example.quiz.dto.RoomQuizNo;
 import com.example.quiz.exception.RestException;
 import com.example.quiz.service.RoomEntryService;
+import com.example.quiz.service.RoomQuizService;
 import com.example.quiz.service.RoomService;
 import com.example.quiz.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,11 +25,15 @@ public class RoomController {
     @Resource(name = "roomEntryService")
     private final RoomEntryService roomEntryService;
 
+    @Resource(name = "roomQuizService")
+    private final RoomQuizService roomQuizService;
+
     @PostMapping()
     private Room createRoom(@RequestBody Room room){
         try{
+            Room result=roomService.createRoom(room);
             roomEntryService.createRoomEntry(room);
-            return roomService.createRoom(room);
+            return result;
         }catch (Exception e){
             throw new RestException(HttpStatus.BAD_REQUEST,"invalid userNo");
         }
@@ -41,6 +46,6 @@ public class RoomController {
 
     @PutMapping("/quizs")
     private void addRoomQuiz(@RequestBody RoomQuizNo roomQuizNo){
-        roomQuizNo.getQuizNoList().forEach(el->System.out.println("=============================\n"+el+"======================================\n"));
+        roomQuizService.createRoomQuiz(roomQuizNo);
     }
 }
