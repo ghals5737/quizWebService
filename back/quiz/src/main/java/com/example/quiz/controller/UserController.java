@@ -25,6 +25,11 @@ public class UserController {
     }
 
     @GetMapping()
+    private User getUser(Long userNo){
+        return userService.getUser(userNo);
+    }
+
+    @GetMapping("/inside-room")
     private List<User> getUserListByRoom(long roomNo){
         return roomEntryService.findAllByRoomNo(roomNo);
     }

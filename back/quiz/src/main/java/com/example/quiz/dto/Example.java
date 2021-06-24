@@ -2,11 +2,13 @@ package com.example.quiz.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@EqualsAndHashCode(exclude = {"problem"})
 public class Example {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
