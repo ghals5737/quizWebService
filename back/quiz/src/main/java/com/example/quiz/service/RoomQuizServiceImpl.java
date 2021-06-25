@@ -21,11 +21,10 @@ public class RoomQuizServiceImpl implements RoomQuizService{
     @Override
     public void createRoomQuiz(RoomQuizNo roomQuizNo) {
         long roomNo= roomQuizNo.getRoomNo();
+        Room room=Room.builder().roomNo(roomNo).build();
         int order=1;
         for(Long el:roomQuizNo.getQuizNoList()) {
             RoomQuiz roomQuiz = new RoomQuiz();
-            Room room = new Room();
-            room.setRoomNo(roomNo);
             Quiz quiz = new Quiz();
             quiz.setQuizNo(el);
             roomQuiz.setRoom(room);

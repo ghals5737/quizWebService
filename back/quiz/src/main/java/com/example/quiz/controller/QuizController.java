@@ -10,17 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/quiz")
 @RestController
 public class QuizController {
-    @Autowired
-    private QuizService quizService;
+    @Resource(name = "quizService")
+    private final QuizService quizService;
 
-    @Autowired
-    private RoomQuizService roomQuizService;
+    @Resource(name = "roomQuizService")
+    private final RoomQuizService roomQuizService;
 
     @GetMapping("/room-quizs")
     private List<Quiz> getQuizListByRoom(Long roomNo){

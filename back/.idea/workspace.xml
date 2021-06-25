@@ -5,15 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/AnswerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/PrbUserAnswer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/UserAnswer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/AnswerServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/quizWebService.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Example.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Example.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Problem.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Problem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/QuizController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Answer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/AnswerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/AnswerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomQuizServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomQuizServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,19 +79,6 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="QuizApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="quiz" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.quiz.QuizApplication" />
@@ -113,7 +103,7 @@
       <workItem from="1624202427452" duration="699000" />
       <workItem from="1624203146481" duration="189000" />
       <workItem from="1624203348060" duration="67377000" />
-      <workItem from="1624419620069" duration="9744000" />
+      <workItem from="1624419620069" duration="27966000" />
     </task>
     <servers />
   </component>

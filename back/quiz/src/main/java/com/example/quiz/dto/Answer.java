@@ -1,12 +1,18 @@
 package com.example.quiz.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @IdClass(AnswerId.class)
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Answer {
     @Id
     @ManyToOne
