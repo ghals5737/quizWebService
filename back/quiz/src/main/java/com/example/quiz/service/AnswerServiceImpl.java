@@ -13,7 +13,7 @@ import java.util.List;
 @Service("answerService")
 public class AnswerServiceImpl implements AnswerService{
     @Autowired
-    private AnswerRepository answerRepository;
+    private final AnswerRepository answerRepository;
 
     @Override
     public List<Answer> insertAnswer(PrbUserAnswer prbUserAnswer) {

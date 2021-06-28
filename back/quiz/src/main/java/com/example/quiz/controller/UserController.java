@@ -1,6 +1,7 @@
 package com.example.quiz.controller;
 
 import com.example.quiz.dto.User;
+import com.example.quiz.exception.RestException;
 import com.example.quiz.service.RoomEntryService;
 import com.example.quiz.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,15 @@ public class UserController {
         return userService.createUser(user);
     }
 
+    @PostMapping("/login")
+    private User login(@RequestBody User user){
+        try {
+            return userService.loginUser(user);
+        }catch (RestException e){
+            throw e;
+        }
+    }
+
     @GetMapping()
     private User getUser(Long userNo){
         return userService.getUser(userNo);
@@ -38,6 +48,7 @@ public class UserController {
     private User update(@RequestBody User user){
         return userService.updateUser(user);
     }
+
     @DeleteMapping()
     private void delete(long userNo){
         userService.deleteUser(userNo);

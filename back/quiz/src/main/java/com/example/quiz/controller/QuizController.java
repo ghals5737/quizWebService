@@ -6,7 +6,6 @@ import com.example.quiz.exception.RestException;
 import com.example.quiz.service.QuizService;
 import com.example.quiz.service.RoomQuizService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
