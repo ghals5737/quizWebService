@@ -1,15 +1,66 @@
 <template>
-  <hello-world />
+  <v-app>
+   <form>    
+    <v-text-field
+      v-model="userId"      
+      label="ID"
+      name="userId"
+      required      
+    ></v-text-field>    
+    <v-text-field
+      v-model="pw"      
+      :counter="10"
+      label="PASSWORD"
+      name="pw"
+      required      
+    ></v-text-field>
+    <v-btn class="mr-4" @click="signUp">submit</v-btn>
+    <v-btn >clear</v-btn>
+  </form>
+   <form>    
+    <v-text-field
+      v-model="userId"      
+      label="ID"
+      name="userId"
+      required      
+    ></v-text-field>    
+    <v-text-field
+      v-model="pw"      
+      :counter="10"
+      label="PASSWORD"
+      name="pw"
+      required      
+    ></v-text-field>
+    <v-btn class="mr-4" @click="logIn">submit</v-btn>
+    <v-btn >clear</v-btn>
+  </form>
+  </v-app>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
-
   export default {
     name: 'Home',
-
-    components: {
-      HelloWorld,
+    components: {      
+    },
+    data(){
+      return{
+        userId:'',
+        pw:'',
+      }
+    },
+    methods:{
+      signUp(){        
+        this.$store.dispatch("signUp",{
+          userId: this.userId,
+          pw: this.pw
+        })        
+      },
+      logIn(){
+        this.$store.dispatch("logIn",{
+          userId: this.userId,
+          pw: this.pw
+        })        
+      },
     },
   }
 </script>
