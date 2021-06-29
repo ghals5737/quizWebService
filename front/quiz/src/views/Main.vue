@@ -11,7 +11,7 @@
       </div>
       <div class="my-2">
         <v-btn small disabled>Disabled</v-btn>
-      </div>      
+      </div>         
   </v-app>
 </template>
 
@@ -33,19 +33,20 @@ export default {
     methods:{
         goCreateQuiz(){
             this.$store.dispatch("goCreateQuiz",{
-                userId: USER.userId,
-                userNo: USER.userNo
+                userId: this.USER.userId,
+                userNo: this.USER.userNo
             })  
         },
         goSearchQuiz(){
             this.$store.dispatch("goSearchQuiz",{
-                userId: USER.userId,
-                userNo: USER.userNo
+                userId: this.USER.userId,
+                userNo: this.USER.userNo
             })  
         }              
     },
     created(){
-        this.userId=sessionStorage.getItem("userId")
+        this.userId=sessionStorage.getItem("userId")        
+
     },
 }
 </script>
