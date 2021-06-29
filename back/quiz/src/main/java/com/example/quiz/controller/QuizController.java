@@ -6,6 +6,8 @@ import com.example.quiz.exception.RestException;
 import com.example.quiz.service.QuizService;
 import com.example.quiz.service.RoomQuizService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +27,16 @@ public class QuizController {
     @GetMapping("/room-quizs")
     private List<Quiz> getQuizListByRoom(Long roomNo){
         return roomQuizService.findAllByRoomNo(roomNo);
+    }
+
+    @GetMapping("/total")
+    private Long getTotal(){
+        return quizService.getTotal();
+    }
+
+    @GetMapping("/allquiz")
+    private List<Quiz> findAllByPageable(int page,int size){
+        return quizService.findAllByPageable(PageRequest.of(page,size));
     }
 
     @GetMapping()

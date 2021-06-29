@@ -8,8 +8,11 @@ import com.example.quiz.repository.ProblemRepository;
 import com.example.quiz.repository.QuizRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -54,5 +57,15 @@ public class QuizServiceImpl implements QuizService{
         });
         quizRepository.delete(quiz);
 
+    }
+
+    @Override
+    public List<Quiz> findAllByPageable(Pageable pageable) {
+        return quizRepository.findAll(pageable).getContent();
+    }
+
+    @Override
+    public Long getTotal() {
+        return quizRepository.count();
     }
 }
