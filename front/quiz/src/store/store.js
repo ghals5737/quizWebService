@@ -42,8 +42,7 @@ const store = new Vuex.Store({
             state.total=total
         },
         addQuiz: (state,{quiz})=>{
-            state.quiz=quiz
-            router.push('/quizinfo')
+            state.quiz=quiz            
         },
     },
     actions: {
@@ -62,7 +61,7 @@ const store = new Vuex.Store({
                 });
         },
         logIn: (store,{userId,pw})=>{
-            return instance.post('/users/login',
+            return instance.post('/users/authenticate',
                 {
                     userId: userId,
                     userPw: pw
@@ -111,6 +110,16 @@ const store = new Vuex.Store({
             .then(res=>{
                 store.commit('addTotal',{total:res.data})
             }).catch(()=>{
+                alert("실패")
+            });
+        },
+        searchQuizByquizNo:(store,{quizNo})=>{
+            return instance.get(`quiz?quizNo=${quizNo}`)
+            .then(res =>{
+                //console.log(res.data)
+                store.commit('addQuiz',{quiz:res.data})                
+            })
+            .catch(()=>{
                 alert("실패")
             });
         },

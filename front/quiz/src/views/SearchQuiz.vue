@@ -34,6 +34,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import router from '../router/index'
 export default {
     name: 'SearchQuiz',
     components: {      
@@ -68,7 +69,8 @@ export default {
     methods:{
         goDetail(value){
             alert("테이블 클릭")
-            this.$store.commit("addQuiz",{quiz:value});                                    
+            this.$store.commit("addQuiz",{quiz:value});
+            router.push({name: 'QuizInfo', query: {quizNo: value.quizNo}})                                                                                               
         },     
     },
     created(){
