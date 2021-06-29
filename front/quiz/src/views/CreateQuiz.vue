@@ -3,100 +3,103 @@
 <v-container>
   <v-row>
       <v-col md="2">
-        <v-navigation-drawer
-          floating
-          permanent
-        >
-          <v-list
-            dense
-            rounded
-          >
-            <v-list-item
-              v-for="item in items"
-              :key="item.title"
-              link
-            >
-              <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-
-              <v-list-item-content>
-                <v-list-item-title>aa</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>  
+        <v-list>
+            <v-subheader>등록한 문제</v-subheader>
+            <v-list-item-group color="primary">
+                <v-list-item
+                    v-for="(item, i) in quiz.problemList"
+                    :key="i"
+                    :inactive="inactive"
+                >   
+                    <v-list-item-content>
+                        <v-list-item-title>문제 {{i+1}}</v-list-item-title>                    
+                    </v-list-item-content>
+                    <v-list-item-content>
+                        <v-btn depressed color="error" @click="deleteOrder(i)">delete</v-btn>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list-item-group>
+        </v-list>
       </v-col>
       <v-col>
-      <v-text-field label="퀴즈 제목 입력"></v-text-field>            
+      <v-text-field v-model="quiz.quizName" label="퀴즈 제목 입력"></v-text-field>            
       <!--<div class="btn btn-group">   -->   
       <v-container>
         <v-row          
-          justify="left"
+          justify="start"
         >
         <v-col cols="auto">
          <v-select 
               depressed
-              v-model="mod"
+              v-model="problem.quizType"
               label="퀴즈유형"
               :items="options"
               item-text="name"
               item-value="value"
-              ></v-select>
+         ></v-select>
         </v-col>
         </v-row>
         <v-row          
-          justify="left"
+          justify="start"
         >
           <v-col cols="auto">
-            <v-btn depressed color="primary">Insert Question</v-btn>
+            <v-btn depressed color="primary" @click="addOrder">Insert Question</v-btn>
           </v-col>
           <v-col cols="auto">
-              <v-btn depressed color="error">Delete Last Question</v-btn>
+              <v-btn depressed color="error" @click="deleteLastOrder">Delete Last Question</v-btn>
           </v-col>
           <v-col cols="auto">             
+              <v-btn depressed color="warning" @click="makeQuiz">create quiz</v-btn>
           </v-col>                    
         </v-row>
       </v-container>  
-      <!--</div>      -->
+      <!--</div>-->
       
       <v-divider></v-divider>
-      <v-form v-model="valid">
+      <v-form>
       <v-container>                 
          <v-card >
-          <v-subheader dark class="blue text--white">문제 1</v-subheader>  
+          <v-subheader dark class="blue text--white">문제 {{order}}</v-subheader>  
+           <v-text-field
+            v-model="problem.title"                                    
+            label="문제를 입력하세요"            
+          ></v-text-field>
+           <v-text-field
+            v-model="problem.score"                                    
+            label="점수를 입력하세요"            
+          ></v-text-field>
               <v-divider></v-divider>
            <v-container fluid>
             <v-row >
              <v-col cols="auto">
-              <v-checkbox class="d-flex" v-model="checkbox1"></v-checkbox>
+              <v-checkbox class="d-flex" value="1" v-model="isAnswer"></v-checkbox>
              </v-col>
              <v-col>
-              <v-text-field label="Include files"></v-text-field>
+              <v-text-field v-model="exampleList[0].des" label="선택지를 입력하세요"></v-text-field>
              </v-col>
             </v-row> 
             <v-row >
              <v-col cols="auto">
-              <v-checkbox class="d-flex" v-model="checkbox1"></v-checkbox>
+              <v-checkbox class="d-flex" value="2" v-model="isAnswer"></v-checkbox>
              </v-col>
              <v-col>
-              <v-text-field label="Include files"></v-text-field>
+              <v-text-field v-model="exampleList[1].des" label="선택지를 입력하세요"></v-text-field>
              </v-col>
             </v-row> 
             <v-row >
              <v-col cols="auto">
-              <v-checkbox class="d-flex" v-model="checkbox1"></v-checkbox>
+              <v-checkbox class="d-flex" value="3" v-model="isAnswer"></v-checkbox>
              </v-col>
              <v-col>
-              <v-text-field label="Include files"></v-text-field>
+              <v-text-field v-model="exampleList[2].des" label="선택지를 입력하세요"></v-text-field>
              </v-col>
             </v-row> 
             <v-row >
              <v-col cols="auto">
-              <v-checkbox class="d-flex" v-model="checkbox1"></v-checkbox>
+              <v-checkbox class="d-flex" value="4" v-model="isAnswer"></v-checkbox>
              </v-col>
              <v-col>
-              <v-text-field label="Include files"></v-text-field>
+              <v-text-field v-model="exampleList[3].des" label="선택지를 입력하세요"></v-text-field>
              </v-col>
             </v-row> 
           </v-container>
@@ -105,7 +108,10 @@
     </v-form>
     </v-col>
   </v-row>
-
+  <div>{{isAnswer}}</div>
+  <div>{{quiz.problemList}}</div>
+  <div>{{problem}}</div>
+  <div>{{exampleList}}</div>
 </v-container>
 </v-app>
 </template>
@@ -122,25 +128,19 @@ export default {
     data(){
       return{
         items:[
-          {title:"aa"}
+          
         ],
         options:[
           {name: "객관식",value:1},
           {name: "주관식",value:2}
         ],
         mod:0,
-        order:0,
+        order:1,
+        isAnswer:[],
         quizList:[],
-        quiz:{
-            problemList: [
-                {
+        problem:{
                 answer: '',
-                exampleList: [
-                    {
-                    des: '',
-                    examNo: 0,
-                    exampleNO: 0
-                    }
+                exampleList: [                 
                 ],
                 imgUrl: '',
                 prbNo: 0,
@@ -148,7 +148,31 @@ export default {
                 quizType: 0,
                 score: 0,
                 title: ''
-                }
+        },
+        exampleList:[
+            { 
+              des: '',
+              examNo: 1,
+              exampleNO: 0
+            },
+             { 
+              des: '',
+              examNo: 2,
+              exampleNO: 0
+            },
+             { 
+              des: '',
+              examNo: 3,
+              exampleNO: 0
+            },
+             { 
+              des: '',
+              examNo: 4,
+              exampleNO: 0
+            },
+        ],        
+        quiz:{
+            problemList: [             
             ],
             quizName: '',
             quizNo: 0,
@@ -158,7 +182,57 @@ export default {
       }
     },
     methods:{
-        
+        addOrder(){            
+            let copyExampleList=[]
+            let cnt=1;
+            this.exampleList.forEach(el=>{
+                copyExampleList.push({
+                     des: el.des,
+                     examNo: cnt++,
+                     exampleNO: 0
+                })
+            })
+            this.quiz.problemList.push({
+                answer: this.isAnswer[0],
+                exampleList: copyExampleList,
+                imgUrl: '',
+                prbNo: 0,
+                prbOder: 0,
+                quizType: this.problem.quizType,
+                score: this.problem.score,
+                title: this.problem.title
+            })            
+            this.isAnswer=[]   
+            this.problem.answer=''
+            this.problem.quizType=0
+            this.problem.score=0
+            this.problem.title=''
+            this.problem.exampleList=[]            
+            this.exampleList.forEach(element => {
+                element.des=''
+            });           
+            this.order=this.quiz.problemList.size()+1;
+        },
+        deleteOrder(index){
+            this.quiz.problemList.splice(index, 1);
+            this.order=this.quiz.problemList.size()+1;
+        },
+        deleteLastOrder(){
+            this.quiz.problemList.splice(-1, 1);
+            this.order=this.quiz.problemList.size()+1;
+        },
+        makeQuiz(){
+            //prbOrder 설정
+            let prbOrder=1;
+            this.quiz.problemList.forEach(el=>{
+                el.prbOder=prbOrder++            
+            })
+            this.quiz.userNo=this.USER.userNo
+            //userNo 설정
+            this.$store.dispatch("makeQuiz",{
+                quiz:this.quiz
+            })
+        }
     },
     created(){
         
