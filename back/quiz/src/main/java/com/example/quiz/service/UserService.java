@@ -1,6 +1,8 @@
 package com.example.quiz.service;
 
+import com.example.quiz.dto.TokenDto;
 import com.example.quiz.dto.User;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -11,4 +13,5 @@ public interface UserService {
     User updateUser(User user);
     User loginUser(User user);
     void deleteUser(long userNo);
+    ResponseEntity<TokenDto>  authenticate(User user);
 }

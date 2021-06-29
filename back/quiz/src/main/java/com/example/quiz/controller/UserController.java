@@ -1,10 +1,13 @@
 package com.example.quiz.controller;
 
+import com.example.quiz.dto.TokenDto;
 import com.example.quiz.dto.User;
 import com.example.quiz.exception.RestException;
 import com.example.quiz.service.RoomEntryService;
 import com.example.quiz.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -23,6 +26,12 @@ public class UserController {
     @PostMapping()
     private User insert(@RequestBody User user){
         return userService.createUser(user);
+    }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<TokenDto> authorize(@RequestBody User user) {
+        System.out.println("_+_+_+_+_+_+_+_+_+_+_+_+_+_+_\n_+_+_+_+_+_+컨트롤러_+_+_+_+_+_+_+_+_\n_+_+_+_+_+_+_+_+_+_+_+_+_+_+_\n");
+       return userService.authenticate(user);
     }
 
     @PostMapping("/login")
