@@ -32,9 +32,13 @@ public class UserServiceImpl implements UserService{
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public User createUser(User user)
+    public User createUser(User userdto)
     {
-        user.setUserPw(passwordEncoder.encode(user.getUserPw()));
+        User user=User.builder()
+                .userId(userdto.getUserId())
+                .userPw(passwordEncoder.encode(userdto.getUserPw()))
+                .authorityName("ROLE_USER")
+                .build();
         return userRepository.save(user);
     }
 
@@ -78,16 +82,11 @@ public class UserServiceImpl implements UserService{
         try {
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(user.getUserId(), user.getUserPw());
-            System.out.println("?!?");
             Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-            System.out.println("?!@!@?");
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            System.out.println("?!@!@?");
             String jwt = tokenProvider.createToken(authentication);
-            System.out.println("?!!!!!!!?");
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
-            System.out.println("_+_+_+_+_+_+_+_+_+_+_+_+_+_+_\n_+_+_+_+_+_+서비스+_+_+_+_+_+_+_+_\n_+_+_+_+_+_+_+_+_+_+_+_+_+_+_\n");
             User result = userRepository.findUserByUserId(user.getUserId());
             return new ResponseEntity<>(new TokenDto(jwt, result.getUserId(), result.getUserNo()), httpHeaders, HttpStatus.OK);
         }catch (Exception e){

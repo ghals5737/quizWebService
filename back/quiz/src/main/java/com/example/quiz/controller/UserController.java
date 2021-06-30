@@ -30,7 +30,6 @@ public class UserController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<TokenDto> authorize(@RequestBody User user) {
-        System.out.println("_+_+_+_+_+_+_+_+_+_+_+_+_+_+_\n_+_+_+_+_+_+컨트롤러_+_+_+_+_+_+_+_+_\n_+_+_+_+_+_+_+_+_+_+_+_+_+_+_\n");
        return userService.authenticate(user);
     }
 

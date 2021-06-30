@@ -24,11 +24,5 @@ public class User {
     private String userPw;
     @CreationTimestamp
     private LocalDateTime regTime;
-    @ManyToMany
-    @JsonIgnore
-    @JoinTable(
-            name = "user_authority",
-            joinColumns = {@JoinColumn(name = "userNo", referencedColumnName = "userNo")},
-            inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
-    private Set<Authority> authorities;
+    private String authorityName;
 }

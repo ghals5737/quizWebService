@@ -2,6 +2,7 @@ package com.example.quiz.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class Quiz {
     @CreationTimestamp
     private LocalDateTime regTime;
     @JsonManagedReference
+    @JsonProperty(value = "problemList")
     @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY)
     private List<Problem> problemList=new ArrayList<>();
 }

@@ -5,16 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjrt_1_9_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_api_0_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_impl_0_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_jackson_0_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_5_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/quizWebService.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_12_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_12_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/QuizController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/QuizRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/QuizRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/RoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/RoomRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Authority.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/jwt/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/jwt/JwtFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +53,18 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Quiz.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/jwt/JwtFilter.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/config/SecurityConfig.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Room.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/RoomEntry.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/resources/application.properties" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Problem.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/UserAnswer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Answer.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedIndex" value="1" />
@@ -113,7 +138,7 @@
       <workItem from="1624203146481" duration="189000" />
       <workItem from="1624203348060" duration="67377000" />
       <workItem from="1624419620069" duration="27966000" />
-      <workItem from="1624603385324" duration="15088000" />
+      <workItem from="1624603385324" duration="35772000" />
     </task>
     <servers />
   </component>
@@ -141,6 +166,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="javax.net.ssl.SSLHandshakeException" package="javax.net.ssl" />
           <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.StackOverflowError" package="java.lang" />
+          <option name="timeStamp" value="2" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
