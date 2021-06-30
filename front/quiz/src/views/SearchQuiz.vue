@@ -63,12 +63,12 @@ export default {
             { text: '문항수', value: 'problemList.length' },            
             { text: '생성일', value: 'regTime' },            
         ],
-        quizList: [],
+        quizList: [        
+        ],
         }  
     },
     methods:{
-        goDetail(value){
-            alert("테이블 클릭")
+        goDetail(value){            
             this.$store.commit("addQuiz",{quiz:value});
             router.push({name: 'QuizInfo', query: {quizNo: value.quizNo}})                                                                                               
         },     

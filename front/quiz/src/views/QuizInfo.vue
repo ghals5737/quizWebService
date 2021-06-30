@@ -1,6 +1,6 @@
 <template>
 <v-app>
-    <v-list>
+    <!-- <v-list>
         <v-subheader>퀴즈 상세정보</v-subheader>
         <v-list-item-group color="primary">
             <v-list-item
@@ -24,7 +24,8 @@
                 </v-container>                  
             </v-list-item>
         </v-list-item-group>
-    </v-list>
+    </v-list> -->
+    {{QUIZ}}
 </v-app>
 </template>
 
