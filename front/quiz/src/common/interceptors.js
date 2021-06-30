@@ -1,10 +1,9 @@
-import store from '../store/store';
 
 export function setInterceptors(instance) {
 	instance.interceptors.request.use(
 		function(config) {
 			// Do something before request is sent
-			config.headers.Authorization = 'Bearer '+store.state.token;            
+			config.headers.Authorization = 'Bearer '+sessionStorage.getItem("accessToken");
 			return config;
 		},
 		function(error) {
