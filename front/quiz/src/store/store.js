@@ -1,18 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import router from '../router/index'
-import axios from 'axios'
-
+import { instance, instanceWithAuth } from '../common/createInstance';
 Vue.use(Vuex);
 
-let https = require('https')
-const instance = axios.create({
-  baseURL: 'http://localhost:8700/api',
-  timeout: 120000,
-  httpsAgent: new https.Agent({
-    rejectUnauthorized: false
-  })
-});
+// let https = require('https')
+// const instance = axios.create({
+//   baseURL: 'http://localhost:8700/api',
+//   timeout: 120000,
+//   httpsAgent: new https.Agent({
+//     rejectUnauthorized: false
+//   })
+// });
 
 
 const store = new Vuex.Store({
@@ -21,6 +20,7 @@ const store = new Vuex.Store({
         quizList: null,
         total:null,
         quiz:null,
+        token:null,
     },
     getters: {
         USER: state => state.userInfo,        
@@ -43,6 +43,9 @@ const store = new Vuex.Store({
         },
         addQuiz: (state,{quiz})=>{
             state.quiz=quiz            
+        },
+        addToken: (state,{token})=>{
+            state.token=token
         },
     },
     actions: {
@@ -68,9 +71,11 @@ const store = new Vuex.Store({
                 })
                 .then(res =>{
                     console.log(res.data)
-                    store.commit('addUser',{user:res.data})
+                    store.commit('addUser',{user:res.data})                    
+                    store.commit('addToken',{token:res.data.token})
                     sessionStorage.setItem("userId",res.data.userId)                    
-                    sessionStorage.setItem("userNo",res.data.userNo)                    
+                    sessionStorage.setItem("userNo",res.data.userNo)
+                    sessionStorage.setItem("accessToken",res.data.token)    
                     router.push('/main')
                 })
                 .catch(()=>{
@@ -85,18 +90,20 @@ const store = new Vuex.Store({
             store.commit('updateUser',{userId,userNo})
             router.push('/searchquiz')
         },
-        makeQuiz: (store,{quiz})=>{
-            return instance.post('/quiz',quiz)
-            .then(res =>{
-                console.log(res.data)
-                alert("성공!!")                                               
-            })
-            .catch(()=>{
-
-            });
+        makeQuiz: async(store,{quiz})=>{            
+            try{
+                console.log(quiz)
+                return await instanceWithAuth.post('/quiz',quiz)
+                .then(res =>{
+                    console.log(res.data)
+                    alert("성공!!")                                               
+                }) 
+            }catch(err){
+                console.log(err)
+            }                       
         },
         searchQuiz: (store,{page,size})=>{
-            return instance.get(`quiz/allquiz?page=${page}&size=${size}`)
+            return instanceWithAuth.get(`quiz/allquiz?page=${page}&size=${size}`)
             .then(res =>{
                 //console.log(res.data)
                 store.commit('addQuizList',{quizList:res.data})                                                           
@@ -106,7 +113,7 @@ const store = new Vuex.Store({
             });
         },
         initQuiz: (store)=>{
-            return instance.get(`quiz/total`)
+            return instanceWithAuth.get(`quiz/total`)
             .then(res=>{
                 store.commit('addTotal',{total:res.data})
             }).catch(()=>{
@@ -114,7 +121,7 @@ const store = new Vuex.Store({
             });
         },
         searchQuizByquizNo:(store,{quizNo})=>{
-            return instance.get(`quiz?quizNo=${quizNo}`)
+            return instanceWithAuth.get(`quiz?quizNo=${quizNo}`)
             .then(res =>{
                 //console.log(res.data)
                 store.commit('addQuiz',{quiz:res.data})                
