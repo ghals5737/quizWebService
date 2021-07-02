@@ -1,5 +1,6 @@
 package com.example.quiz.controller;
 
+import com.example.quiz.dto.Quiz;
 import com.example.quiz.dto.Room;
 import com.example.quiz.dto.RoomEntry;
 import com.example.quiz.dto.RoomQuizNo;
@@ -9,6 +10,7 @@ import com.example.quiz.service.RoomQuizService;
 import com.example.quiz.service.RoomService;
 import com.example.quiz.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +49,16 @@ public class RoomController {
     @PutMapping("/quizs")
     private void addRoomQuiz(@RequestBody RoomQuizNo roomQuizNo){
         roomQuizService.createRoomQuiz(roomQuizNo);
+    }
+
+    @GetMapping("/allroom")
+    private List<Room> findAllByPageable(int page, int size){
+        return roomService.findAllByPageable(PageRequest.of(page,size));
+    }
+
+    @GetMapping("/total")
+    private Long getTotal(){
+        return roomService.getTotal();
     }
 
     @DeleteMapping()
