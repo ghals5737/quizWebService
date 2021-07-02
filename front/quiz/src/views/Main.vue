@@ -7,10 +7,10 @@
         <v-btn small color="primary" @click="goSearchQuiz">퀴즈검색</v-btn>
       </div>
       <div class="my-2">
-        <v-btn small color="error">Error</v-btn>
+        <v-btn small color="error" @click="goCreateRoom">방만들기</v-btn>
       </div>
       <div class="my-2">
-        <v-btn small disabled>Disabled</v-btn>
+        <v-btn small color="success" @click="goSearchRoom">방검색</v-btn>
       </div>         
   </v-app>
 </template>
@@ -42,7 +42,13 @@ export default {
                 userId: this.userId,
                 userNo: this.userNo
             })  
-        }              
+        },    
+        goCreateRoom(){
+            this.$store.dispatch("goCreateRoom")
+        },   
+        goSearchRoom(){
+            this.$store.dispatch("goSearchRoom")
+        },
     },
     created(){
         this.userId=sessionStorage.getItem("userId")        

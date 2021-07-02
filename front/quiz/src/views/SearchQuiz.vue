@@ -27,8 +27,7 @@
       :length="pageCount"      
       :page="page"
       :total-visible="3"      
-   ></v-pagination>
-   {{page}}
+   ></v-pagination>   
 </v-app>
 </template>
 
