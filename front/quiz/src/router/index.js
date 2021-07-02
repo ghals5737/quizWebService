@@ -5,6 +5,9 @@ import Main from '../views/Main.vue'
 import CreateQuiz from '../views/CreateQuiz.vue'
 import SearchQuiz from '../views/SearchQuiz.vue'
 import QuizInfo from '../views/QuizInfo.vue'
+import CreateRoom from'../views/CreateRoom.vue'
+import RoomDetail from '../views/RoomDetail.vue'
+import SearchRoom from '../views/SearchRoom.vue'
 
 Vue.use(VueRouter)
 
@@ -33,7 +36,22 @@ const routes = [
     path: '/quizinfo',
     name: 'QuizInfo',
     component: QuizInfo
+  },  
+  {
+    path: '/createroom',
+    name: 'CreateRoom',
+    component: CreateRoom
+  },
+  {
+    path: '/roomdetail',
+    name: 'RoomDetail',
+    component: RoomDetail
   },   
+  {
+    path: '/searchroom',
+    name: 'SearchRoom',
+    component: SearchRoom
+  },     
 ]
 
 const router = new VueRouter({

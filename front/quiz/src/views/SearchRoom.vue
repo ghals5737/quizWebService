@@ -1,33 +1,33 @@
 <template>
 <v-app>    
-  <v-card>
+    <v-card>
     <v-card-title>
-      Quiz
-      <v-spacer></v-spacer>
-      <v-text-field
+        Quiz
+        <v-spacer></v-spacer>
+        <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
         label="Search"
         single-line
         hide-details
-      ></v-text-field>
+        ></v-text-field>
     </v-card-title>
     <v-data-table
-      :headers="headers"
-      :items="quizList"
-      :items-per-page="itemsPerPage"      
-      :page.sync="page"
-      :search="search"
-      hide-default-footer
-       @click:row="goDetail"
+        :headers="headers"
+        :items="roomList"
+        :items-per-page="itemsPerPage"      
+        :page.sync="page"
+        :search="search"
+        hide-default-footer
+        @click:row="goDetail"
     ></v-data-table>
-  </v-card>
-  <v-pagination
-      v-model="page"      
-      :length="pageCount"      
-      :page="page"
-      :total-visible="3"      
-   ></v-pagination>   
+    </v-card>
+    <v-pagination
+        v-model="page"      
+        :length="pageCount"      
+        :page="page"
+        :total-visible="3"      
+    ></v-pagination>   
 </v-app>
 </template>
 
@@ -35,11 +35,11 @@
 import { mapGetters } from 'vuex'
 import router from '../router/index'
 export default {
-    name: 'SearchQuiz',
+    name: 'SearchRoom',
     components: {      
     },
     computed: {
-         ...mapGetters(["USER","QUIZLIST","TOTAL"]),
+        ...mapGetters(["USER","QUIZLIST","TOTAL","ROOMLIST"]),
     },
     data(){      
         return {
@@ -52,17 +52,18 @@ export default {
         itemsPerPage:5,
         pageCount:0,
         search: '',
+        userNo:0,
         headers: [
             {
-            text: '퀴즈 제목',
+            text: '방 제목',
             align: 'start',
             sortable: false,
-            value: 'quizName',
+            value: 'roomName',
             },
-            { text: '문항수', value: 'problemList.length' },            
+            { text: '인원수', value: 'capacity' },            
             { text: '생성일', value: 'regTime' },            
         ],
-        quizList: [        
+        roomList: [        
         ],
         }  
     },
@@ -73,20 +74,21 @@ export default {
         },     
     },
     created(){
-        this.$store.dispatch("initQuiz").then(()=>{
+        this.$store.dispatch("initRoom").then(()=>{
                 this.total=this.TOTAL
                 this.pageCount=parseInt(this.total/this.itemsPerPage)+1
-                this.$store.dispatch("searchQuiz",{
+                this.$store.dispatch("searchRoom",{
                     page:this.page,
                     size:this.size
                 }).then(()=>{
-                    this.quizList=this.QUIZLIST                           
+                    this.roomList=this.ROOMLIST                           
                 })
-        })        
+        })  
+        this.userNo=sessionStorage.getItem('userNo')
     },
     watch:{
         page(){
-             this.$store.dispatch("searchQuiz",{
+            this.$store.dispatch("searchQuiz",{
                 page:this.page-1,
                 size:this.size
             }).then(()=>{

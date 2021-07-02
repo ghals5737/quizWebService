@@ -21,12 +21,16 @@ const store = new Vuex.Store({
         total:null,
         quiz:null,
         token:null,
+        room:null,
+        roomList:null,
     },
     getters: {
         USER: state => state.userInfo,        
         QUIZLIST: state => state.quizList,
         TOTAL: state => state.total,
-        QUIZ:state => state.quiz,
+        QUIZ: state => state.quiz,
+        ROOM: state => state.room,
+        ROOMLIST: state => state.roomList,
     },
     mutations: {
         addUser: (state,{user})=>{
@@ -46,6 +50,12 @@ const store = new Vuex.Store({
         },
         addToken: (state,{token})=>{
             state.token=token
+        },
+        addRoom: (state,{room})=>{
+            state.room=room
+        },
+        addRoomList: (state,{roomList})=>{
+            state.roomList=roomList
         },
     },
     actions: {
@@ -128,6 +138,48 @@ const store = new Vuex.Store({
             .catch(()=>{
                 alert("실패")
             });
+        },
+        goCreateRoom:()=>{
+            router.push('/createroom')
+        },
+        goRoomDetail:(store,{room})=>{
+            return instanceWithAuth.post("/room",room)
+            .then(res =>{                
+                store.commit('addRoom',{room:res.data})
+                router.push({name: 'RoomDetail', query: {roomNo: res.data.roomNo}})
+            })
+            .catch(()=>{
+                alert("실패")
+            });           
+        },
+        searchRoom:(store,{page,size})=>{
+            return instanceWithAuth.get(`room/allroom?page=${page}&size=${size}`)
+            .then(res =>{
+                console.log(res.data)
+                store.commit('addRoomList',{roomList:res.data})                                                           
+            })
+            .catch(()=>{
+                alert("실패")
+            });
+        },
+        initRoom: (store)=>{
+            return instanceWithAuth.get(`room/total`)
+            .then(res=>{
+                store.commit('addTotal',{total:res.data})
+            }).catch(()=>{
+                alert("실패")
+            });
+        },
+        addRoomQuiz: (store,{quizNoList,roomNo})=>{
+            return instanceWithAuth.put("/room/quizs",{
+                quizNoList: quizNoList,
+                roomNo: roomNo
+            }).then(()=>{
+                alert("addRoomQuizSuccess")
+            });
+        },
+        goSearchRoom: ()=>{
+            router.push('/searchroom')
         },
     },
 })
