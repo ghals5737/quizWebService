@@ -33,20 +33,20 @@ export default {
     methods:{
         goCreateQuiz(){
             this.$store.dispatch("goCreateQuiz",{
-                userId: this.USER.userId,
-                userNo: this.USER.userNo
+                userId: this.userId,
+                userNo: this.userNo
             })  
         },
         goSearchQuiz(){
             this.$store.dispatch("goSearchQuiz",{
-                userId: this.USER.userId,
-                userNo: this.USER.userNo
+                userId: this.userId,
+                userNo: this.userNo
             })  
         }              
     },
     created(){
         this.userId=sessionStorage.getItem("userId")        
-
+        this.userNo=sessionStorage.getItem("userNo")        
     },
 }
 </script>

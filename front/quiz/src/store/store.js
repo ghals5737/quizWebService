@@ -69,8 +69,7 @@ const store = new Vuex.Store({
                     userId: userId,
                     userPw: pw
                 })
-                .then(res =>{
-                    console.log(res.data)
+                .then(res =>{                   
                     store.commit('addUser',{user:res.data})                    
                     store.commit('addToken',{token:res.data.token})
                     sessionStorage.setItem("userId",res.data.userId)                    

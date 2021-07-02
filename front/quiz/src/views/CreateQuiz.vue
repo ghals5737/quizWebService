@@ -107,11 +107,7 @@
       </v-container>
     </v-form>
     </v-col>
-  </v-row>
-  <div>{{isAnswer}}</div>
-  <div>{{quiz.problemList}}</div>
-  <div>{{problem}}</div>
-  <div>{{exampleList}}</div>
+  </v-row>  
 </v-container>
 </v-app>
 </template>
