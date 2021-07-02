@@ -83,6 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/api/**").hasRole("USER")
                 .antMatchers(HttpMethod.DELETE,"/api/**").hasRole("USER")
                 .antMatchers(HttpMethod.PUT,"/api/**").hasRole("USER")
+                .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll()
                 .antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated()
 

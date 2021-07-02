@@ -1,6 +1,7 @@
 package com.example.quiz.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -24,7 +25,8 @@ public class Problem {
     private String answer;
     private int score;
     private int quizType;
-    @JsonBackReference
+    //@JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "quiz_no")
     private Quiz quiz;
