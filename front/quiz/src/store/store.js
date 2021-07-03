@@ -22,7 +22,7 @@ const store = new Vuex.Store({
         quiz:null,
         token:null,
         room:null,
-        roomList:null,
+        roomList:null,        
     },
     getters: {
         USER: state => state.userInfo,        
@@ -30,7 +30,7 @@ const store = new Vuex.Store({
         TOTAL: state => state.total,
         QUIZ: state => state.quiz,
         ROOM: state => state.room,
-        ROOMLIST: state => state.roomList,
+        ROOMLIST: state => state.roomList,        
     },
     mutations: {
         addUser: (state,{user})=>{
@@ -56,6 +56,9 @@ const store = new Vuex.Store({
         },
         addRoomList: (state,{roomList})=>{
             state.roomList=roomList
+        },
+        addQuizList: (state,{quizList})=>{
+            state.quizList=quizList
         },
     },
     actions: {
@@ -180,6 +183,13 @@ const store = new Vuex.Store({
         },
         goSearchRoom: ()=>{
             router.push('/searchroom')
+        },
+        searchQuizByRoomNo: (store,{roomNo})=>{
+            return instanceWithAuth.get(`/quiz/room-quizs?roomNo=${roomNo}`)
+            .then((res)=>{
+                console.log(res.data)
+                store.commit('addQuizList',{quizList:res.data})
+            })
         },
     },
 })

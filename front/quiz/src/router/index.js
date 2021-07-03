@@ -8,6 +8,7 @@ import QuizInfo from '../views/QuizInfo.vue'
 import CreateRoom from'../views/CreateRoom.vue'
 import RoomDetail from '../views/RoomDetail.vue'
 import SearchRoom from '../views/SearchRoom.vue'
+import PlayQuiz from '../views/PlayQuiz.vue'
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,11 @@ const routes = [
     path: '/searchroom',
     name: 'SearchRoom',
     component: SearchRoom
+  },
+  {
+    path: '/playquiz',
+    name: 'PlayQuiz',
+    component: PlayQuiz
   },     
 ]
 

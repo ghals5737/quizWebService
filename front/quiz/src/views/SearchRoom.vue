@@ -19,7 +19,7 @@
         :page.sync="page"
         :search="search"
         hide-default-footer
-        @click:row="goDetail"
+        @click:row="goRoom"
     ></v-data-table>
     </v-card>
     <v-pagination
@@ -68,10 +68,9 @@ export default {
         }  
     },
     methods:{
-        goDetail(value){            
-            this.$store.commit("addQuiz",{quiz:value});
-            router.push({name: 'QuizInfo', query: {quizNo: value.quizNo}})                                                                                               
-        },     
+        goRoom(value){            
+            router.push({name: 'PlayQuiz', query: {roomNo: value.roomNo}})
+        },
     },
     created(){
         this.$store.dispatch("initRoom").then(()=>{
