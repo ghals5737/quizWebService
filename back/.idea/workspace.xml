@@ -5,16 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/back_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/quizWebService.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/AnswerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/AnswerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/RoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Problem.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Problem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/RoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/RoomRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +78,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -125,7 +120,7 @@
       <workItem from="1624203146481" duration="189000" />
       <workItem from="1624203348060" duration="67377000" />
       <workItem from="1624419620069" duration="27966000" />
-      <workItem from="1624603385324" duration="45946000" />
+      <workItem from="1624603385324" duration="49847000" />
     </task>
     <servers />
   </component>
