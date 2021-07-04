@@ -22,7 +22,8 @@ const store = new Vuex.Store({
         quiz:null,
         token:null,
         room:null,
-        roomList:null,        
+        roomList:null,
+        answerList:null,        
     },
     getters: {
         USER: state => state.userInfo,        
@@ -30,7 +31,8 @@ const store = new Vuex.Store({
         TOTAL: state => state.total,
         QUIZ: state => state.quiz,
         ROOM: state => state.room,
-        ROOMLIST: state => state.roomList,        
+        ROOMLIST: state => state.roomList, 
+        ANSWERLIST: state => state.answerList,    
     },
     mutations: {
         addUser: (state,{user})=>{
@@ -56,9 +58,9 @@ const store = new Vuex.Store({
         },
         addRoomList: (state,{roomList})=>{
             state.roomList=roomList
-        },
-        addQuizList: (state,{quizList})=>{
-            state.quizList=quizList
+        },   
+        addAnswerList: (state,{answerList})=>{
+            state.answerList=answerList
         },
     },
     actions: {
@@ -102,10 +104,10 @@ const store = new Vuex.Store({
             store.commit('updateUser',{userId,userNo})
             router.push('/searchquiz')
         },
-        makeQuiz: async(store,{quiz})=>{            
+        makeQuiz: (store,{quiz})=>{            
             try{
                 console.log(quiz)
-                return await instanceWithAuth.post('/quiz',quiz)
+                return instanceWithAuth.post('/quiz',quiz)
                 .then(res =>{
                     console.log(res.data)
                     alert("성공!!")                                               
@@ -184,11 +186,27 @@ const store = new Vuex.Store({
         goSearchRoom: ()=>{
             router.push('/searchroom')
         },
-        searchQuizByRoomNo: (store,{roomNo})=>{
+        searchQuizByRoomNo: (store,{roomNo})=>{            
             return instanceWithAuth.get(`/quiz/room-quizs?roomNo=${roomNo}`)
             .then((res)=>{
                 console.log(res.data)
                 store.commit('addQuizList',{quizList:res.data})
+            })
+        },
+        submitAnswer: (store,{answer})=>{
+            return instanceWithAuth.post("/answer",answer)
+            .then((res)=>{
+                console.log(res)
+            })
+        },
+        goQuizResult: ()=>{
+            router.push('/quizresult')
+        },
+        searchAnswerByRoomNo: (store,{roomNo,userNo})=>{
+            return instanceWithAuth.get(`/answer?roomNo=${roomNo}&userNo=${userNo}`)
+            .then((res)=>{
+                console.log(res.data)
+                store.commit('addAnswerList',{answerList:res.data})
             })
         },
     },

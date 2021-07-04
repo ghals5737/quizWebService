@@ -4,7 +4,7 @@
         <v-subheader>퀴즈 상세정보</v-subheader>
         <v-list-item-group color="primary">
             <v-list-item
-                v-for="(problem, i) in quiz.problemList"
+                v-for="(problem, i) in problemList"
                 :key="i"                
             >     
             <v-container fluid>
@@ -19,7 +19,7 @@
                         :key="ci"
                     >           
                         <v-col cols="auto">
-                        <v-checkbox class="d-flex" value="1"></v-checkbox>
+                        <v-checkbox class="d-flex" v-model="userAnswerList[i].submitAnswer" v-bind:value="ci+1"></v-checkbox>
                         </v-col>
                         <v-col>
                         <v-text-field disabled v-model="citem.des"></v-text-field>
@@ -29,6 +29,8 @@
             </v-list-item>
         </v-list-item-group>
     </v-list>    
+    <v-btn class="mr-4" @click="submitAnswer">방만들기</v-btn> 
+    {{userAnswerList}}
 </v-app>
 </template>
 
@@ -43,18 +45,42 @@ export default {
     },
     data(){      
         return { 
-            quiz:'',
-            roomNo:'',           
+            quiz:'',            
+            roomNo:'',   
+            quizList:[],
+            problemList:[],
+            userAnswerList:[],
+            answer:{
+                userAnswerList: [],
+                userNo: sessionStorage.getItem('userNo'),
+                roomNo: this.$route.query.roomNo
+            }
         }
     },
     methods:{
-        
+        submitAnswer(){
+            this.answer.userAnswerList=this.userAnswerList
+            this.$store.dispatch("submitAnswer",{                
+                answer:this.answer
+            })
+        }
     },
     created(){                
         this.$store.dispatch("searchQuizByRoomNo",{
             roomNo:this.$route.query.roomNo
         }).then(()=>{  
-            this.quiz=this.QUIZ              
+            this.quizList=this.QUIZLIST
+            this.quizList.forEach(el => {
+                el.problemList.forEach(el1=>{
+                    this.problemList.push(el1)
+                    this.userAnswerList.push({
+                        answer: el1.answer,
+                        prbNo: el1.prbNo,
+                        score: el1.score,
+                        submitAnswer: []
+                    })
+                })                
+            });            
         })
     },
     watch:{
