@@ -6,6 +6,7 @@ import java.util.List;
 
 @Data
 public class PrbUserAnswer {
-    private long prbNo;
+    private long userNo;
+    private long roomNo;
     private List<UserAnswer> userAnswerList;
 }

@@ -23,5 +23,7 @@ public class Answer {
     @JoinColumn(name = "user_id")
     private User user;
     private String  answer;
-    private boolean isAnswer;
+    private Long roomNo;
+    private int score;
+    private Boolean isAnswer;
 }

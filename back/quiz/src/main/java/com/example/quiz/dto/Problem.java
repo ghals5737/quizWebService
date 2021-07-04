@@ -25,8 +25,7 @@ public class Problem {
     private String answer;
     private int score;
     private int quizType;
-    //@JsonBackReference
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "quiz_no")
     private Quiz quiz;
