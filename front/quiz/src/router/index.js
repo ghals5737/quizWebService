@@ -11,6 +11,7 @@ import SearchRoom from '../views/SearchRoom.vue'
 import PlayQuiz from '../views/PlayQuiz.vue'
 import QuizResult from '../views/QuizResult.vue'
 import MainTest from '../views/MainTest.vue'
+import PlayQuizTest from '../views/PlayQuizTest.vue'
 
 Vue.use(VueRouter)
 

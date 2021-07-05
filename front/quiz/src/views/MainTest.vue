@@ -1,165 +1,75 @@
 <template>
-  <div id="app">
-  <vuenavbar @toggle-nav-drawer="toggleDrawer"></vuenavbar>
-  <vuedrawer v-bind:open="open">
-    <div slot="drawer-content">
-      <ul class="nav flex-column">
-        <li class="nav-item active">
-          <a class="nav-link">
-            <i class="ion-clipboard"></i> Charts
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">
-            <i class="ion-map"></i> Location
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">
-            <i class="ion-ios-settings-strong"></i> Settings
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div slot="main-content">
-      <div class="container-fluid">
-        <div class="row">          
-          <div class="col" v-for="item in items" v-bind:key="item">
-            <div class="card">
-              <div class="card-block">
-                <p><i :class="item"></i></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </vuedrawer>
-</div>
+  <v-app id="inspire">
+    <v-app id="inspire">
+      <side-bar></side-bar>
+      <nav-bar></nav-bar>     
+      <v-main>
+        <v-container
+          class="fill-height"
+          fluid
+        >
+          <v-row
+            align="center"
+            justify="center"
+          >
+            <p class="text--disabled">Page content</p>
+          </v-row>
+        </v-container>
+      </v-main>
+    </v-app>
+  </v-app>
 
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import vuedrawer from '@/components/vue-drawer.vue'
-import vuenavbar from '@/components/vue-navbar.vue'
+import SideBar from '../components/SideBar.vue'
+import NavBar from '../components/NavBar.vue'
+
 export default {
  name: 'MainTest',
-    components: {  
-        vuedrawer:vuedrawer,
-        vuenavbar:vuenavbar,    
+    components: {          
+      SideBar:SideBar,
+      NavBar:NavBar,        
     },
     computed: {
          ...mapGetters(["USER"]),
     },
     data(){
       return{
-          aa:'',
-         open: true,
-         items: [
-            'ion-social-html5-outline',
-            'ion-social-nodejs',
-            'ion-social-css3-outline',
-            'ion-social-github'
-         ],
+          dialog: false,
+          drawer: null,
+          subgroup: [
+            ['Sub-link', 'mdi-account-multiple'],
+          ],
       }
     },
-    methods:{
-        toggleDrawer() {              
-            this.open = !this.open;
-        }  
+    methods:{       
     },
-    created(){        
+    created(){ 
+             
     },
 }
 </script>
 
 <style>
-a {
-  cursor: pointer;
-}
-.container-fluid { padding: 20px; }
-
-.navbar {
-  background-color: #0277BD;
-  color: white;    
-}
-.navbar.brand-icon {
-    font-size: 1.7em;
-    padding-right: 20px;
+.theme--light.v-app-bar.v-toolbar.v-sheet {
+    background-color: #fff;
 }
 
-.btn-orange {
-  background-color: #EF6C00;
-  color: white;
-}
-#app {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  
-  
-}
-#app.card.card-block {
-    color: #EF6C00;
-    text-align: center;
-    font-size: 6rem;
-}
-#vue-navdrawer {
-  position: relative;
-  width: 10%;
-  height: 100%;
-  background-color: #37474F;
-  color: white;
-  float: left;
+.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+    background-color: #fff;
 }
 
-#vue-navcontent {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.theme--light.v-btn {
+    color: rgba(0,0,0,.54);
 }
 
-#navdrawer-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+.v-application--is-ltr .v-list--dense .v-list-group--sub-group .v-list-group__header {
+    padding-left: 32px;
 }
 
-
-
-.left-nav-enter,
-.left-nav-leave-to {
-  transform: translateX(-100%);
-  -webkit-transform: translateX(-100%);
-}
-
-.left-nav-enter-active,
-.left-nav-leave-active {
-  transition: all .5s ease;
-}
-
-@keyframes content-close {
-  from {
-    width: 90%;
-    left: 10%;
-  }
-  to {
-    width: 100%;
-    left: 0;
-  }
-}
-
-@keyframes content-open {
-  from {
-    width: 100%;
-    left: 0;
-  }
-  to {
-    width: 90%;
-    left: 10%;
-  }
+.theme--light.v-application {
+  background: #fafafa
 }
 </style>
