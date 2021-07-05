@@ -3,12 +3,30 @@
     <v-app id="inspire">
         <v-container class="pt-15" fluid><p class="text-center">퀴즈 제목</p></v-container>
         <v-container class="text-xs-center" fluid>            
-                <v-progress-linear
+                <!-- <v-progress-linear
                     v-model="value"
                     :active="show"                    
                     color="#ffd700"
                     height="30"
-                ></v-progress-linear>
+                ></v-progress-linear> -->               
+                <v-row no-gutters cols="12">
+                    <v-col sm="1" justify="center">
+                        <strong><p class="text-center">{{currentIndex+1}}/{{problemList.length}}</p></strong>
+                    </v-col>
+                    <v-col sm="10">
+                        <v-progress-linear
+                         class="rounded-pill"
+                         background-color="grey"
+                         color="#f0cb35"
+                         dark v-model="prog"
+                         height="15"                         
+                         md="5">
+                         </v-progress-linear>
+                    </v-col>
+                    <v-col sm="1">
+                        <strong><p class="text-center">{{30-Math.ceil(prog/3.5) }}</p></strong>
+                    </v-col>
+                </v-row>                                                
         </v-container>
         <v-container fluid>
             <v-carousel hide-delimiters :show-arrows="false" v-model="currentIndex"> 
@@ -83,7 +101,7 @@ import { mapGetters } from 'vuex'
 
 export default {
     name: 'PlayQuiz',
-    components: {        
+    components: {          
     },
     computed: {
         ...mapGetters(["USER","QUIZLIST","TOTAL","QUIZ"]),
@@ -101,14 +119,19 @@ export default {
             }
 
             return 1;
-        }
+        },  
     },
     data(){
         return{
+            angle: '50',
+            color1: 'red',
+            color2: 'blue',
             model: null,
             aa:1,
             value: 0,
             max: 100,
+            prog: 0,
+            interval:'',
             currentIndex:0,
             problemList:[],
             userAnswerList:[],
@@ -137,14 +160,19 @@ export default {
                 "light-green", 
                 "deep-orange", 
                 "blue-grey"
-            ],
-            interval: {},
-            
+            ],            
         }
     },
     methods:{
-        goNextPrb(){
-            this.currentIndex++
+        goNextPrb(){            
+            window.clearInterval(this.interval)
+            this.sleep(700).then(() => {                    
+                    this.prog=-3            
+                    this.currentIndex++    
+                    this.interval=window.setInterval(function(){
+                        this.prog += 0.1            
+                    }.bind(this), 30)
+            });  
         },     
         submitAnswer(){
             this.answer.userAnswerList=this.userAnswerList
@@ -160,7 +188,11 @@ export default {
         },
         test(){
             this.currentIndex++
-        },
+        },     
+        sleep(ms) {
+            return new Promise((r) => setTimeout(r, ms));
+        }   
+        
     },
     created(){
         this.userId=sessionStorage.getItem("userId")        
@@ -189,7 +221,24 @@ export default {
         // }
         // this.value += 10
         // }, 1000)
+        this.interval=window.setInterval(function(){
+            this.prog += 0.1            
+        }.bind(this), 30)
     },
+    watch:{
+        prog(){
+            if(this.prog>=100){   
+                window.clearInterval(this.interval)
+                this.sleep(700).then(() => {                    
+                    this.prog=-3            
+                    this.currentIndex++    
+                    this.interval=window.setInterval(function(){
+                        this.prog += 0.1            
+                    }.bind(this), 30)
+                });                
+            }
+        },    
+    }
 }
 </script>
 
@@ -200,4 +249,12 @@ export default {
 .v.application--wrap {   
     min-height: 1vh !important;
 }
+div.v-progress-linear__determinate{
+  background: #f0cb35;
+  background: -moz-linear-gradient(90deg,#f0cb35 0%, #c02425 100%);
+  background: -webkit-linear-gradient(90deg,#f0cb35 0%, #c02425 100%);
+  background: linear-gradient(90deg,#f0cb35 0%,  #c02425 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f0cb35",endColorstr="#c02425",GradientType=1);
+}
+
 </style>
