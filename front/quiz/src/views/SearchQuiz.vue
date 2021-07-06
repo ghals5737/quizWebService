@@ -1,35 +1,39 @@
 <template>
 <v-app>
+    <nav-bar></nav-bar>
     <side-bar></side-bar>
-    <nav-bar></nav-bar>    
-    <v-card>
-    <v-card-title>
-        Quiz
-        <v-spacer></v-spacer>
-        <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-        ></v-text-field>
-    </v-card-title>
-    <v-data-table
-        :headers="headers"
-        :items="quizList"
-        :items-per-page="itemsPerPage"      
-        :page.sync="page"
-        :search="search"
-        hide-default-footer
-        @click:row="goDetail"
-    ></v-data-table>
-    </v-card>
-    <v-pagination
-        v-model="page"      
-        :length="pageCount"      
-        :page="page"
-        :total-visible="3"      
-    ></v-pagination>   
+    <v-main>
+    <v-container fluid id="createContent">
+        <v-card>
+        <v-card-title>
+            Quiz
+            <v-spacer></v-spacer>
+            <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+            ></v-text-field>
+        </v-card-title>
+        <v-data-table
+            :headers="headers"
+            :items="quizList"
+            :items-per-page="itemsPerPage"      
+            :page.sync="page"
+            :search="search"
+            hide-default-footer
+            @click:row="goDetail"
+        ></v-data-table>
+        </v-card>
+        <v-pagination
+            v-model="page"      
+            :length="pageCount"      
+            :page="page"
+            :total-visible="3"      
+        ></v-pagination>   
+    </v-container>
+    </v-main>
 </v-app>
 </template>
 
@@ -105,5 +109,7 @@ export default {
 </script>
 
 <style>
-
+th.text-start{
+    background-color: #ffffff;
+}
 </style>

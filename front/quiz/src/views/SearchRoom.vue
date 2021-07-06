@@ -4,13 +4,12 @@
     <side-bar></side-bar>
     <nav-bar></nav-bar>     
     <v-main>
-    <v-container
-        class="fill-height"
+    <v-container        
         fluid
     >
         <v-card>
             <v-card-title>
-                Quiz
+                Room
                 <v-spacer></v-spacer>
                 <v-text-field
                 v-model="search"

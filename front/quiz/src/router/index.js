@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Main from '../views/Main.vue'
 import CreateQuiz from '../views/CreateQuiz.vue'
-//import SearchQuiz from '../views/SearchQuiz.vue'
+import SearchQuiz from '../views/SearchQuiz.vue'
 import QuizInfo from '../views/QuizInfo.vue'
 import CreateRoom from'../views/CreateRoom.vue'
 import RoomDetail from '../views/RoomDetail.vue'
@@ -11,7 +11,7 @@ import SearchRoom from '../views/SearchRoom.vue'
 import PlayQuiz from '../views/PlayQuiz.vue'
 import QuizResult from '../views/QuizResult.vue'
 import MainTest from '../views/MainTest.vue'
-import SearchQuizTest from '../views/SearchQuizTest.vue'
+//import SearchQuizTest from '../views/SearchQuizTest.vue'
 
 Vue.use(VueRouter)
 
@@ -34,7 +34,7 @@ const routes = [
   {
     path: '/searchquiz',
     name: 'SearchQuiz',
-    component: SearchQuizTest
+    component: SearchQuiz
   },
   {
     path: '/quizinfo',

@@ -4,7 +4,6 @@
     <nav-bar></nav-bar>
     <v-container>
         <v-navigation-drawer
-            v-model="drawer"
             :clipped="$vuetify.breakpoint.lgAndUp"
             app
         >   
@@ -32,7 +31,8 @@
             </v-list>
         </v-navigation-drawer>
     </v-container>
-    <v-container id="createContent">
+    <v-main>
+    <v-container id="createContent" fluid>
                 <v-container>
                 <v-row          
                     justify="start"
@@ -149,21 +149,21 @@
                 </v-card>                     
                 </v-container>
             </v-form>
-    </v-container>            
+    </v-container>    
+    </v-main>        
     </v-app>
-    
   </v-app>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import SideBar from '../components/SideBar.vue'
+//import SideBar from '../components/SideBar.vue'
 import NavBar from '../components/NavBar.vue'
 
 export default {
     name: 'CreateQuiz',
     components: {      
-        SideBar:SideBar,
+        //SideBar:SideBar,
         NavBar:NavBar, 
     },
     computed: {
@@ -308,8 +308,5 @@ export default {
     /* font-family: 'Lato', Arial, sans-serif; */
     font-weight: bold;
     font-size: 15px;
-}
-#createContent{
-    padding-top: 80px;
 }
 </style>
