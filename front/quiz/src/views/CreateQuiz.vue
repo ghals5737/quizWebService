@@ -1,41 +1,45 @@
 <template>
-<v-app id="inspire">
-    <v-app id="inspire">
-      <side-bar></side-bar>
-      <nav-bar></nav-bar>     
-      <v-main>
-        <v-container
-          class="fill-height"
-          fluid
-        >
-            <v-container>
-                <v-row>
-                    <v-col md="2">
-                    <v-list>
-                        <v-subheader>등록한 문제</v-subheader>
-                        <v-list-item-group color="primary">
-                            <v-list-item
-                                v-for="(item, i) in quiz.problemList"
-                                :key="i"
-                                :inactive="inactive"
-                            >   
-                                <v-list-item-content>
-                                    <v-list-item-title>문제 {{i+1}}</v-list-item-title>                    
-                                </v-list-item-content>
-                                <v-list-item-content>
-                                    <v-btn depressed color="error" @click="deleteOrder(i)">delete</v-btn>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-list-item-group>
-                    </v-list>
-                    </v-col>
+<v-app id="app">
+    <v-app id="inspire">    
+    <nav-bar></nav-bar>
+    <v-container>
+        <v-navigation-drawer
+            v-model="drawer"
+            :clipped="$vuetify.breakpoint.lgAndUp"
+            app
+        >   
+            <v-row>
+                <v-col class="text-center">
+                    등록한 문제
+                </v-col>                
+            </v-row>            
+            <v-list>                
+                <v-list-item-group color="primary">
+                    <v-list-item
+                        v-for="(item, i) in quiz.problemList"
+                        :key="i"
+                        :inactive="inactive"
+                        @click="selectPrb(i)"
+                    >   
+                        <v-list-item-content>
+                            <v-list-item-title>문제 {{i+1}}</v-list-item-title>                    
+                        </v-list-item-content>
+                        <v-list-item-content>
+                            <v-btn depressed color="error" @click="deleteOrder(i)">delete</v-btn>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list-item-group>
+            </v-list>
+        </v-navigation-drawer>
+    </v-container>
+    <v-container id="createContent">
+                <v-container>
+                <v-row          
+                    justify="start"
+                >
                     <v-col>
-                    <v-text-field v-model="quiz.quizName" label="퀴즈 제목 입력"></v-text-field>            
-                    <!--<div class="btn btn-group">   -->   
-                    <v-container>
-                    <v-row          
-                        justify="start"
-                    >
+                        <v-text-field v-model="quiz.quizName" label="퀴즈 제목 입력"></v-text-field>
+                    </v-col>
                     <v-col cols="auto">
                         <v-select 
                             depressed
@@ -45,81 +49,109 @@
                             item-text="name"
                             item-value="value"
                         ></v-select>
-                    </v-col>
-                    </v-row>
-                    <v-row          
-                        justify="start"
-                    >
-                        <v-col cols="auto">
-                        <v-btn depressed color="primary" @click="addOrder">Insert Question</v-btn>
-                        </v-col>
-                        <v-col cols="auto">
-                            <v-btn depressed color="error" @click="deleteLastOrder">Delete Last Question</v-btn>
-                        </v-col>
-                        <v-col cols="auto">             
-                            <v-btn depressed color="warning" @click="makeQuiz">create quiz</v-btn>
-                        </v-col>                    
-                    </v-row>
-                    </v-container>  
-                    <!--</div>-->
-                    
-                    <v-divider></v-divider>
-                    <v-form>
-                    <v-container>                 
-                        <v-card >
-                        <v-subheader dark class="blue text--white">문제 {{order}}</v-subheader>  
+                    </v-col>        
+                    <v-col cols="auto">             
+                        <v-btn depressed color="warning" @click="makeQuiz">퀴즈 만들기</v-btn>
+                    </v-col>                    
+            </v-row>
+                </v-container>  
+                <!--</div>-->
+                
+                <v-divider></v-divider>
+                <v-form>
+                <v-container>                 
+                    <v-card >                        
+                    <v-card-title dark class="blue text--white">문제 {{order}}</v-card-title> 
+                    <v-container fluid>
+                        <v-row>
+                            <p>Question</p>                       
+                            <v-col md="10">
+                                <v-text-field
+                                v-model="problem.title"                                    
+                                label="문제를 입력하세요"                                    
+                                ></v-text-field>                            
+                            </v-col>
+                            <v-col>
+                                <v-text-field
+                                    v-model="problem.score"                                    
+                                    label="점수를 입력하세요"                                             
+                                ></v-text-field>                                 
+                            </v-col>
+                        </v-row>           
+                    </v-container>                                                                       
+                    <v-container fluid>
+                    <p>Answer</p>
+                    <v-row>
+                        <v-col
+                            v-for="(item,n) in exampleList"
+                            :key="n"
+                            cols="12"
+                        >
                         <v-text-field
-                        v-model="problem.title"                                    
-                        label="문제를 입력하세요"            
-                        ></v-text-field>
-                        <v-text-field
-                        v-model="problem.score"                                    
-                        label="점수를 입력하세요"            
-                        ></v-text-field>
-                            <v-divider></v-divider>
-                        <v-container fluid>
-                        <v-row >
-                            <v-col cols="auto">
-                            <v-checkbox class="d-flex" value="1" v-model="isAnswer"></v-checkbox>
-                            </v-col>
-                            <v-col>
-                            <v-text-field v-model="exampleList[0].des" label="선택지를 입력하세요"></v-text-field>
-                            </v-col>
-                        </v-row> 
-                        <v-row >
-                            <v-col cols="auto">
-                            <v-checkbox class="d-flex" value="2" v-model="isAnswer"></v-checkbox>
-                            </v-col>
-                            <v-col>
-                            <v-text-field v-model="exampleList[1].des" label="선택지를 입력하세요"></v-text-field>
-                            </v-col>
-                        </v-row> 
-                        <v-row >
-                            <v-col cols="auto">
-                            <v-checkbox class="d-flex" value="3" v-model="isAnswer"></v-checkbox>
-                            </v-col>
-                            <v-col>
-                            <v-text-field v-model="exampleList[2].des" label="선택지를 입력하세요"></v-text-field>
-                            </v-col>
-                        </v-row> 
-                        <v-row >
-                            <v-col cols="auto">
-                            <v-checkbox class="d-flex" value="4" v-model="isAnswer"></v-checkbox>
-                            </v-col>
-                            <v-col>
-                            <v-text-field v-model="exampleList[3].des" label="선택지를 입력하세요"></v-text-field>
-                            </v-col>
-                        </v-row> 
-                        </v-container>
-                    </v-card>       
+                            v-model="exampleDes[n]"                            
+                            outlined
+                            clearable
+                            label="지문을 입력하세요"
+                            type="text"
+                        >
+                            <template v-slot:prepend mb="10">
+                            <v-checkbox
+                                v-model="isAnswer"                                    
+                                color="success"
+                                :value="n"
+                                hide-details                                                                        
+                            ></v-checkbox>
+                            </template>                                
+                            <template v-slot:append-outer>
+                            <v-menu
+                                style="top: -12px"
+                                offset-y
+                            >
+                                <template v-slot:activator="{ on, attrs }">
+                                        <v-btn
+                                            v-bind="attrs"
+                                            v-on="on"
+                                            small
+                                            fab                                                
+                                            color="primary"                                            
+                                            @click="addAnswer"
+                                        >                                                                               
+                                        <v-icon>
+                                        mdi-plus
+                                        </v-icon>
+                                        </v-btn>
+                                        <v-btn
+                                            v-bind="attrs"
+                                            v-on="on"                                            
+                                            small                                                
+                                            fab                                            
+                                            color="error"                                            
+                                            @click="deleteAnswer(n)"
+                                        >                                       
+                                        <v-icon>
+                                        mdi-delete
+                                        </v-icon>
+                                        </v-btn>
+                                </template>                                    
+                            </v-menu>
+                            </template>
+                        </v-text-field>
+                        </v-col>
+                    </v-row>
                     </v-container>
-                </v-form>
-                </v-col>
-                </v-row>  
-            </v-container>
-        </v-container>
-      </v-main>
+                    <v-container>
+                        <v-row>
+                            <v-col class="mx-auto" cols="auto">
+                                    <v-btn depressed color="blue-grey lighten-3" @click="addOrder"><span id="content4">저장</span></v-btn>
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                </v-card>                     
+                </v-container>
+            </v-form>
+    </v-container>            
     </v-app>
+    
   </v-app>
 </template>
 
@@ -139,17 +171,18 @@ export default {
     },
     data(){
       return{
-        items:[
-          
-        ],
+        items:[],
         options:[
-          {name: "객관식",value:1},
-          {name: "주관식",value:2}
+            {name: "객관식",value:1},
+            {name: "주관식",value:2}
         ],
         mod:0,
-        order:1,
+        order:1,      
+        rOrder:1,  
+        exampleDes:[],
         isAnswer:[],
         quizList:[],
+        examListIndex:1,
         problem:{
                 answer: '',
                 exampleList: [                 
@@ -158,28 +191,13 @@ export default {
                 prbNo: 0,
                 prbOder: 0,
                 quizType: 0,
-                score: 0,
+                score: '',
                 title: ''
         },
         exampleList:[
             { 
                 des: '',
                 examNo: 1,
-                exampleNO: 0
-            },
-            { 
-                des: '',
-                examNo: 2,
-                exampleNO: 0
-            },
-            { 
-                des: '',
-                examNo: 3,
-                exampleNO: 0
-            },
-            { 
-                des: '',
-                examNo: 4,
                 exampleNO: 0
             },
         ],        
@@ -190,16 +208,16 @@ export default {
             quizNo: 0,
             regTime: new Date(),
             userNo: 0
+            }
         }
-      }
     },
     methods:{
         addOrder(){            
             let copyExampleList=[]
             let cnt=1;
-            this.exampleList.forEach(el=>{
+            this.exampleDes.forEach(el=>{
                 copyExampleList.push({
-                    des: el.des,
+                    des: el,
                     examNo: cnt++,
                     exampleNO: 0
                 })
@@ -220,18 +238,14 @@ export default {
             this.problem.score=0
             this.problem.title=''
             this.problem.exampleList=[]            
-            this.exampleList.forEach(element => {
-                element.des=''
-            });           
+            this.exampleDes=[]        
             this.order=this.quiz.problemList.length+1;
+            this.rOrder=this.order
         },
         deleteOrder(index){
             this.quiz.problemList.splice(index, 1);
             this.order=this.quiz.problemList.length+1;
-        },
-        deleteLastOrder(){
-            this.quiz.problemList.splice(-1, 1);
-            this.order=this.quiz.problemList.length+1;
+            this.rOrder=this.order
         },
         makeQuiz(){
             //prbOrder 설정
@@ -244,14 +258,58 @@ export default {
             this.$store.dispatch("makeQuiz",{
                 quiz:this.quiz
             })
+        },        
+        addAnswer(){
+            if(this.examListIndex>=4){
+                alert("최대 4개까지 등록가능 합니다.")
+            }else{
+                this.exampleList.push({
+                    des: this.exampleDes,
+                    examNo: this.examListIndex+1,
+                    exampleNO: 0
+                })
+                this.examListIndex++
+            }
+        },
+        deleteAnswer(index){
+            if(this.examListIndex<=1){
+                alert("지문은 최소 1개 이상이여야 합니다")
+            }else{
+                this.exampleList.splice(index,1)
+                this.examListIndex--
+            }
+        },
+        selectPrb(index){
+            let prb=this.quiz.problemList[index]
+            this.problem.title=prb.title
+            this.problem.score=prb.score
+            this.exampleDes=[]
+            prb.exampleList.forEach(el=>{                
+                this.exampleDes.push(el.des)
+            })            
         }
     },
     created(){
         
     },
+    watch:{        
+    }
 }
 </script>
-
 <style>
-
+.v-text-field--outlined .v-input__prepend-outer, .v-text-field--outlined .v-input__append-outer {
+    margin-top: -5px;    
+}
+.v-btn--fab.v-size--small {    
+    margin-top: 8px;
+    margin-right: 2px;
+}
+#content4{
+    /* font-family: 'Lato', Arial, sans-serif; */
+    font-weight: bold;
+    font-size: 15px;
+}
+#createContent{
+    padding-top: 80px;
+}
 </style>

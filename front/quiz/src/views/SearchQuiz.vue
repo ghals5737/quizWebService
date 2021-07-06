@@ -1,42 +1,49 @@
 <template>
-<v-app>    
-  <v-card>
+<v-app>
+    <side-bar></side-bar>
+    <nav-bar></nav-bar>    
+    <v-card>
     <v-card-title>
-      Quiz
-      <v-spacer></v-spacer>
-      <v-text-field
+        Quiz
+        <v-spacer></v-spacer>
+        <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
         label="Search"
         single-line
         hide-details
-      ></v-text-field>
+        ></v-text-field>
     </v-card-title>
     <v-data-table
-      :headers="headers"
-      :items="quizList"
-      :items-per-page="itemsPerPage"      
-      :page.sync="page"
-      :search="search"
-      hide-default-footer
-       @click:row="goDetail"
+        :headers="headers"
+        :items="quizList"
+        :items-per-page="itemsPerPage"      
+        :page.sync="page"
+        :search="search"
+        hide-default-footer
+        @click:row="goDetail"
     ></v-data-table>
-  </v-card>
-  <v-pagination
-      v-model="page"      
-      :length="pageCount"      
-      :page="page"
-      :total-visible="3"      
-   ></v-pagination>   
+    </v-card>
+    <v-pagination
+        v-model="page"      
+        :length="pageCount"      
+        :page="page"
+        :total-visible="3"      
+    ></v-pagination>   
 </v-app>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import router from '../router/index'
+import SideBar from '../components/SideBar.vue'
+import NavBar from '../components/NavBar.vue'
+
 export default {
     name: 'SearchQuiz',
-    components: {      
+    components: {
+        SideBar,
+        NavBar
     },
     computed: {
          ...mapGetters(["USER","QUIZLIST","TOTAL"]),

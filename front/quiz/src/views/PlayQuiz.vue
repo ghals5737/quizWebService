@@ -15,13 +15,13 @@
                     </v-col>
                     <v-col sm="10">
                         <v-progress-linear
-                         class="rounded-pill"
-                         background-color="grey"
-                         color="#f0cb35"
-                         dark v-model="prog"
-                         height="15"                         
-                         md="5">
-                         </v-progress-linear>
+                        class="rounded-pill"
+                        background-color="grey"
+                        color="#f0cb35"
+                        dark v-model="prog"
+                        height="15"                         
+                        md="5">
+                        </v-progress-linear>
                     </v-col>
                     <v-col sm="1">
                         <strong><p class="text-center">{{30-Math.ceil(prog/3.5) }}</p></strong>
@@ -64,17 +64,18 @@
                                             <v-btn
                                             :elevation="n - 1"
                                             height="110"
-                                            width="100%"                                            
+                                            width="100%"
+                                            selected                                            
                                             :color="colors[n]"
-                                            @click="goNextPrb"
+                                            @click="goNextPrb(n)"                                                                                      
                                             >
-                                            <v-container align-stretch>{{item.des}}</v-container>                   
-                                            <p
-                                                id="number"
-                                                justify="center"
-                                                v-text="n+1"
-                                            ></p>
-                                            </v-btn>
+                                                <v-container align-stretch>{{item.des}}</v-container>                   
+                                                <p
+                                                    id="number"
+                                                    justify="center"
+                                                    v-text="n+1"
+                                                ></p>
+                                            </v-btn>                                                                                         
                                         </v-col>
                                     </v-row>
                                     </v-main>            
@@ -87,8 +88,7 @@
                 </template> 
             </v-carousel>  
         </v-container> 
-        <v-container>
-            
+        <v-container>            
         </v-container> 
     </v-app>
 </div>
@@ -127,6 +127,8 @@ export default {
             color1: 'red',
             color2: 'blue',
             model: null,
+            flag:false,
+            exampleIndex:-1,
             aa:1,
             value: 0,
             max: 100,
@@ -164,10 +166,11 @@ export default {
         }
     },
     methods:{
-        goNextPrb(){            
+        goNextPrb(n){            
             window.clearInterval(this.interval)
             this.sleep(700).then(() => {                    
-                    this.prog=-3            
+                    this.prog=-3
+                    this.userAnswerList[this.currentIndex].submitAnswer.push(n)            
                     this.currentIndex++    
                     this.interval=window.setInterval(function(){
                         this.prog += 0.1            
@@ -177,7 +180,8 @@ export default {
         submitAnswer(){
             this.answer.userAnswerList=this.userAnswerList
             this.$store.dispatch("submitAnswer",{                
-                answer:this.answer
+                answer:this.answer,
+                roomNo:this.$route.query.roomNo
             })
         },
         randomValue() {
@@ -191,8 +195,15 @@ export default {
         },     
         sleep(ms) {
             return new Promise((r) => setTimeout(r, ms));
-        }   
-        
+        },
+        expendEvent(value){            
+            if(!this.flag){                
+                this.flag=!this.flag
+            }else if(this.exampleIndex===value){
+                this.flag=!this.flag
+            }            
+            this.exampleIndex=value
+        },        
     },
     created(){
         this.userId=sessionStorage.getItem("userId")        
@@ -230,14 +241,20 @@ export default {
             if(this.prog>=100){   
                 window.clearInterval(this.interval)
                 this.sleep(700).then(() => {                    
-                    this.prog=-3            
+                    this.prog=-3       
+                    this.userAnswerList[this.currentIndex].submitAnswer.push(-1)           
                     this.currentIndex++    
                     this.interval=window.setInterval(function(){
                         this.prog += 0.1            
                     }.bind(this), 30)
                 });                
             }
-        },    
+        },
+        currentIndex(){
+            if(this.currentIndex>=this.problemList.length){
+                this.submitAnswer()
+            }
+        },
     }
 }
 </script>
@@ -250,11 +267,11 @@ export default {
     min-height: 1vh !important;
 }
 div.v-progress-linear__determinate{
-  background: #f0cb35;
-  background: -moz-linear-gradient(90deg,#f0cb35 0%, #c02425 100%);
-  background: -webkit-linear-gradient(90deg,#f0cb35 0%, #c02425 100%);
-  background: linear-gradient(90deg,#f0cb35 0%,  #c02425 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f0cb35",endColorstr="#c02425",GradientType=1);
+    background: #f0cb35;
+    background: -moz-linear-gradient(90deg,#f0cb35 0%, #c02425 100%);
+    background: -webkit-linear-gradient(90deg,#f0cb35 0%, #c02425 100%);
+    background: linear-gradient(90deg,#f0cb35 0%,  #c02425 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f0cb35",endColorstr="#c02425",GradientType=1);
 }
 
 </style>

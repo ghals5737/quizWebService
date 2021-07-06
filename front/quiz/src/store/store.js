@@ -193,15 +193,12 @@ const store = new Vuex.Store({
                 store.commit('addQuizList',{quizList:res.data})
             })
         },
-        submitAnswer: (store,{answer})=>{
+        submitAnswer: (store,{answer,roomNo})=>{
             return instanceWithAuth.post("/answer",answer)
-            .then((res)=>{
-                console.log(res)
+            .then(()=>{
+                router.push({name: 'QuizResult', query: {roomNo: roomNo}})
             })
-        },
-        goQuizResult: ()=>{
-            router.push('/quizresult')
-        },
+        },        
         searchAnswerByRoomNo: (store,{roomNo,userNo})=>{
             return instanceWithAuth.get(`/answer?roomNo=${roomNo}&userNo=${userNo}`)
             .then((res)=>{

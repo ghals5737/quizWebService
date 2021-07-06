@@ -1,7 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-app id="inspire">
-      <side-bar></side-bar>
+    <v-app id="inspire">      
       <nav-bar></nav-bar>     
       <v-main>
         <v-container
@@ -46,8 +45,8 @@ import NavBar from '../components/NavBar.vue'
 export default {
     name: 'Main',
     components: {   
-       SideBar:SideBar,
-       NavBar:NavBar,           
+      SideBar:SideBar,
+      NavBar:NavBar,           
     },
     computed: {
          ...mapGetters(["USER"]),
