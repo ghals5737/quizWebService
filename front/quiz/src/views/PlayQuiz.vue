@@ -51,14 +51,13 @@
                                             ></v-img>                
                                         </v-col>
                                     </v-row>
-                                </v-container>
-                                <v-container fluid>
-                                    <v-main>
-                                    <v-row >               
+                                </v-container>                                
+                                <v-container fluid>                                    
+                                    <v-row v-if="problem.quizType==0">               
                                         <v-col
                                             v-for="(item,n) in problem.exampleList"
                                             :key="n"
-                                            cols="auto"
+                                            cols="auto"                                            
                                             md="3"                    
                                         > 
                                             <v-btn
@@ -78,8 +77,43 @@
                                             </v-btn>                                                                                         
                                         </v-col>
                                     </v-row>
-                                    </v-main>            
-                                </v-container>
+                                    <v-row v-if="problem.quizType==1"> 
+                                        <v-col>                                            
+                                        </v-col>                                       
+                                        <v-col>
+                                            <v-card 
+                                                height="125"
+                                                width="70%"                                                    
+                                                @click="goNextPrb(0)"
+                                            >  
+                                                <v-img 
+                                                    max-height="120"
+                                                    max-width="200"
+                                                    src="@/assets/event_img_o.png"
+                                                ></v-img>                                        
+                                            </v-card>
+                                        </v-col>
+                                        <v-col>
+                                            <v-card
+                                                height="125"
+                                                width="70%"                                                
+                                                @click="goNextPrb(1)"
+                                             >  
+                                              <v-img 
+                                                max-height="120"
+                                                max-width="200"
+                                                src="@/assets/event_img_x.png"
+                                              >
+                                              </v-img>
+                                            </v-card>
+                                        </v-col>
+                                        <v-col>                                            
+                                        </v-col> 
+                                    </v-row>
+                                    <v-row v-if="problem.quizType==2">
+                                    </v-row>
+                                   
+                                </v-container>                                
                             </v-col>
                             </template> 
                         </template> 
@@ -238,7 +272,7 @@ export default {
     },
     watch:{
         prog(){
-            if(this.prog>=100){   
+            if(this.prog>=1000){   
                 window.clearInterval(this.interval)
                 this.sleep(700).then(() => {                    
                     this.prog=-3       

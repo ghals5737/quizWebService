@@ -43,7 +43,7 @@
                     <v-col cols="auto">
                         <v-select 
                             depressed
-                            v-model="problem.quizType"
+                            v-model="quizType"
                             label="퀴즈유형"
                             :items="options"
                             item-text="name"
@@ -81,7 +81,7 @@
                     </v-container>                                                                       
                     <v-container fluid>
                     <p>Answer</p>
-                    <v-row>
+                    <v-row v-if="probleFlag[0]">
                         <v-col
                             v-for="(item,n) in exampleList"
                             :key="n"
@@ -138,6 +138,21 @@
                         </v-text-field>
                         </v-col>
                     </v-row>
+                    <v-row v-if="probleFlag[1]">                      
+                      <v-col md="2"></v-col>
+                      <v-col>
+                        <v-checkbox v-model="oxAnswer1" @click="oxClick1"></v-checkbox>
+                        <img src="@/assets/event_img_o.png" style="width: 300px;">
+                      </v-col>
+                      <v-col>
+                        <v-checkbox v-model="oxAnswer2" @click="oxClick2"></v-checkbox>
+                        <img src="@/assets/event_img_x.png" style="width: 300px;">
+                      </v-col> 
+                      <v-col md="4"></v-col>                       
+                    </v-row>
+                    <v-row v-if="probleFlag[2]">
+                      주간식
+                    </v-row>
                     </v-container>
                     <v-container>
                         <v-row>
@@ -173,7 +188,8 @@ export default {
       return{
         items:[],
         options:[
-            {name: "객관식",value:1},
+            {name: "객관식",value:0},
+            {name: "OX",value:1},
             {name: "주관식",value:2}
         ],
         mod:0,
@@ -183,6 +199,10 @@ export default {
         isAnswer:[],
         quizList:[],
         examListIndex:1,
+        quizType:0,
+        oxAnswer1:true,
+        oxAnswer2:false,
+        probleFlag:[true,false,false],
         problem:{
                 answer: '',
                 exampleList: [                 
@@ -228,13 +248,13 @@ export default {
                 imgUrl: '',
                 prbNo: 0,
                 prbOder: 0,
-                quizType: this.problem.quizType,
+                quizType: this.quizType,
                 score: this.problem.score,
                 title: this.problem.title
             })            
             this.isAnswer=[]   
             this.problem.answer=''
-            this.problem.quizType=0
+            this.quizType=0
             this.problem.score=0
             this.problem.title=''
             this.problem.exampleList=[]            
@@ -287,12 +307,37 @@ export default {
             prb.exampleList.forEach(el=>{                
                 this.exampleDes.push(el.des)
             })            
+        },
+        oxClick1(){
+          this.oxAnswer1=true;
+          this.oxAnswer2=false;
+          this.isAnswer[0]=0;
+        },
+        oxClick2(){
+          this.oxAnswer1=false;
+          this.oxAnswer2=true;
+          this.isAnswer[0]=1;
         }
     },
     created(){
         
     },
-    watch:{        
+    watch:{   
+      quizType(){
+        if(this.quizType==0){
+            this.probleFlag[0]=true
+            this.probleFlag[1]=false
+            this.probleFlag[2]=false
+        }else if(this.quizType==1){
+            this.probleFlag[0]=false
+            this.probleFlag[1]=true
+            this.probleFlag[2]=false          
+        }else{
+            this.probleFlag[0]=false
+            this.probleFlag[1]=false
+            this.probleFlag[2]=true
+        }
+      }     
     }
 }
 </script>
