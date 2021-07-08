@@ -112,7 +112,6 @@
                                     </v-row>
                                     <v-row v-if="problem.quizType==2">
                                     </v-row>
-                                   
                                 </v-container>                                
                             </v-col>
                             </template> 

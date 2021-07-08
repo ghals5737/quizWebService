@@ -52,6 +52,8 @@
                     </v-col>        
                     <v-col cols="auto">             
                         <v-btn depressed color="warning" @click="makeQuiz">퀴즈 만들기</v-btn>
+                        <v-btn depressed color="warning" @click="getEncyc">웅진 백과 연동</v-btn>
+                        <v-btn depressed color="warning" @click="getEncycDetail">웅진 백과 상세조회</v-btn>
                     </v-col>                    
             </v-row>
                 </v-container>  
@@ -317,6 +319,12 @@ export default {
           this.oxAnswer1=false;
           this.oxAnswer2=true;
           this.isAnswer[0]=1;
+        },
+        getEncyc(){
+            this.$store.dispatch("getEncyc",{searchWord:'감자'})
+        },
+        getEncycDetail(){
+            this.$store.dispatch("getEncycDetail",{dictSeq:'33088'})
         }
     },
     created(){

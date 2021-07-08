@@ -206,6 +206,19 @@ const store = new Vuex.Store({
                 store.commit('addAnswerList',{answerList:res.data})
             })
         },
+        getEncyc:(store,{searchWord})=>{
+            alert(searchWord)
+            return instanceWithAuth.get(`wjtb/search?keyWord=${searchWord}`)
+            .then((res)=>{
+                console.log("data",res.data)
+            })
+        },
+        getEncycDetail:(store,{dictSeq})=>{            
+            return instanceWithAuth.get(`wjtb/searchdetail?dictSeq=${dictSeq}`)
+            .then((res)=>{
+                console.log("data",res.data)
+            })
+        },
     },
 })
 
