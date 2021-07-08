@@ -24,7 +24,7 @@
                         </v-progress-linear>
                     </v-col>
                     <v-col sm="1">
-                        <strong><p class="text-center">{{30-Math.ceil(prog/3.5) }}</p></strong>
+                        <strong><p class="text-center">{{20-Math.ceil(prog/5.5) }}</p></strong>
                     </v-col>
                 </v-row>                                                
         </v-container>
@@ -208,7 +208,7 @@ export default {
                     this.currentIndex++    
                     this.interval=window.setInterval(function(){
                         this.prog += 0.1            
-                    }.bind(this), 30)
+                    }.bind(this), 20)
             });  
         },     
         submitAnswer(){
@@ -268,11 +268,11 @@ export default {
         // }, 1000)
         this.interval=window.setInterval(function(){
             this.prog += 0.1            
-        }.bind(this), 30)
+        }.bind(this), 20)
     },
     watch:{
         prog(){
-            if(this.prog>=1000){   
+            if(this.prog>=100){   
                 window.clearInterval(this.interval)
                 this.sleep(700).then(() => {                    
                     this.prog=-3       
@@ -280,12 +280,12 @@ export default {
                     this.currentIndex++    
                     this.interval=window.setInterval(function(){
                         this.prog += 0.1            
-                    }.bind(this), 30)
+                    }.bind(this), 20)
                 });                
             }
         },
         currentIndex(){
-            if(this.currentIndex>=this.problemList.length){
+            if(this.currentIndex>=this.problemList.length){               
                 this.submitAnswer()
             }
         },
