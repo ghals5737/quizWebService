@@ -1,33 +1,40 @@
 <template>
     <v-app id="inspire">
     <v-app id="inspire">
-        <side-bar></side-bar>
-        <nav-bar></nav-bar>     
+        <nav-bar></nav-bar>
+        <v-container>
+        <v-navigation-drawer
+            :clipped="$vuetify.breakpoint.lgAndUp"
+            app
+        >   
+            <v-row>
+                <v-col class="text-center">
+                    등록한 퀴즈
+                </v-col>                
+            </v-row>            
+            <v-list>                
+                <v-list-item-group color="primary">
+                    <v-list-item
+                        v-for="(item, i) in regQuizList"
+                        :key="i"                            
+                    >   
+                        <v-list-item-content>
+                            <v-list-item-title>퀴즈 {{i+1}}</v-list-item-title>                    
+                        </v-list-item-content>
+                        <v-list-item-content>
+                            <v-btn depressed color="error" @click="deleteOrder(i)">delete</v-btn>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list-item-group>
+            </v-list>
+        </v-navigation-drawer>
+        </v-container>
         <v-main>
-        <v-container
-            class="fill-height"
+        <v-container            
             fluid
         >
             <v-container>
                 <v-row>
-                    <v-col md="2">
-                        <v-list>
-                            <v-subheader>등록한 퀴즈</v-subheader>
-                            <v-list-item-group color="primary">
-                                <v-list-item
-                                    v-for="(item, i) in regQuizList"
-                                    :key="i"                            
-                                >   
-                                    <v-list-item-content>
-                                        <v-list-item-title>퀴즈 {{i+1}}</v-list-item-title>                    
-                                    </v-list-item-content>
-                                    <v-list-item-content>
-                                        <v-btn depressed color="error" @click="deleteOrder(i)">delete</v-btn>
-                                    </v-list-item-content>
-                                </v-list-item>
-                            </v-list-item-group>
-                        </v-list>
-                    </v-col>
                     <v-col>
                         <v-btn color="primary" @click="addQuiz">방만들기</v-btn>
                         <v-card>
@@ -60,9 +67,7 @@
                                 :total-visible="3"      
                             ></v-pagination>            
                     </v-col>
-                </v-row>  
-                {{regQuizList}}
-                {{quizNoList}}
+                </v-row>
             </v-container>
         </v-container>
         </v-main>
@@ -72,13 +77,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import SideBar from '../components/SideBar.vue'
 import NavBar from '../components/NavBar.vue'
 
 export default {
     name: 'RoomDetail',
     components: {
-        SideBar:SideBar,
         NavBar:NavBar, 
     },
     computed: {

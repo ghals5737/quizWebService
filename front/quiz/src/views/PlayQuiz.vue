@@ -24,7 +24,7 @@
                         </v-progress-linear>
                     </v-col>
                     <v-col sm="1">
-                        <strong><p class="text-center">{{30-Math.ceil(prog/3.5) }}</p></strong>
+                        <strong><p class="text-center">{{20-Math.ceil(prog/5.5) }}</p></strong>
                     </v-col>
                 </v-row>                                                
         </v-container>
@@ -51,14 +51,13 @@
                                             ></v-img>                
                                         </v-col>
                                     </v-row>
-                                </v-container>
-                                <v-container fluid>
-                                    <v-main>
-                                    <v-row >               
+                                </v-container>                                
+                                <v-container fluid>                                    
+                                    <v-row v-if="problem.quizType==0">               
                                         <v-col
                                             v-for="(item,n) in problem.exampleList"
                                             :key="n"
-                                            cols="auto"
+                                            cols="auto"                                            
                                             md="3"                    
                                         > 
                                             <v-btn
@@ -78,8 +77,43 @@
                                             </v-btn>                                                                                         
                                         </v-col>
                                     </v-row>
-                                    </v-main>            
-                                </v-container>
+                                    <v-row v-if="problem.quizType==1"> 
+                                        <v-col>                                            
+                                        </v-col>                                       
+                                        <v-col>
+                                            <v-card 
+                                                height="125"
+                                                width="70%"                                                    
+                                                @click="goNextPrb(0)"
+                                            >  
+                                                <v-img 
+                                                    max-height="120"
+                                                    max-width="200"
+                                                    src="@/assets/event_img_o.png"
+                                                ></v-img>                                        
+                                            </v-card>
+                                        </v-col>
+                                        <v-col>
+                                            <v-card
+                                                height="125"
+                                                width="70%"                                                
+                                                @click="goNextPrb(1)"
+                                             >  
+                                              <v-img 
+                                                max-height="120"
+                                                max-width="200"
+                                                src="@/assets/event_img_x.png"
+                                              >
+                                              </v-img>
+                                            </v-card>
+                                        </v-col>
+                                        <v-col>                                            
+                                        </v-col> 
+                                    </v-row>
+                                    <v-row v-if="problem.quizType==2">
+                                    </v-row>
+                                   
+                                </v-container>                                
                             </v-col>
                             </template> 
                         </template> 
@@ -174,7 +208,7 @@ export default {
                     this.currentIndex++    
                     this.interval=window.setInterval(function(){
                         this.prog += 0.1            
-                    }.bind(this), 30)
+                    }.bind(this), 20)
             });  
         },     
         submitAnswer(){
@@ -234,7 +268,7 @@ export default {
         // }, 1000)
         this.interval=window.setInterval(function(){
             this.prog += 0.1            
-        }.bind(this), 30)
+        }.bind(this), 20)
     },
     watch:{
         prog(){
@@ -246,12 +280,12 @@ export default {
                     this.currentIndex++    
                     this.interval=window.setInterval(function(){
                         this.prog += 0.1            
-                    }.bind(this), 30)
+                    }.bind(this), 20)
                 });                
             }
         },
         currentIndex(){
-            if(this.currentIndex>=this.problemList.length){
+            if(this.currentIndex>=this.problemList.length){               
                 this.submitAnswer()
             }
         },
