@@ -31,6 +31,7 @@
             </v-list>
         </v-navigation-drawer>
     </v-container>
+    <v-container></v-container>
     <v-main>
     <v-container id="createContent" fluid>
                 <v-container>
@@ -52,9 +53,15 @@
                     </v-col>        
                     <v-col cols="auto">             
                         <v-btn depressed color="warning" @click="makeQuiz">퀴즈 만들기</v-btn>
-                        <v-btn depressed color="warning" @click="getEncyc">웅진 백과 연동</v-btn>
-                        <v-btn depressed color="warning" @click="getEncycDetail">웅진 백과 상세조회</v-btn>
                     </v-col>                    
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-text-field v-model="searchWord"></v-text-field>
+              </v-col>
+              <v-col>
+                <v-btn depressed color="warning" @click="getEncyc">웅진 백과 검색</v-btn>
+              </v-col>
             </v-row>
                 </v-container>  
                 <!--</div>-->
@@ -80,7 +87,54 @@
                                 ></v-text-field>                                 
                             </v-col>
                         </v-row>           
-                    </v-container>                                                                       
+                    </v-container> 
+                    <v-container>
+                      <v-row>                        
+                          <v-slide-group
+                            class="pa-4"                            
+                            show-arrows
+                          >
+                            <v-slide-item
+                              v-for="(item,n) in encycList"
+                              :key="n"
+                            >
+                              <v-card
+                                class="ma-5 rounded-xl"
+                                height="280"
+                                width="220"
+                                outlined
+                                @click="getEncycDetail(item.dictSeq)"
+                              >
+                              <v-card-title>
+                                {{item.headwd}}
+                              </v-card-title>
+                              <v-card-subtitle>
+                                {{item.orgHeadwd}}
+                              </v-card-subtitle>
+                              <v-img
+                                v-if="item.url!=='none'"
+                                :src="item.url"
+                                height="90px"
+                                width="150px"
+                                class="mx-auto"
+                              >
+                              </v-img>
+                              <v-card-text>
+                                {{item.des}}
+                              </v-card-text>
+                              </v-card>
+                            </v-slide-item>
+                          </v-slide-group>
+                      </v-row>
+                    </v-container>
+                    <v-container>
+                      <v-row v-if="detailFlag">
+                         {{encycDetail.headwd}}
+                         {{encycDetail.headWordDscr}}
+                         {{encycDetail.headwdCntt}}
+                         <v-btn @click="closeDetailFlag">close</v-btn>
+                      </v-row>
+                    </v-container>
                     <v-container fluid>
                     <p>Answer</p>
                     <v-row v-if="probleFlag[0]">
@@ -184,7 +238,7 @@ export default {
         NavBar:NavBar, 
     },
     computed: {
-         ...mapGetters(["USER"]),
+         ...mapGetters(["USER","ENCYCLIST","ENCYCDETAIL"]),
     },
     data(){
       return{
@@ -200,8 +254,16 @@ export default {
         exampleDes:[],
         isAnswer:[],
         quizList:[],
+        encycList:[],
+        encycDetail:{
+          headWordDscr: '',
+          headwd: '',
+          headwdCntt:'',
+        },
         examListIndex:1,
         quizType:0,
+        detailFlag:false,
+        searchWord:'',
         oxAnswer1:true,
         oxAnswer2:false,
         probleFlag:[true,false,false],
@@ -321,10 +383,23 @@ export default {
           this.isAnswer[0]=1;
         },
         getEncyc(){
-            this.$store.dispatch("getEncyc",{searchWord:'감자'})
+            this.$store.dispatch("getEncyc",{searchWord:this.searchWord}).then(()=>{
+              this.encycList=this.ENCYCLIST   
+              console.log("aaaabbbbb")           
+              console.log(this.encycList)
+              console.log(this.encycList[0])
+            })
         },
-        getEncycDetail(){
-            this.$store.dispatch("getEncycDetail",{dictSeq:'33088'})
+        getEncycDetail(dictSeq){
+            this.detailFlag=true
+            this.$store.dispatch("getEncycDetail",{dictSeq:dictSeq}).then(()=>{
+              this.encycDetail=this.ENCYCDETAIL
+              console.log("testtest")
+              console.log(this.encycDetail)
+            })
+        },
+        closeDetailFlag(){
+          this.detailFlag=false
         }
     },
     created(){

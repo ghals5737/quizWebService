@@ -23,7 +23,9 @@ const store = new Vuex.Store({
         token:null,
         room:null,
         roomList:null,
-        answerList:null,        
+        answerList:null,
+        encycList:null, 
+        encycDetail:null,       
     },
     getters: {
         USER: state => state.userInfo,        
@@ -32,7 +34,9 @@ const store = new Vuex.Store({
         QUIZ: state => state.quiz,
         ROOM: state => state.room,
         ROOMLIST: state => state.roomList, 
-        ANSWERLIST: state => state.answerList,    
+        ANSWERLIST: state => state.answerList,   
+        ENCYCLIST: state=> state.encycList,
+        ENCYCDETAIL:state=>state.encycDetail,
     },
     mutations: {
         addUser: (state,{user})=>{
@@ -61,6 +65,12 @@ const store = new Vuex.Store({
         },   
         addAnswerList: (state,{answerList})=>{
             state.answerList=answerList
+        },
+        addEncycList: (state,{encycList})=>{
+            state.encycList=encycList
+        },
+        addEncycDetail: (state,{encycDetail})=>{
+            state.encycDetail=encycDetail
         },
     },
     actions: {
@@ -207,16 +217,15 @@ const store = new Vuex.Store({
             })
         },
         getEncyc:(store,{searchWord})=>{
-            alert(searchWord)
             return instanceWithAuth.get(`wjtb/search?keyWord=${searchWord}`)
             .then((res)=>{
-                console.log("data",res.data)
+                store.commit('addEncycList',{encycList:res.data})
             })
         },
         getEncycDetail:(store,{dictSeq})=>{            
             return instanceWithAuth.get(`wjtb/searchdetail?dictSeq=${dictSeq}`)
             .then((res)=>{
-                console.log("data",res.data)
+                store.commit("addEncycDetail",{encycDetail:res.data})
             })
         },
     },
