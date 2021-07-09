@@ -9,4 +9,5 @@ import java.util.List;
 public interface WjtbService {
     List<Encyc> search(String keyWord) throws UnsupportedEncodingException;
     EncycDetail searchDetail(String dictSeq) throws UnsupportedEncodingException;
+    List<String> searchPhoto(String keyWord)  throws UnsupportedEncodingException;
 }

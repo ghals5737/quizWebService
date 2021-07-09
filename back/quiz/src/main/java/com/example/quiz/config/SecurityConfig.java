@@ -85,11 +85,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT,"/api/**").hasRole("USER")
                 .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll()
                 .antMatchers("/api/**").permitAll()
+                .antMatchers("/socket/**").permitAll()
                 .anyRequest().authenticated()
 
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider));
-        httpSecurity.csrf().ignoringAntMatchers("/api/**")//csrf예외처리
+                httpSecurity.csrf().ignoringAntMatchers("/api/**","/socket/**")//csrf예외처리
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 }

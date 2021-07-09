@@ -28,4 +28,9 @@ public class WjtbController {
     public EncycDetail searchDetail(String dictSeq) throws UnsupportedEncodingException {
         return wjtbService.searchDetail(dictSeq);
     }
+
+    @GetMapping("/searchphoto")
+    public List<String> searchPhoto(String keyWord) throws UnsupportedEncodingException {
+        return  wjtbService.searchPhoto(keyWord);
+    }
 }

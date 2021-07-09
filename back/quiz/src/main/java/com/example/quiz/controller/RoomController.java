@@ -71,4 +71,5 @@ public class RoomController {
             throw new RestException(HttpStatus.SERVICE_UNAVAILABLE,e.getMessage());
         }
     }
+
 }
