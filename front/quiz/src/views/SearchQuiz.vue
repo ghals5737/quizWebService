@@ -97,7 +97,7 @@ export default {
     },
     watch:{
         page(){
-             this.$store.dispatch("searchQuiz",{
+            this.$store.dispatch("searchQuiz",{
                 page:this.page-1,
                 size:this.size
             }).then(()=>{

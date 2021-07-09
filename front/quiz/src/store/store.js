@@ -25,7 +25,8 @@ const store = new Vuex.Store({
         roomList:null,
         answerList:null,
         encycList:null, 
-        encycDetail:null,       
+        encycDetail:null,    
+        photoList:null,   
     },
     getters: {
         USER: state => state.userInfo,        
@@ -37,6 +38,7 @@ const store = new Vuex.Store({
         ANSWERLIST: state => state.answerList,   
         ENCYCLIST: state=> state.encycList,
         ENCYCDETAIL:state=>state.encycDetail,
+        PHOTOLIST:state=>state.photoList,
     },
     mutations: {
         addUser: (state,{user})=>{
@@ -71,6 +73,9 @@ const store = new Vuex.Store({
         },
         addEncycDetail: (state,{encycDetail})=>{
             state.encycDetail=encycDetail
+        },
+        addPhotoList: (state,{photoList})=>{
+            state.photoList=photoList
         },
     },
     actions: {
@@ -226,6 +231,9 @@ const store = new Vuex.Store({
             return instanceWithAuth.get(`wjtb/searchdetail?dictSeq=${dictSeq}`)
             .then((res)=>{
                 store.commit("addEncycDetail",{encycDetail:res.data})
+                return instanceWithAuth.get(`wjtb/searchphoto?keyWord=${res.data.headwd}`).then((res1)=>{
+                    store.commit("addPhotoList",{photoList:res1.data})
+                })
             })
         },
     },

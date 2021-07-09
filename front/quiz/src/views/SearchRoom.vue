@@ -101,11 +101,11 @@ export default {
     },
     watch:{
         page(){
-            this.$store.dispatch("searchQuiz",{
+            this.$store.dispatch("searchRoom",{
                 page:this.page-1,
                 size:this.size
             }).then(()=>{
-                this.quizList=this.QUIZLIST                           
+                this.roomList=this.ROOMLIST                           
             })
         }
     }
