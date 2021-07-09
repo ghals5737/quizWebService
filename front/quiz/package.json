@@ -16,12 +16,14 @@
     "google-fonts-webpack-plugin": "^0.4.4",
     "node-sass": "^6.0.1",
     "sass-loader": "^10.2.0",
+    "sockjs-client": "^1.5.1",
     "vue": "^2.6.14",
     "vue-color-gradient-picker": "^0.1.2",
     "vue-router": "^3.5.2",
     "vueperslides": "^3.3.1",
     "vuetify": "^2.5.5",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "webstomp-client": "^1.2.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

@@ -23,7 +23,10 @@ const store = new Vuex.Store({
         token:null,
         room:null,
         roomList:null,
-        answerList:null,        
+        answerList:null,
+        encycList:null, 
+        encycDetail:null,    
+        photoList:null,   
     },
     getters: {
         USER: state => state.userInfo,        
@@ -32,7 +35,10 @@ const store = new Vuex.Store({
         QUIZ: state => state.quiz,
         ROOM: state => state.room,
         ROOMLIST: state => state.roomList, 
-        ANSWERLIST: state => state.answerList,    
+        ANSWERLIST: state => state.answerList,   
+        ENCYCLIST: state=> state.encycList,
+        ENCYCDETAIL:state=>state.encycDetail,
+        PHOTOLIST:state=>state.photoList,
     },
     mutations: {
         addUser: (state,{user})=>{
@@ -61,6 +67,15 @@ const store = new Vuex.Store({
         },   
         addAnswerList: (state,{answerList})=>{
             state.answerList=answerList
+        },
+        addEncycList: (state,{encycList})=>{
+            state.encycList=encycList
+        },
+        addEncycDetail: (state,{encycDetail})=>{
+            state.encycDetail=encycDetail
+        },
+        addPhotoList: (state,{photoList})=>{
+            state.photoList=photoList
         },
     },
     actions: {
@@ -204,6 +219,21 @@ const store = new Vuex.Store({
             .then((res)=>{
                 console.log(res.data)
                 store.commit('addAnswerList',{answerList:res.data})
+            })
+        },
+        getEncyc:(store,{searchWord})=>{
+            return instanceWithAuth.get(`wjtb/search?keyWord=${searchWord}`)
+            .then((res)=>{
+                store.commit('addEncycList',{encycList:res.data})
+            })
+        },
+        getEncycDetail:(store,{dictSeq})=>{            
+            return instanceWithAuth.get(`wjtb/searchdetail?dictSeq=${dictSeq}`)
+            .then((res)=>{
+                store.commit("addEncycDetail",{encycDetail:res.data})
+                return instanceWithAuth.get(`wjtb/searchphoto?keyWord=${res.data.headwd}`).then((res1)=>{
+                    store.commit("addPhotoList",{photoList:res1.data})
+                })
             })
         },
     },

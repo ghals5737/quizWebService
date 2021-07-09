@@ -45,10 +45,13 @@
                                         </v-col>
                                         <v-col cols="5">
                                             <v-img
-                                                src="https://via.placeholder.com/150"
+                                                :src="problem.imgUrl"
+                                                height="150px"
+                                                width="150px"
                                                 aspect-ratio="1.7"
                                                 contain
-                                            ></v-img>                
+                                            >
+                                            </v-img>                
                                         </v-col>
                                     </v-row>
                                 </v-container>                                
@@ -112,7 +115,6 @@
                                     </v-row>
                                     <v-row v-if="problem.quizType==2">
                                     </v-row>
-                                   
                                 </v-container>                                
                             </v-col>
                             </template> 

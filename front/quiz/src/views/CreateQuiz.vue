@@ -18,19 +18,54 @@
                         v-for="(item, i) in quiz.problemList"
                         :key="i"
                         :inactive="inactive"
-                        @click="selectPrb(i)"
-                    >   
-                        <v-list-item-content>
-                            <v-list-item-title>문제 {{i+1}}</v-list-item-title>                    
-                        </v-list-item-content>
-                        <v-list-item-content>
-                            <v-btn depressed color="error" @click="deleteOrder(i)">delete</v-btn>
-                        </v-list-item-content>
+                    > 
+                    <v-list-item-content>
+                        <v-card
+                            class="mx-auto"
+                            outlined
+                            @click="selectPrb(i)"
+                        >
+                            <v-list-item three-line>
+                                <v-list-item-content>
+                                <div class="text-h5 mb-4">
+                                    문제 {{i+1}}
+                                </div>
+                                <v-list-item-title class="mb-1">
+                                    {{options[item.quizType].name}}
+                                </v-list-item-title>                               
+                                </v-list-item-content>
+                        
+                                <v-list-item-avatar
+                                tile
+                                size="80"
+                                color="grey"
+                                >
+                                <v-img 
+                                    :src="item.imgUrl"
+                                >
+                                </v-img>
+                                </v-list-item-avatar>
+                            </v-list-item>
+                        
+                            <v-card-actions>
+                                <v-btn
+                                    outlined
+                                    rounded
+                                    text
+                                    @click="deleteOrder(i)"
+                                    class="mx-auto"
+                                >
+                                문제삭제
+                                </v-btn>
+                            </v-card-actions>
+                        </v-card>
+                    </v-list-item-content>
                     </v-list-item>
                 </v-list-item-group>
             </v-list>
         </v-navigation-drawer>
     </v-container>
+    <v-container></v-container>
     <v-main>
     <v-container id="createContent" fluid>
                 <v-container>
@@ -53,6 +88,25 @@
                     <v-col cols="auto">             
                         <v-btn depressed color="warning" @click="makeQuiz">퀴즈 만들기</v-btn>
                     </v-col>                    
+            </v-row>
+            <v-row>
+                <v-col>
+                    <v-text-field v-model="searchWord"></v-text-field>
+                </v-col>
+                <v-col>
+                    <v-btn depressed color="warning" @click="getEncyc">웅진 백과 검색</v-btn>
+                </v-col>
+                <v-col>
+                    <span>등록할 이미지</span>
+                    <v-img
+                        v-if="imgUrl!=='none'"
+                        :src="imgUrl"
+                        height="140px"
+                        width="200px"
+                        class="mx-auto"
+                    >
+                    </v-img>
+                </v-col>
             </v-row>
                 </v-container>  
                 <!--</div>-->
@@ -78,7 +132,104 @@
                                 ></v-text-field>                                 
                             </v-col>
                         </v-row>           
-                    </v-container>                                                                       
+                    </v-container> 
+                    <v-container>
+                        <v-row>                        
+                            <v-slide-group
+                                class="pa-4"                            
+                                show-arrows
+                            >
+                                <v-slide-item
+                                v-for="(item,n) in encycList"
+                                :key="n"
+                                >
+                                <v-hover>
+                                    <template v-slot:default="{ hover }">
+                                        <v-card
+                                            class="ma-5 rounded-xl"
+                                            height="280"
+                                            width="220"
+                                            outlined
+                                            @click="getEncycDetail(item.dictSeq)"
+                                        >
+                                        <v-card-title>
+                                            {{item.headwd}}
+                                        </v-card-title>
+                                        <v-card-subtitle>
+                                            {{item.orgHeadwd}}
+                                        </v-card-subtitle>
+                                        <v-img
+                                            v-if="item.url!=='none'"
+                                            :src="item.url"
+                                            height="90px"
+                                            width="150px"
+                                            class="mx-auto"
+                                        >
+                                        </v-img>
+                                        <v-card-text>
+                                            {{item.des}}
+                                        </v-card-text>
+                                        <v-fade-transition>
+                                            <v-overlay
+                                            v-if="hover"
+                                            absolute  
+                                            >
+                                                <p>상세보기</p>
+                                            </v-overlay>
+                                        </v-fade-transition>
+                                        </v-card>
+                                    </template>
+                                </v-hover>
+                                </v-slide-item>
+                            </v-slide-group>
+                        </v-row>
+                    </v-container>
+                    <v-container>
+                        <v-row v-if="detailFlag">
+                            <v-slide-group
+                                class="pa-4"                            
+                                show-arrows
+                            >
+                                <v-slide-item
+                                v-for="(item,n) in photoList"
+                                :key="n"
+                                >
+                                    <v-col>
+                                        <v-hover>
+                                            <template v-slot:default="{ hover }">
+                                                    <v-img                                    
+                                                        :src="item"
+                                                        height="90px"
+                                                        width="150px"
+                                                        class="mx-auto"
+                                                        @click="addImg(item)"
+                                                    >
+                                                        <v-fade-transition>
+                                                            <v-overlay
+                                                            v-if="hover"
+                                                            absolute  
+                                                            >
+                                                                <p>이미지 등록</p>
+                                                            </v-overlay>
+                                                        </v-fade-transition>
+                                                    </v-img>
+                                            </template>
+                                        </v-hover>
+                                    </v-col>
+                                </v-slide-item>
+                            </v-slide-group>
+                            <p>{{encycDetail.headwd}}</p>
+                            <p>{{encycDetail.headWordDscr}}</p>
+                            <v-sheet
+                            class="overflow-y-auto"
+                            max-height="150"
+                            tile
+                            >
+                            <p>{{encycDetail.headwdCntt}}</p>
+                            </v-sheet>
+                            <v-btn @click="closeDetailFlag">닫기</v-btn>
+                        </v-row>
+                    </v-container>
                     <v-container fluid>
                     <p>Answer</p>
                     <v-row v-if="probleFlag[0]">
@@ -139,20 +290,20 @@
                         </v-col>
                     </v-row>
                     <v-row v-if="probleFlag[1]">                      
-                      <v-col md="2"></v-col>
-                      <v-col>
-                        <v-checkbox v-model="oxAnswer1" @click="oxClick1"></v-checkbox>
-                        <img src="@/assets/event_img_o.png" style="width: 300px;">
-                      </v-col>
-                      <v-col>
-                        <v-checkbox v-model="oxAnswer2" @click="oxClick2"></v-checkbox>
-                        <img src="@/assets/event_img_x.png" style="width: 300px;">
-                      </v-col> 
-                      <v-col md="4"></v-col>                       
-                    </v-row>
-                    <v-row v-if="probleFlag[2]">
-                      주간식
-                    </v-row>
+                        <v-col md="2"></v-col>
+                        <v-col>
+                            <v-checkbox v-model="oxAnswer1" @click="oxClick1"></v-checkbox>
+                            <img src="@/assets/event_img_o.png" style="width: 300px;">
+                        </v-col>
+                        <v-col>
+                            <v-checkbox v-model="oxAnswer2" @click="oxClick2"></v-checkbox>
+                            <img src="@/assets/event_img_x.png" style="width: 300px;">
+                        </v-col> 
+                        <v-col md="4"></v-col>                       
+                        </v-row>
+                        <v-row v-if="probleFlag[2]">
+                        주간식
+                        </v-row>
                     </v-container>
                     <v-container>
                         <v-row>
@@ -167,7 +318,7 @@
     </v-container>    
     </v-main>        
     </v-app>
-  </v-app>
+    </v-app>
 </template>
 
 <script>
@@ -182,10 +333,10 @@ export default {
         NavBar:NavBar, 
     },
     computed: {
-         ...mapGetters(["USER"]),
+        ...mapGetters(["USER","ENCYCLIST","ENCYCDETAIL","PHOTOLIST"]),
     },
     data(){
-      return{
+        return{
         items:[],
         options:[
             {name: "객관식",value:0},
@@ -195,12 +346,22 @@ export default {
         mod:0,
         order:1,      
         rOrder:1,  
+        imgUrl:'none',
         exampleDes:[],
         isAnswer:[],
         quizList:[],
+        encycList:[],
+        photoList:[],
+        encycDetail:{
+            headWordDscr: '',
+            headwd: '',
+            headwdCntt:'',
+        },
         examListIndex:1,
         quizType:0,
-        oxAnswer1:true,
+        detailFlag:false,
+        searchWord:'',
+        oxAnswer1:false,
         oxAnswer2:false,
         probleFlag:[true,false,false],
         problem:{
@@ -245,7 +406,7 @@ export default {
             this.quiz.problemList.push({
                 answer: this.isAnswer[0],
                 exampleList: copyExampleList,
-                imgUrl: '',
+                imgUrl: this.imgUrl,
                 prbNo: 0,
                 prbOder: 0,
                 quizType: this.quizType,
@@ -258,7 +419,9 @@ export default {
             this.problem.score=0
             this.problem.title=''
             this.problem.exampleList=[]            
-            this.exampleDes=[]        
+            this.exampleDes=[]     
+            this.oxAnswer1=false;   
+            this.oxAnswer2=false;
             this.order=this.quiz.problemList.length+1;
             this.rOrder=this.order
         },
@@ -309,35 +472,59 @@ export default {
             })            
         },
         oxClick1(){
-          this.oxAnswer1=true;
-          this.oxAnswer2=false;
-          this.isAnswer[0]=0;
+            this.oxAnswer1=true;
+            this.oxAnswer2=false;
+            this.isAnswer[0]=0;
         },
         oxClick2(){
-          this.oxAnswer1=false;
-          this.oxAnswer2=true;
-          this.isAnswer[0]=1;
-        }
+            this.oxAnswer1=false;
+            this.oxAnswer2=true;
+            this.isAnswer[0]=1;
+        },
+        getEncyc(){
+            this.$store.dispatch("getEncyc",{searchWord:this.searchWord}).then(()=>{
+                this.encycList=this.ENCYCLIST
+                //console.log("aaaabbbbb")
+                //console.log(this.encycList)
+                //console.log(this.encycList[0])
+            })
+        },
+        getEncycDetail(dictSeq){
+            this.detailFlag=true
+            this.$store.dispatch("getEncycDetail",{dictSeq:dictSeq}).then(()=>{
+                this.encycDetail=this.ENCYCDETAIL
+                this.photoList=this.PHOTOLIST
+                //console.log("testtest")
+                //console.log(this.encycDetail)
+                //console.log(this.photoList)
+            })
+        },
+        closeDetailFlag(){
+            this.detailFlag=false
+        },
+        addImg(url){
+            this.imgUrl=url            
+        },
     },
     created(){
         
     },
     watch:{   
-      quizType(){
-        if(this.quizType==0){
-            this.probleFlag[0]=true
-            this.probleFlag[1]=false
-            this.probleFlag[2]=false
-        }else if(this.quizType==1){
-            this.probleFlag[0]=false
-            this.probleFlag[1]=true
-            this.probleFlag[2]=false          
-        }else{
-            this.probleFlag[0]=false
-            this.probleFlag[1]=false
-            this.probleFlag[2]=true
-        }
-      }     
+        quizType(){
+            if(this.quizType==0){
+                this.probleFlag[0]=true
+                this.probleFlag[1]=false
+                this.probleFlag[2]=false
+            }else if(this.quizType==1){
+                this.probleFlag[0]=false
+                this.probleFlag[1]=true
+                this.probleFlag[2]=false          
+            }else{
+                this.probleFlag[0]=false
+                this.probleFlag[1]=false
+                this.probleFlag[2]=true
+            }
+        }     
     }
 }
 </script>

@@ -11,6 +11,7 @@ import SearchRoom from '../views/SearchRoom.vue'
 import PlayQuiz from '../views/PlayQuiz.vue'
 import QuizResult from '../views/QuizResult.vue'
 import MainTest from '../views/MainTest.vue'
+import SocketTest from '../views/SocketTest.vue'
 //import SearchQuizTest from '../views/SearchQuizTest.vue'
 
 Vue.use(VueRouter)
@@ -71,6 +72,11 @@ const routes = [
     name: 'MainTest',
     component: MainTest
   },   
+  {
+    path: '/socket',
+    name: 'SocketTest',
+    component: SocketTest
+  }, 
 ]
 
 const router = new VueRouter({
