@@ -236,6 +236,12 @@ const store = new Vuex.Store({
                 })
             })
         },
+        searchRoomByRoomNo:(store,{roomNo})=>{
+            return instanceWithAuth.get(`/room/search?roomNo=${roomNo}`)
+            .then((res)=>{
+                store.commit('addRoom',{room:res.data})
+            })
+        }
     },
 })
 

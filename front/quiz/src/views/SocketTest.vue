@@ -1,13 +1,16 @@
 <template>
     <v-app>
 		<v-container>
-			<v-btn>시작</v-btn>
+			{{room}}
+		</v-container>
+		<v-container>
+			<v-btn v-if="userNo===room.ownerNo">시작</v-btn>
 			<v-btn>나가기</v-btn>			
 		</v-container>
 		<v-container>
 			<v-row>
 				<v-col>인원</v-col>
-				<v-col>1/10</v-col>
+				<v-col>{{userList.length}}/{{room.capacity}}</v-col>
 			</v-row>
 		</v-container>
 		<v-container>
@@ -36,23 +39,28 @@ export default {
         NavBar:NavBar,           
     },
     computed: {
-        ...mapGetters(["USER"]),
+        ...mapGetters(["USER","ROOM"]),
     },
     data(){
         return{
             msg:'',
+			room:'',
+			userId:'',
+			userNo:'',
+			isConnected:false,
 			msgList:[],
 			userList:[],
         }
     },
     methods:{
-        send() {
+        sendEnter() {
 			if (this.stompClient && this.stompClient.connected) {
-				let msg = { 
-					'msg':this.msg,					
-				}              
-				this.stompClient.send("/pub/chat/message", JSON.stringify(msg),{} )     
+				// let msg = { 
+				// 	'userId':this.userId,					
+				// }              
+				this.stompClient.send("/pub/enter", JSON.stringify(this.userId),{} )     
 			}else{
+				alert('Send Fail')
 				console.log("Send Fail")
 			}
 		},
@@ -70,26 +78,49 @@ export default {
 					console.log('소켓 연결 성공', frame)
 					// 서버의 메시지 전송 endpoint를 구독합니다.               
 					this.stompClient.subscribe("/sub/chat", res => {
-						console.log('구독으로 받은 메시지 입니다.', res.body)
-						// 받은 데이터를 json으로 파싱하고 리스트에 넣어줍니다.
 						console.log("aamsg",res.body)
 						this.msgList.push(res.body)
-					});               
+					});   
+					this.stompClient.subscribe("/sub/enter", res => {
+						console.log("enter",res.body)
+						this.userList.push(res.body)
+					});   
+					this.isConnected=true
 				},
 				error => {
 					// 소켓 연결 실패
 					console.log('소켓 연결 실패', error)
-					this.connected = false
+					this.isConnected = false
 					}
 				);        
-        }
+        },
+		getRoomByRoomNo(){
+			this.$store.dispatch("searchRoomByRoomNo",{
+					roomNo:this.$route.query.roomNo
+				}).then(()=>{
+					this.room=this.ROOM
+				})
+		},
+		start(callback){	
+			this.connect()		
+			callback()
+		},
+		
     },
-    created(){
-        this.connect()
+    created(){      
+		this.getRoomByRoomNo()
+		this.connect()
         this.userId=sessionStorage.getItem("userId")        
         this.userNo=sessionStorage.getItem("userNo")      
 		//router.push({name: 'PlayQuiz', query: {roomNo: value.roomNo}})          
     },
+	watch:{
+		isConnected(){
+			if(this.isConnected){
+				this.sendEnter()
+			}
+		}
+	},
 }
 </script>
 
