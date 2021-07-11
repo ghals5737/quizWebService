@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface RoomService {
     Room createRoom(Room room);
+    Room searchRoomByRoomNo(Long roomNo);
     void deleteRoom(Long roomNo);
     Long getTotal();
     List<Room> findAllByPageable(Pageable pageable);

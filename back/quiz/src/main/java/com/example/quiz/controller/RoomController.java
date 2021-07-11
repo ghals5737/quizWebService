@@ -45,6 +45,10 @@ public class RoomController {
             throw new RestException(HttpStatus.BAD_REQUEST,"invalid userNo");
         }
     }
+    @GetMapping("search")
+    private Room searchRoomByRoomNo(Long roomNo){
+        return roomService.searchRoomByRoomNo(roomNo);
+    }
 
     @PutMapping("/quizs")
     private void addRoomQuiz(@RequestBody RoomQuizNo roomQuizNo){
@@ -71,5 +75,4 @@ public class RoomController {
             throw new RestException(HttpStatus.SERVICE_UNAVAILABLE,e.getMessage());
         }
     }
-
 }

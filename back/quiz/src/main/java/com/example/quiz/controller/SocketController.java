@@ -11,8 +11,9 @@ import org.springframework.messaging.simp.SimpMessageSendingOperations;
 public class SocketController {
     private final SimpMessageSendingOperations messagingTemplate;
 
-    @MessageMapping("/chat/message")
-    private void message(SocketMsg socketMsg){
-        messagingTemplate.convertAndSend("/sub/chat",socketMsg.getMsg());
+    @MessageMapping("/enter")
+    private void enter(String enter){
+        System.out.println("Enter: "+enter);
+        messagingTemplate.convertAndSend("/sub/enter",enter);
     }
 }
