@@ -3,6 +3,7 @@ package com.example.quiz.controller;
 import com.example.quiz.dto.Answer;
 import com.example.quiz.dto.AnswerResult;
 import com.example.quiz.dto.PrbUserAnswer;
+import com.example.quiz.dto.RankResult;
 import com.example.quiz.service.AnswerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,11 @@ public class AnswerController {
     @GetMapping()
     private List<AnswerResult> getAnswerByRoom(Long roomNo, Long userNo){
         return answerService.getAnswerByRoom(roomNo,userNo);
+    }
+
+    @GetMapping("/rank")
+    private List<RankResult> getRank(Long roomNo){
+        System.out.println("Answer Rank Controller");
+        return answerService.getRank(roomNo);
     }
 }

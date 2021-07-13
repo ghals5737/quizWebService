@@ -34,6 +34,8 @@ public class QuizServiceImpl implements QuizService{
         for(Problem prb:quiz.getProblemList()){
             prb.setQuiz(fkQuiz);
             Problem savePrb=problemRepository.save(prb);
+            System.out.println("prbNo"+savePrb.getPrbNo());
+            System.out.println("prbTitle"+savePrb.getTitle());
             Problem fkPrb=Problem.builder().prbNo(savePrb.getPrbNo()).build();
             for(Example exam:savePrb.getExampleList()){
                 exam.setProblem(fkPrb);

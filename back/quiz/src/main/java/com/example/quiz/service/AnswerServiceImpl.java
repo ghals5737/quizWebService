@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,12 +22,14 @@ public class AnswerServiceImpl implements AnswerService{
         List<Answer>answerList=new ArrayList<>();
         long userNo= prbUserAnswer.getUserNo();
         long roomNo= prbUserAnswer.getRoomNo();
+        String userId=prbUserAnswer.getUserId();
         for(UserAnswer el:prbUserAnswer.getUserAnswerList()){
             boolean isAnswer=false;
             if(el.getAnswer().equals(el.getSubmitAnswer().get(0)))isAnswer=true;
             Answer answer=Answer.builder()
                     .problem(Problem.builder().prbNo(el.getPrbNo()).build())
                     .user(User.builder().userNo(userNo).build())
+                    .userId(userId)
                     .roomNo(roomNo)
                     .score(el.getScore())
                     .answer(el.getSubmitAnswer().get(0))
@@ -45,5 +49,23 @@ public class AnswerServiceImpl implements AnswerService{
             res.add(answerResult);
         });
         return res;
+    }
+
+    @Override
+    public List<RankResult> getRank(Long roomNo) {
+        List<RankResult> list=new ArrayList<>();
+        List<Object[]> result=answerRepository.getRank(roomNo);
+        if(result != null && !result.isEmpty()){
+            for (Object[] object : result) {
+                list.add(RankResult.builder()
+                        .userNo(Long.parseLong(object[0].toString()))
+                        .userId(object[1].toString())
+                        .total(Long.parseLong(object[2].toString()))
+                        .rightCnt(Long.parseLong(object[3].toString()))
+                        .build()
+                );
+            }
+        }
+        return list;
     }
 }

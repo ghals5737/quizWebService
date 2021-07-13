@@ -8,5 +8,6 @@ import java.util.List;
 public class PrbUserAnswer {
     private long userNo;
     private long roomNo;
+    private String userId;
     private List<UserAnswer> userAnswerList;
 }

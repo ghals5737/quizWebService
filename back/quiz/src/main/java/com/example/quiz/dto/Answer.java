@@ -20,9 +20,10 @@ public class Answer {
     private Problem problem;
     @Id
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_no")
     private User user;
     private String  answer;
+    private String userId;
     private Long roomNo;
     private int score;
     private Boolean isAnswer;
