@@ -27,6 +27,7 @@ const store = new Vuex.Store({
         encycList:null, 
         encycDetail:null,    
         photoList:null,   
+        userList:null,
     },
     getters: {
         USER: state => state.userInfo,        
@@ -39,6 +40,7 @@ const store = new Vuex.Store({
         ENCYCLIST: state=> state.encycList,
         ENCYCDETAIL:state=>state.encycDetail,
         PHOTOLIST:state=>state.photoList,
+        USERLIST:state=>state.userList,
     },
     mutations: {
         addUser: (state,{user})=>{
@@ -76,6 +78,9 @@ const store = new Vuex.Store({
         },
         addPhotoList: (state,{photoList})=>{
             state.photoList=photoList
+        },
+        addUserList:(state,{userList})=>{
+            state.userList=userList
         },
     },
     actions: {
@@ -121,7 +126,7 @@ const store = new Vuex.Store({
         },
         makeQuiz: (store,{quiz})=>{            
             try{
-                console.log(quiz)
+                console.log("quiz",quiz)
                 return instanceWithAuth.post('/quiz',quiz)
                 .then(res =>{
                     console.log(res.data)
@@ -208,10 +213,16 @@ const store = new Vuex.Store({
                 store.commit('addQuizList',{quizList:res.data})
             })
         },
-        submitAnswer: (store,{answer,roomNo})=>{
+        submitAnswerList: (store,{answer,roomNo})=>{
             return instanceWithAuth.post("/answer",answer)
             .then(()=>{
                 router.push({name: 'QuizResult', query: {roomNo: roomNo}})
+            })
+        },        
+        submitAnswer: (store,{answer})=>{
+            return instanceWithAuth.post("/answer",answer)
+            .then(()=>{
+                //router.push({name: 'QuizResult', query: {roomNo: roomNo}})
             })
         },        
         searchAnswerByRoomNo: (store,{roomNo,userNo})=>{
@@ -241,7 +252,20 @@ const store = new Vuex.Store({
             .then((res)=>{
                 store.commit('addRoom',{room:res.data})
             })
-        }
+        },
+        getUserListByRoom:(store,{roomNo})=>{
+            return instanceWithAuth.get(`/users/inside-room?roomNo=${roomNo}`)
+            .then((res)=>{
+                store.commit('addUserList',{userList:res.data})
+            })
+        },
+        getRank:(Store,{roomNo})=>{
+            return instanceWithAuth.get(`/answer/rank?roomNo=${roomNo}`)
+            .then((res)=>{
+                console.log("rank",res.data)
+                store.commit('addUserList',{userList:res.data})
+            })
+        },
     },
 })
 

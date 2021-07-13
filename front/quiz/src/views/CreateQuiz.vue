@@ -16,8 +16,7 @@
                 <v-list-item-group color="primary">
                     <v-list-item
                         v-for="(item, i) in quiz.problemList"
-                        :key="i"
-                        :inactive="inactive"
+                        :key="i"                        
                     > 
                     <v-list-item-content>
                         <v-card

@@ -54,8 +54,7 @@
                 color="primary"
                 size="30"
               >
-                <img
-                  src="https://avataaars.io/?avatarStyle=Transparent&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light"></img>
+                 <Gravatar class="" :email="userId" :size="200" />
               </v-avatar>
             </v-btn>
           </template>
@@ -86,8 +85,7 @@
                 color="primary"
                 size="30"
               >
-                <img
-                  src="https://avataaars.io/?avatarStyle=Transparent&topType=LongHairStraight&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light"></img>
+                <Gravatar class="" :email="userId" :size="200" />
               </v-avatar>
               <span class="pl-3 d-none d-md-inline">{{userId}}</span>
             </v-btn>
@@ -110,9 +108,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Gravatar from 'vue-gravatar'
 export default {
     name: 'NavBar',
-    components: {      
+    components: { 
+      Gravatar     
     },
     computed: {
          ...mapGetters(["USER"]),

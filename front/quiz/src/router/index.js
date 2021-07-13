@@ -12,6 +12,7 @@ import PlayQuiz from '../views/PlayQuiz.vue'
 import QuizResult from '../views/QuizResult.vue'
 import MainTest from '../views/MainTest.vue'
 import SocketTest from '../views/SocketTest.vue'
+import TestPlayQuiz from '../views/TestPlayQuiz.vue'
 //import SearchQuizTest from '../views/SearchQuizTest.vue'
 
 Vue.use(VueRouter)
@@ -57,6 +58,11 @@ const routes = [
     name: 'SearchRoom',
     component: SearchRoom
   },
+  {
+    path: '/testplayquiz',
+    name: 'TestPlayQuiz',
+    component: TestPlayQuiz
+  }, 
   {
     path: '/playquiz',
     name: 'PlayQuiz',
