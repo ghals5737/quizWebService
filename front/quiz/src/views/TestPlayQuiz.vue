@@ -413,5 +413,4 @@ div.v-progress-linear__determinate{
     background: linear-gradient(90deg,#f0cb35 0%,  #c02425 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f0cb35",endColorstr="#c02425",GradientType=1);
 }
-
 </style>

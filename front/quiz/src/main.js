@@ -7,6 +7,7 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Gravatar from 'vue-gravatar'
+import "./index.css";
 
 Vue.use(BootstrapVue)
 Vue.component('v-gravatar', Gravatar)
