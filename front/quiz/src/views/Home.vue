@@ -1,12 +1,5 @@
 <template>
-<div>
-      <button
-        class="btn btn-blue"
-      >
-        Hello, Tailwind CSS!
-      </button>
-    </div>
-  <!-- <v-app>
+  <v-app>
   
   <v-container class="mx-auto">    
         <v-card width="400">
@@ -40,7 +33,7 @@
           </v-card-actions>
         </v-card>
       </v-container>
-  </v-app> -->
+  </v-app>
 </template>
 
 <script>

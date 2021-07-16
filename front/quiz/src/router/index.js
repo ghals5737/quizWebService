@@ -13,6 +13,7 @@ import QuizResult from '../views/QuizResult.vue'
 import MainTest from '../views/MainTest.vue'
 import SocketTest from '../views/SocketTest.vue'
 import TestPlayQuiz from '../views/TestPlayQuiz.vue'
+import TailTest from '../components/TailTest.vue'
 //import SearchQuizTest from '../views/SearchQuizTest.vue'
 
 Vue.use(VueRouter)
@@ -82,6 +83,11 @@ const routes = [
     path: '/socket',
     name: 'SocketTest',
     component: SocketTest
+  }, 
+  {
+    path: '/tail',
+    name: 'TailTest',
+    component: TailTest
   }, 
 ]
 
