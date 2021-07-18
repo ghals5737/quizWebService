@@ -43,11 +43,39 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div id="acontent">
-                                    <ul id="acontentUl">
-
+                                <div class="my-5" id="acontent">
+                                    <!-- <ul id="acontentUl">
+                                        <li id="acontentli" :style="{background:color[0]}">
+                                            <span id="aNumber">1</span>
+                                            <div id="aText"></div>
+                                            <p id="aDes">bbbb</p>
+                                        </li>
+                                        <li id="acontentli" :style="{background:color[1]}">
+                                            <span id="aNumber">2</span>
+                                            <div id="aText"></div>
+                                            <p id="aDes">bbbb</p>
+                                        </li>
+                                        <li id="acontentli" :style="{background:color[2]}">
+                                            <span id="aNumber">3</span>
+                                            <div id="aText"></div>
+                                            <p id="aDes">bbbb</p>
+                                        </li>
+                                        <li id="acontentli" :style="{background:color[3]}">
+                                            <span id="aNumber">4</span>
+                                            <div id="aText"></div>
+                                            <p id="aDes">bbbb</p>
+                                        </li>
+                                    </ul> -->
+                                    <ul id="acontentUlOX">
+                                        <li id="liO">
+                                            <p id="imgO"></p>
+                                        </li>
+                                        <li id="liX">
+                                            <p id="imgX"></p>
+                                        </li>
                                     </ul>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -103,7 +131,8 @@ export default {
 			userId:'',
             userNo:'',
             length:0,
-			isConnected:false,
+            isConnected:false,
+            color:['#02abb0','#318cff','#f8ac59','#ed5565'],
 			userList:[],
             angle: '50',
             color1: 'red',
@@ -405,6 +434,137 @@ export default {
     left: 0;
 }
 #acontentUl{
-    
+    position: relative;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex !important;
+}
+#acontentli{
+    width: 24%;
+    /* height: 23vh; */
+    border-radius: 15px;
+    float: left;
+    margin-right: 1.3%;
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 17.5%;
+}
+#aNumber{
+    font-size: 2vw;
+    font-weight: bold;
+    color: #fff;
+    float: right;
+    margin-top: 15px;
+    right: 15px;
+    position: relative;
+    text-shadow: 3px 3px 0px #00000040;
+    z-index: 10;
+    /* width: 25px; */
+    height: 35px;
+    display: inline-block;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #0000005c;
+}
+#aText{
+    position: relative;
+    font-size: 28px;
+    color: #fff;
+    border-radius: 15px;
+    text-align: center;
+    word-break: normal;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    /* border: 1px #e5e5e5 solid; */
+    line-height: 1.25;
+    /* min-height: 23vh; */
+    position: absolute;
+    opacity: 0.7;
+    width: 100%;
+    height: 100%;
+}
+#aDes{
+    font-size: 1.9vw;
+    color: #fff;
+    text-align: center;
+    line-height: 1.25;
+    width: 96%;
+    height: 100%;
+    word-break: normal;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    word-break: break-all;
+    position: absolute;
+    /* border-radius: 15px; */
+    font-family: cwtexhei,'HGGGothicssi 80g',Sans-serif;
+    font-weight: 600;
+    padding-left: 2%;
+}
+#acontentUlOX{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex !important;
+    width: 100%;
+}
+#liO{
+    width: 24%;
+    /* height: 23vh; */
+    border-radius: 15px;
+    float: left;
+    margin-right: 1.3%;
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 17.5%;
+    border: 1px #4388ee solid;
+}
+#liX{
+    width: 24%;
+    /* height: 23vh; */
+    border-radius: 15px;
+    float: left;
+    margin-right: 1.3%;
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 17.5%;
+    border: 1px #ff5f4a  solid;
+}
+#imgO{
+    width: 94%;
+    height: 100%;
+    margin: 0 auto;
+    position: absolute;
+    background: url("https://www.quizn.show/webdata/images/o_answer​.png") no-repeat center center;
+    background-size: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    left: 3%;
+}
+#imgX{
+    width: 94%;
+    height: 100%;
+    margin: 0 auto;
+    position: absolute;
+    background: url("https://www.quizn.show/webdata/images/x_answer​.png") no-repeat center center;
+    background-size: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    left: 3%;
 }
 </style>
