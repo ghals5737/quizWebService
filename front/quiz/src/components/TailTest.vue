@@ -8,31 +8,21 @@
         <nav class="flex w-72 h-full">
             <div class="w-full flex mx-auto pr-6 py-8">
             <div class="w-full h-fulltext-gray-900 text-xl">
-                <p class="mt-2 mb-4 text-center font-extrabold text-xl">퀴즈:총 2문제</p>
+                <p class="mt-2 mb-4 text-center font-extrabold text-xl">퀴즈:총 {{quiz.problemList.length}}문제</p>
                 <div class="relative">
                     <ul>
-                        <li class="relative">
+                        <li 
+                            v-for="(item, i) in quiz.problemList"
+                            :key="i"
+                            class="relative"
+                        >
                             <div class="inline-block ml-4" id="preview">
-                                <p class="text-yellow-500 text-sm font-bold pl-1 pt-1" id="preview_type">[선택형]</p>
-                                <p class="pl-1 pt-1" id="preview_title">문제1</p>
-                                <img class="w-1/2 h-auto absolute right-2 top-2" src="../assets/picture.png">
+                                <p class="text-yellow-500 text-sm font-bold pl-1 pt-1" id="preview_type">[{{options[item.quizType].name}}]</p>
+                                <p class="pl-1 pt-1" id="preview_title">문제 {{i+1}}</p>
+                                <img class="w-1/2 h-auto absolute right-2 top-2" :src="item.imgUrl!=='none'?item.imgUrl:noImg">
                                 <ul class="absolute right-4 bottom-1">
                                     <li class="inline">
-                                        <button class="border-none">
-                                            <img src="https://www.quizn.show/webdata/images/delete.png">
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="relative">
-                            <div class="inline-block ml-4" id="preview">
-                                <p class="text-yellow-500 text-sm font-bold pl-1 pt-1" id="preview_type">[OX]</p>
-                                <p class="pl-1 pt-1" id="preview_title">문제2</p>
-                                <img class="w-1/2 h-auto absolute right-2 top-2" src="../assets/picture.png">
-                                <ul class="absolute right-4 bottom-1">
-                                    <li class="inline">
-                                        <button class="border-none">
+                                        <button class="border-none" @click="deleteOrder(i)">
                                             <img src="https://www.quizn.show/webdata/images/delete.png">
                                         </button>
                                     </li>
@@ -47,7 +37,7 @@
         <main class="flex flex-col w-full bg-gray-50 overflow-x-hidden overflow-y-auto mb-14">
             <div class="flex w-full mx-auto px-6 py-8">
             <div class="flex flex-col w-full h-full text-gray-900 text-xl">
-                    <input type="text" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none" placeholder="퀴즈 제목 입력">           
+                    <input type="text" v-model="quiz.quizName" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none" placeholder="퀴즈 제목 입력">           
                     <div class="text-center w-full mx-auto mt-3 h-full relative top-0 left-0">
                         <p>1번 문제</p>
                         <div class="mx-auto mt-4" id="time"></div>
@@ -62,30 +52,27 @@
                                 </li>
                                 <li class="float-left w-1/2">
                                     <div class="p-3">
-                                        <div class="border-2 solid w-full overflow-hidden font-semibold" id="content2">
+                                        <!-- <div class="border-2 solid w-full overflow-hidden font-semibold" id="content2">
                                             <p class="mt-28">No Image</p>
+                                        </div> -->
+                                        <div v-bind:style="{ backgroundImage: 'url(' + imgUrl + ')' }" class="border-2 solid w-full overflow-hidden font-semibold" id="content2">
+                                            
                                         </div>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                         <div class="block mt-5">
-                            <ul class="w-full relative justify-center align-middle inline-flex flex-row">
-                                <li id="selectAnswer">
-                                    <span id="answerNumber">1</span>
-                                    <p id="answerContent">Answer1</p>
-                                </li>
-                                <li id="selectAnswer">
-                                    <span id="answerNumber">1</span>
-                                    <p id="answerContent">Answer1</p>
-                                </li>
-                                <li id="selectAnswer">
-                                    <span id="answerNumber">1</span>
-                                    <p id="answerContent">Answer1</p>
-                                </li>
-                                <li id="selectAnswer">
-                                    <span id="answerNumber">1</span>
-                                    <p id="answerContent">Answer1</p>
+                            <ul 
+                                class="w-full relative justify-center align-middle inline-flex flex-row"
+                            >
+                                <li 
+                                    v-for="(item,n) in exampleList"
+                                    :key="n"
+                                    id="selectAnswer"
+                                >
+                                    <span id="answerNumber">{{n+1}}</span>
+                                    <p id="answerContent">{{exampleDes[n]}}</p>
                                 </li>
                             </ul>
                         </div>
@@ -98,22 +85,40 @@
                 <p class="font-extrabold font-mono text-xl">Type</p>
                 <div class="inline-block border-b-2 border-gray-300 py-4 w-full">
                     <ul class="">
-                        <li class="float-left mr-1 mb-1">
-                            <div class="text-center border-solid border-2 border-gray-400 w-20 h-20 rounded-lg">
+                        <li v-if="!typeFlag1" class="float-left mr-1 mb-1">
+                            <div @click="changeType(0)" class="text-center border-solid border-2 border-gray-400 w-20 h-20 rounded-lg">
                                 <img class="mx-auto mt-2" src="https://www.quizn.show/webdata/images/type-icon/ico_type1.png">
                                 <p class="text-gray-500 font-semibold">선택형</p>
                             </div>
                         </li>
-                        <li class="float-left mr-1 mb-1">
-                            <div class="text-center border-solid border-2 border-gray-400 w-20 h-20 rounded-lg">
+                        <li v-if="typeFlag1" class="float-left mr-1 mb-1">
+                            <div @click="changeType(0)" class="text-center border-solid border-2 border-yellow-500 w-20 h-20 rounded-lg">
+                                <img class="mx-auto mt-2" src="https://www.quizn.show/webdata/images/type-icon/ico_type1_on.png">
+                                <p class="text-yellow-500 font-semibold text-yellow-500">선택형</p>
+                            </div>
+                        </li>
+                        <li v-if="!typeFlag2" class="float-left mr-1 mb-1">
+                            <div @click="changeType(1)" class="text-center border-solid border-2 border-gray-400 w-20 h-20 rounded-lg">
                                 <img class="mx-auto mt-2" src="https://www.quizn.show/webdata/images/type-icon/ico_type2.png">
                                 <p class="text-gray-500 font-semibold">OX</p>
                             </div>
                         </li>
-                        <li class="float-left mr-1 mb-1">
-                            <div class="text-center border-solid border-2 border-gray-400 w-20 h-20 rounded-lg">
+                         <li v-if="typeFlag2" class="float-left mr-1 mb-1">
+                            <div @click="changeType(1)" class="text-center border-solid border-2 border-yellow-500 w-20 h-20 rounded-lg">
+                                <img class="mx-auto mt-2" src="https://www.quizn.show/webdata/images/type-icon/ico_type2_on.png">
+                                <p class="text-yellow-500 font-semibold">OX</p>
+                            </div>
+                        </li>
+                        <li v-if="!typeFlag3" class="float-left mr-1 mb-1">
+                            <div @click="changeType(2)" class="text-center border-solid border-2 border-gray-400 w-20 h-20 rounded-lg">
                                 <img class="mx-auto mt-2" src="https://www.quizn.show/webdata/images/type-icon/ico_type3.png">
                                 <p class="text-gray-500 font-semibold">단답형</p>
+                            </div>
+                        </li>
+                        <li v-if="typeFlag3" class="float-left mr-1 mb-1">
+                            <div @click="changeType(2)" class="text-center border-solid border-2 border-yellow-500 w-20 h-20 rounded-lg">
+                                <img class="mx-auto mt-2" src="https://www.quizn.show/webdata/images/type-icon/ico_type3_on.png">
+                                <p class="text-yellow-500 font-semibold">단답형</p>
                             </div>
                         </li>
                     </ul>
@@ -129,35 +134,23 @@
                     </div>
                 </div>
                 <p class="font-extrabold font-mono text-xl text-yellow-500 mt-2">Answer</p>
-                <div class="inline-block border-b-2 border-gray-300 py-3 w-full">
+                <div v-if="typeFlag1" class="inline-block border-b-2 border-gray-300 py-3 w-full">
                     <ul>
-                        <li>
-                            <span>
-                                <label class="float-left items-center mt-3 mr-2">
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-green-600" checked>
-                                </label>
-                            </span>
-                            <div class="float-left" id="O"></div>
-                        </li>
-                        <li>
-                            <span>
-                                <label class="float-left items-center mt-3 mr-2">
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-green-600" checked>
-                                </label>
-                            </span>
-                            <div class="float-left" id="X"></div>
-                        </li>
-                        <!-- <li>
+                        <li
+                            v-for="(item,n) in exampleList"
+                            :key="n"
+                        >
                             <span>
                                 <label class="inline-flex items-center mt-3 mr-2">
-                                    <input type="checkbox" class="form-checkbox h-5 w-5 text-green-600" checked>
+                                    <input v-model="isAnswer" :value="n" type="checkbox" class="form-checkbox h-5 w-5 text-green-600" checked>
                                 </label>
                             </span>
                             <span>
-                                <input type="text" class="w-48 bg-grey-lighter text-grey-darker py-2 font-normal rounded text-grey-darkest border border-grey-lighter">
+                                <input v-model="exampleDes[n]" type="text" class="w-48 bg-grey-lighter text-grey-darker py-2 font-normal rounded text-grey-darkest border border-grey-lighter">
                             </span>
                             <span>
                                 <button
+                                    @click="addAnswer"
                                     class="font-semibold border-l mx-1  py-2 bg-blue-500 hover:bg-blue-400 text-white border-gray-400 w-7 rounded focus:outline-none cursor-pointer"
                                 >
                                     <span class="m-auto">+</span>
@@ -165,13 +158,37 @@
                             </span>
                             <span>
                                 <button
+                                    @click="deleteAnswer(n)"
                                     class="font-semibold border-l  py-2 bg-red-500 hover:bg-red-400 text-white border-gray-400 w-7 rounded focus:outline-none cursor-pointer"
                                 >
                                     <span class="m-auto">-</span>
                                 </button>
                             </span>
-                        </li> -->                        
+                        </li>
                     </ul>
+                </div>
+                <div v-if="typeFlag2" class="inline-block border-b-2 border-gray-300 py-3 w-full">
+                    <ul>
+                        <li>
+                            <span>
+                                <label class="float-left items-center mt-3 mr-2">
+                                    <input v-model="oxAnswer1" @click="oxClick1" type="checkbox" class="form-checkbox h-5 w-5 text-green-600" checked>
+                                </label>
+                            </span>
+                            <div class="float-left" id="O"></div>
+                        </li>
+                        <li>
+                            <span>
+                                <label class="float-left items-center mt-3 mr-2">
+                                    <input v-model="oxAnswer2" @click="oxClick2" type="checkbox" class="form-checkbox h-5 w-5 text-green-600" checked>
+                                </label>
+                            </span>
+                            <div class="float-left" id="X"></div>
+                        </li>             
+                    </ul>
+                </div>
+                <div class="py-3 w-full text-center">
+                    <button @click="addOrder" class="bg-gray-500 rounded-md w-28 h-10 text-white">저장</button>
                 </div>
             </div>
         </nav>
@@ -182,32 +199,229 @@
 
 <script>
 import NavBar from '../components/NavBar.vue'
-    export default {
-        name: 'TailTest',
-        components: {
-            NavBar:NavBar,                 
-        },
-        data(){
+import { mapGetters } from 'vuex'
+import noImg from '@/assets/picture.png'
+export default {
+    name: 'TailTest',
+    components: {      
+        //SideBar:SideBar,
+        NavBar:NavBar, 
+    },
+    computed: {
+        ...mapGetters(["USER","ENCYCLIST","ENCYCDETAIL","PHOTOLIST"]),
+    },
+    data(){
         return{
-            userId:'',
-            pw:'',
+        items:[],
+        options:[
+            {name: "선택형",value:0},
+            {name: "OX",value:1},
+            {name: "단답형",value:2}
+        ],
+        mod:0,
+        noImg:noImg,
+        typeFlag1:true,
+        typeFlag2:false,
+        typeFlag3:false,
+        order:1,      
+        rOrder:1,  
+        imgUrl:'none',
+        exampleDes:[],
+        isAnswer:[],
+        quizList:[],
+        encycList:[],
+        photoList:[],
+        encycDetail:{
+            headWordDscr: '',
+            headwd: '',
+            headwdCntt:'',
+        },
+        examListIndex:1,
+        quizType:0,
+        detailFlag:false,
+        searchWord:'',
+        oxAnswer1:false,
+        oxAnswer2:false,
+        probleFlag:[true,false,false],
+        problem:{
+                answer: '',
+                exampleList: [                 
+                ],
+                imgUrl: '',
+                prbNo: 0,
+                prbOder: 0,
+                quizType: 0,
+                score: '',
+                title: ''
+        },
+        exampleList:[
+            { 
+                des: '',
+                examNo: 1,
+                exampleNO: 0
+            },
+        ],        
+        quiz:{
+            problemList: [             
+            ],
+            quizName: '',
+            quizNo: 0,
+            regTime: new Date(),
+            userNo: 0
+            }
         }
+    },
+    methods:{
+        addOrder(){            
+            let copyExampleList=[]
+            let cnt=1;
+            this.exampleDes.forEach(el=>{
+                copyExampleList.push({
+                    des: el,
+                    examNo: cnt++,
+                    exampleNO: 0
+                })
+            })
+            this.quiz.problemList.push({
+                answer: this.isAnswer[0],
+                exampleList: copyExampleList,
+                imgUrl: this.imgUrl,
+                prbNo: 0,
+                prbOder: 0,
+                quizType: this.quizType,
+                score: this.problem.score,
+                title: this.problem.title
+            })            
+            this.isAnswer=[]   
+            this.problem.answer=''
+            this.quizType=0
+            this.problem.score=0
+            this.problem.title=''
+            this.problem.exampleList=[]            
+            this.exampleDes=[]     
+            this.oxAnswer1=false;   
+            this.oxAnswer2=false;
+            this.order=this.quiz.problemList.length+1;
+            this.rOrder=this.order
         },
-        methods:{
-        signUp(){        
-            this.$store.dispatch("signUp",{
-            userId: this.userId,
-            pw: this.pw
-            })        
+        deleteOrder(index){
+            this.quiz.problemList.splice(index, 1);
+            this.order=this.quiz.problemList.length+1;
+            this.rOrder=this.order
         },
-        logIn(){
-            this.$store.dispatch("logIn",{
-            userId: this.userId,
-            pw: this.pw
-            })        
+        makeQuiz(){
+            //prbOrder 설정
+            let prbOrder=1;
+            this.quiz.problemList.forEach(el=>{
+                el.prbOder=prbOrder++            
+            })
+            this.quiz.userNo=sessionStorage.getItem("userNo")
+            //userNo 설정
+            this.$store.dispatch("makeQuiz",{
+                quiz:this.quiz
+            })
+        },        
+        addAnswer(){
+            if(this.examListIndex>=4){
+                alert("최대 4개까지 등록가능 합니다.")
+            }else{
+                this.exampleList.push({
+                    des: this.exampleDes,
+                    examNo: this.examListIndex+1,
+                    exampleNO: 0
+                })
+                this.examListIndex++
+            }
         },
+        deleteAnswer(index){
+            if(this.examListIndex<=1){
+                alert("지문은 최소 1개 이상이여야 합니다")
+            }else{
+                this.exampleList.splice(index,1)
+                this.examListIndex--
+            }
         },
+        selectPrb(index){
+            let prb=this.quiz.problemList[index]
+            this.problem.title=prb.title
+            this.problem.score=prb.score
+            this.exampleDes=[]
+            prb.exampleList.forEach(el=>{                
+                this.exampleDes.push(el.des)
+            })            
+        },
+        oxClick1(){
+            this.oxAnswer1=true;
+            this.oxAnswer2=false;
+            this.isAnswer[0]=0;
+        },
+        oxClick2(){
+            this.oxAnswer1=false;
+            this.oxAnswer2=true;
+            this.isAnswer[0]=1;
+        },
+        getEncyc(){
+            this.$store.dispatch("getEncyc",{searchWord:this.searchWord}).then(()=>{
+                this.encycList=this.ENCYCLIST
+                //console.log("aaaabbbbb")
+                //console.log(this.encycList)
+                //console.log(this.encycList[0])
+            })
+        },
+        getEncycDetail(dictSeq){
+            this.detailFlag=true
+            this.$store.dispatch("getEncycDetail",{dictSeq:dictSeq}).then(()=>{
+                this.encycDetail=this.ENCYCDETAIL
+                this.photoList=this.PHOTOLIST
+                //console.log("testtest")
+                //console.log(this.encycDetail)
+                //console.log(this.photoList)
+            })
+        },
+        closeDetailFlag(){
+            this.detailFlag=false
+        },
+        addImg(url){
+            this.imgUrl=url            
+        },
+        changeType(value){
+            if(value==0){
+                this.typeFlag1=true
+                this.typeFlag2=false
+                this.typeFlag3=false
+            }else if(value==1){
+                this.typeFlag1=false
+                this.typeFlag2=true
+                this.typeFlag3=false
+            }else{
+                this.typeFlag1=false
+                this.typeFlag2=false
+                this.typeFlag3=true
+            }
+            this.quizType=value
+        },
+    },
+    created(){
+        
+    },
+    watch:{   
+        quizType(){
+            if(this.quizType==0){
+                this.probleFlag[0]=true
+                this.probleFlag[1]=false
+                this.probleFlag[2]=false
+            }else if(this.quizType==1){
+                this.probleFlag[0]=false
+                this.probleFlag[1]=true
+                this.probleFlag[2]=false          
+            }else{
+                this.probleFlag[0]=false
+                this.probleFlag[1]=false
+                this.probleFlag[2]=true
+            }
+        }     
     }
+}
 </script>
 
 <style>

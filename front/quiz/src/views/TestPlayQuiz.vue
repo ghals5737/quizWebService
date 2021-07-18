@@ -45,12 +45,13 @@
                     </v-col>
                     <v-col sm="10">
                         <v-progress-linear
-                        class="rounded-pill"
-                        background-color="grey"
-                        color="#f0cb35"
-                        dark v-model="prog"
-                        height="15"                         
-                        md="5">
+                            class="rounded-pill"
+                            background-color="grey"
+                            color="#f0cb35"
+                            dark v-model="prog"
+                            height="15"                         
+                            md="5"
+                        >
                         </v-progress-linear>
                     </v-col>
                     <v-col sm="1">

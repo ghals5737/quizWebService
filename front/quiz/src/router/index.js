@@ -14,6 +14,8 @@ import MainTest from '../views/MainTest.vue'
 import SocketTest from '../views/SocketTest.vue'
 import TestPlayQuiz from '../views/TestPlayQuiz.vue'
 import TailTest from '../components/TailTest.vue'
+import WaitingRoom from '../components/WaitingRoom.vue'
+import PlayTest from '../components/PlayTest.vue'
 //import SearchQuizTest from '../views/SearchQuizTest.vue'
 
 Vue.use(VueRouter)
@@ -88,6 +90,16 @@ const routes = [
     path: '/tail',
     name: 'TailTest',
     component: TailTest
+  }, 
+  {
+    path: '/waiting',
+    name: 'WaitingRoom',
+    component: WaitingRoom
+  }, 
+  {
+    path: '/play',
+    name: 'PlayTest',
+    component: PlayTest
   }, 
 ]
 
