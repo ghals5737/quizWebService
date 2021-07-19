@@ -58,12 +58,102 @@
                                         <!-- <div class="border-2 solid w-full overflow-hidden font-semibold" id="content2">
                                             <p class="mt-28">No Image</p>
                                         </div> -->
-                                        <div v-bind:style="{ backgroundImage: 'url(' + imgUrl + ')' }" class="border-2 solid w-full overflow-hidden font-semibold" id="content2">
+                                        <div v-bind:style="{ backgroundImage: 'url(' + imgUrl + ')center center;'}" class="border-2 solid w-full overflow-hidden font-semibold" id="content2">
                                             
                                         </div>
                                     </div>
                                 </li>
                             </ul>
+                        </div>
+                        <div v-if="eycFlag">
+                            <v-slide-group
+                                class="pa-4"                            
+                                show-arrows
+                            >
+                                <v-slide-item
+                                v-for="(item,n) in encycList"
+                                :key="n"
+                                >
+                                <v-hover>
+                                    <template v-slot:default="{ hover }">
+                                        <v-card
+                                            class=" mx-2"
+                                            height="250"
+                                            width="200"
+                                            rounded-full
+                                            outlined
+                                            @click="getEncycDetail(item.dictSeq)"
+                                        >
+                                        <v-card-title>
+                                            {{item.headwd}}
+                                        </v-card-title>
+                                        <v-img
+                                            v-if="item.url!=='none'"
+                                            :src="item.url"
+                                            height="90px"
+                                            width="150px"
+                                            class="mx-auto"
+                                        >
+                                        </v-img>
+                                        <v-card-text>
+                                            {{item.des}}
+                                        </v-card-text>
+                                        <v-fade-transition>
+                                            <v-overlay
+                                            v-if="hover"
+                                            absolute  
+                                            >
+                                                <p>상세보기</p>
+                                            </v-overlay>
+                                        </v-fade-transition>
+                                        </v-card>
+                                    </template>
+                                </v-hover>
+                                </v-slide-item>
+                            </v-slide-group>
+                            <v-btn v-if="!detailFlag" @click="closeEncyFlag">닫기</v-btn>
+                        </div>
+                        <div v-if="detailFlag">
+                            <v-slide-group
+                                class="pa-4"                            
+                                show-arrows
+                            >
+                                <v-slide-item
+                                v-for="(item,n) in photoList"
+                                :key="n"
+                                >
+                                    <v-col>
+                                        <v-hover>
+                                            <template v-slot:default="{ hover }">
+                                                    <v-img                                    
+                                                        :src="item"
+                                                        height="90px"
+                                                        width="150px"
+                                                        class="mx-auto"
+                                                        @click="addImg(item)"
+                                                    >
+                                                        <v-fade-transition>
+                                                            <v-overlay
+                                                            v-if="hover"
+                                                            absolute  
+                                                            >
+                                                                <p>이미지 등록</p>
+                                                            </v-overlay>
+                                                        </v-fade-transition>
+                                                    </v-img>
+                                            </template>
+                                        </v-hover>
+                                    </v-col>
+                                </v-slide-item>
+                            </v-slide-group>
+                            <v-sheet
+                            class="overflow-y-auto"
+                            max-height="150"
+                            tile
+                            >
+                            <p>{{encycDetail.headwdCntt}}</p>
+                            </v-sheet>
+                            <v-btn @click="closeDetailFlag">닫기</v-btn>
                         </div>
                         <div class="block mt-5">
                             <ul 
@@ -145,11 +235,11 @@
                 <p class="font-semibold text-lg text-yellow-500 mt-2">웅진백과 검색</p>
                 <div class="inline-block border-b-2 border-gray-300 py-3 w-full">
                     <span>
-                        <input v-model="exampleDes[n]" type="text" class="w-48 bg-grey-lighter text-grey-darker py-2 font-normal rounded text-grey-darkest border border-grey-lighter">
+                        <input v-model="searchWord" type="text" class="w-48 bg-grey-lighter text-grey-darker py-2 font-normal rounded text-grey-darkest border border-grey-lighter">
                     </span>
                     <span>
                         <button
-                            @click="addAnswer"
+                            @click="getEncyc"
                             class="font-semibold border-l mx-1  py-2 bg-yellow-500 hover:bg-yellow-400 text-white border-gray-400 w-14 rounded focus:outline-none cursor-pointer"
                         >
                             <span class="m-auto">검색</span>
@@ -234,11 +324,15 @@
 import NavBar from '../components/NavBar.vue'
 import { mapGetters } from 'vuex'
 import noImg from '@/assets/picture.png'
+//import { Carousel, Slide } from 'vue-carousel';
+
 export default {
     name: 'TailTest',
     components: {      
         //SideBar:SideBar,
-        NavBar:NavBar, 
+        NavBar:NavBar,
+        //arousel,
+        //Slide 
     },
     computed: {
         ...mapGetters(["USER","ENCYCLIST","ENCYCDETAIL","PHOTOLIST"]),
@@ -272,6 +366,7 @@ export default {
         examListIndex:1,
         quizType:0,
         detailFlag:false,
+        eycFlag:false,
         searchWord:'',
         oxAnswer1:false,
         oxAnswer2:false,
@@ -394,6 +489,7 @@ export default {
             this.isAnswer[0]=1;
         },
         getEncyc(){
+            this.eycFlag=true
             this.$store.dispatch("getEncyc",{searchWord:this.searchWord}).then(()=>{
                 this.encycList=this.ENCYCLIST
                 //console.log("aaaabbbbb")
@@ -413,6 +509,9 @@ export default {
         },
         closeDetailFlag(){
             this.detailFlag=false
+        },
+        closeEncyFlag(){
+            this.eycFlag=false
         },
         addImg(url){
             this.imgUrl=url            

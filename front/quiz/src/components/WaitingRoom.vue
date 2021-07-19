@@ -58,19 +58,19 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import SideBar from '../components/SideBar.vue'
+//import SideBar from '../components/SideBar.vue'
 import NavBar from '../components/NavBar.vue'
 import Stomp from 'webstomp-client'
 import SockJS from 'sockjs-client'
 import router from '../router/index'
-import Gravatar from 'vue-gravatar'
+//import Gravatar from 'vue-gravatar'
 
 export default {
     name: 'WaitingRoom',
     components: {   
 		NavBar:NavBar,
-		Gravatar,           
-        SideBar:SideBar,       
+		// Gravatar,           
+        // SideBar:SideBar,       
     },
     computed: {
         ...mapGetters(["USER","ROOM","USERLIST"]),

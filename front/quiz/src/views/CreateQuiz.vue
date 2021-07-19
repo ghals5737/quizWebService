@@ -217,8 +217,6 @@
                                     </v-col>
                                 </v-slide-item>
                             </v-slide-group>
-                            <p>{{encycDetail.headwd}}</p>
-                            <p>{{encycDetail.headWordDscr}}</p>
                             <v-sheet
                             class="overflow-y-auto"
                             max-height="150"
