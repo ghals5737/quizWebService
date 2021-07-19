@@ -7,7 +7,29 @@
             <div class="flex h-full ">
                 <nav class="flex w-72 h-full ">
                 <div class="w-full flex mx-auto px-6 py-8">
-                    <div class="w-full h-full flex items-center justify-center text-gray-900 text-xl"></div>
+                    <div class="w-full h-full text-gray-900 text-xl">
+                        <p class="mt-2 mb-4 text-center font-extrabold text-xl">유저 순위</p>
+                        <ul>
+                            <li id="userli" v-for="(item,index) in userList" :key="index">
+                                <div class="flex justify-center items-center m-1 font-medium py-1 px-4 bg-white rounded-full text-black bg-purple-100 border border-purple-300 ">
+                                        <div class="" id="userChip">
+                                            <div 
+                                            class="flex relative w-9 h-9 bg-orange-500 justify-center items-center m-1 mr-2 ml-0 my-0 rounded-full">
+                                            <img v-if="index<3" class="rounded-full mr-2" alt="A" :src="medalUrl[index]">
+                                            <p v-if="index>=3">{{index+1}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="" id="userChip">
+                                            <div 
+                                            class="flex relative w-9 h-9 bg-orange-500 justify-center items-center m-1 mr-2 ml-0 my-0 text-xs rounded-full">
+                                            <img class="rounded-full mr-2" alt="A" :src="imgUrl[index%5]">
+                                            </div>
+                                        </div>
+                                        {{item.userId}}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 </nav>
                 <main class="flex flex-col w-full  overflow-x-hidden overflow-y-auto mb-14">
@@ -17,65 +39,67 @@
                             <p id="roomName">room1</p>
                             <div id="progressBar">
                                 <div id="qNumber">
-                                    1/2
+                                    {{currentIndex+1}}/{{problemList.length}}
                                 </div>
                                 <div id="qTime">
-                                    30
+                                    {{ 20-Math.ceil(prog/5.5) }}
                                 </div>
                                 <div class="" id="progress">
-                                    <div class="mt-2 bg-gray-600 rounded-full">
-                                        <div class="w-6/12 mt-2 bg-purple-900 py-2 rounded-full"> </div>
+                                    <div class="mt-2 bg-gray-400 rounded-full">
+                                        <div class="mt-2 bg-red-500 py-2 rounded-full" :style="{ width: prog+'%' }"> </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="mt-4" id="quizbody">
                             <div id="quizPreview">
-                                <div id="qcontent">
-                                    <ul class="w-full h-full relative inline-block">
-                                        <li id="qdes">
-                                            <p id="qcontentdes">aaaaa</p>                                                                                    
-                                        </li>
-                                        <li id="qimage">
-                                            <div id="qimgForm">
-                                                <div id="qimg"></div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="my-5" id="acontent">
-                                    <!-- <ul id="acontentUl">
-                                        <li id="acontentli" :style="{background:color[0]}">
-                                            <span id="aNumber">1</span>
-                                            <div id="aText"></div>
-                                            <p id="aDes">bbbb</p>
-                                        </li>
-                                        <li id="acontentli" :style="{background:color[1]}">
-                                            <span id="aNumber">2</span>
-                                            <div id="aText"></div>
-                                            <p id="aDes">bbbb</p>
-                                        </li>
-                                        <li id="acontentli" :style="{background:color[2]}">
-                                            <span id="aNumber">3</span>
-                                            <div id="aText"></div>
-                                            <p id="aDes">bbbb</p>
-                                        </li>
-                                        <li id="acontentli" :style="{background:color[3]}">
-                                            <span id="aNumber">4</span>
-                                            <div id="aText"></div>
-                                            <p id="aDes">bbbb</p>
-                                        </li>
-                                    </ul> -->
-                                    <ul id="acontentUlOX">
-                                        <li id="liO">
-                                            <p id="imgO"></p>
-                                        </li>
-                                        <li id="liX">
-                                            <p id="imgX"></p>
-                                        </li>
-                                    </ul>
-                                </div>
-                                
+                                <carousel 
+                                    :per-page="1"
+                                    :mouse-drag="false"
+                                    :paginationEnabled="false"
+                                    ref="carousel"
+                                >
+                                    <slide
+                                        v-for="(problem, index) in problemList"
+                                        :key="index"
+                                    >
+                                        <div id="qcontent">
+                                            <ul class="w-full h-full relative inline-block">
+                                                <li id="qdes">
+                                                    <p id="qcontentdes">{{problem.title}}</p>                                                                                    
+                                                </li>
+                                                <li id="qimage">
+                                                    <div id="qimgForm">
+                                                        <div id="qimg"></div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="my-5" id="acontent">
+                                            <ul v-if="problem.quizType==0" id="acontentUl">
+                                                <li 
+                                                    v-for="(item,n) in problem.exampleList"
+                                                    :key="n"
+                                                    id="acontentli"
+                                                    :style="{background:color[n]}" 
+                                                    @click="goNextPrb(n)"
+                                                >
+                                                    <span id="aNumber">{{n+1}}</span>
+                                                    <div id="aText"></div>
+                                                    <p id="aDes">{{item.des}}</p>
+                                                </li>
+                                            </ul>
+                                            <ul v-if="problem.quizType==1" id="acontentUlOX">
+                                                <li id="liO" @click="goNextPrb(0)">
+                                                    <p id="imgO"></p>
+                                                </li>
+                                                <li id="liX" @click="goNextPrb(1)">
+                                                    <p id="imgX"></p>
+                                                </li>
+                                            </ul>
+                                        </div> 
+                                    </slide>
+                                </carousel>  
                             </div>
                         </div>
                     </div>
@@ -98,12 +122,15 @@ import NavBar from '../components/NavBar.vue'
 import Stomp from 'webstomp-client'
 import SockJS from 'sockjs-client'
 import router from '../router/index'
+import { Carousel, Slide } from 'vue-carousel';
 //import Gravatar from 'vue-gravatar'
 
 export default {
     name: 'TestPlayQuiz',
     components: {          
         NavBar,
+        Carousel,
+        Slide,
         //Gravatar,
     },
     computed: {
@@ -156,26 +183,18 @@ export default {
                 userId: sessionStorage.getItem('userId'),
                 roomNo: this.$route.query.roomNo
             },
-            colors:[
-                "light-blue darken-3",
-                "blue lighten-3",
-                "red accent-2",
-                "orange lighten-2"
+            imgUrl:[
+                require("../assets/bf_change_apple_s.png"),
+                require("../assets/bf_change_bana_s.png"),
+                require("../assets/bf_change_berry_s.png"),
+                require("../assets/bf_change_choco_s.png"),
+                require("../assets/bf_change_kiwi_s.png"),
             ],
-            slider: [
-                "red", 
-                "green", 
-                "orange", 
-                "blue", 
-                "pink", 
-                "purple", 
-                "indigo", 
-                "cyan", 
-                "deep-purple", 
-                "light-green", 
-                "deep-orange", 
-                "blue-grey"
-            ],            
+            medalUrl:[
+                require("../assets/medal_1.png"),
+                require("../assets/medal_2.png"),
+                require("../assets/medal_3.png"),
+            ],
         }
     },
     methods:{
@@ -220,17 +239,15 @@ export default {
         },
         goNextPrb(n){            
             window.clearInterval(this.interval)
-            this.sleep(700).then(() => {                    
+            
+            this.sleep(700).then(() => {
                     this.prog=-3
                     this.userAnswerList[this.currentIndex].submitAnswer.push(n)  
                     this.answer.userAnswerList=[]
                     this.answer.userAnswerList.push(this.userAnswerList[this.currentIndex])
                     this.sendAnswer()
-                    // this.$store.dispatch("submitAnswer",{                
-                    //     answer:this.answer,
-                    //     roomNo:this.$route.query.roomNo
-                    // })          
-                    this.currentIndex++    
+                    this.$refs.carousel.goToPage(this.$refs.carousel.getNextPage());                
+                    this.currentIndex++
                     this.interval=window.setInterval(function(){
                         this.prog += 0.1            
                     }.bind(this), 20)
@@ -269,7 +286,10 @@ export default {
 				}).then(()=>{
 					this.room=this.ROOM
 				})
-		},      
+		},  
+        handleSlideClick(){
+            console.log("carousel",this.$refs)
+        }    
     },
     created(){
         this.getRoomByRoomNo()
@@ -300,9 +320,10 @@ export default {
         // }
         // this.value += 10
         // }, 1000)
-        // this.interval=window.setInterval(function(){
-        //     this.prog += 0.1            
-        // }.bind(this), 20)
+
+        this.interval=window.setInterval(function(){
+            this.prog += 0.1            
+        }.bind(this), 20)
     },
     watch:{
         prog(){
@@ -311,7 +332,8 @@ export default {
                 this.sleep(700).then(() => {                    
                     this.prog=-3       
                     this.userAnswerList[this.currentIndex].submitAnswer.push(-1)           
-                    this.currentIndex++    
+                    this.currentIndex++  
+                    this.$refs.carousel.goToPage(this.$refs.carousel.getNextPage());
                     this.interval=window.setInterval(function(){
                         this.prog += 0.1            
                     }.bind(this), 20)
@@ -320,7 +342,7 @@ export default {
         },
         currentIndex(){
             if(this.currentIndex>=this.problemList.length){               
-                router.push({name: 'QuizResult', query: {roomNo: this.$route.query.roomNo}})
+                router.push({name: 'Result', query: {roomNo: this.$route.query.roomNo}})
             }
         },
     }
@@ -364,7 +386,6 @@ export default {
     position: relative;
 }
 #progress{
-      
     width: 87%;
     position: relative;
     margin: 0 auto;    

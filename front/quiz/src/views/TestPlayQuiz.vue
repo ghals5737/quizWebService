@@ -16,11 +16,11 @@
                 <v-list-item-group color="primary">
                     <v-list-item
                         v-for="(item, i) in userList"
-                        :key="i"                        
+                        :key="i"
                     > 
                         <span class="h4 mr-5">{{i+1}}등</span>                        
                         <v-list-item-avatar>
-                             <Gravatar class="" :email="item.userId" :size="200" />                                           
+                            <Gravatar class="" :email="item.userId" :size="200" />                                           
                         </v-list-item-avatar>
                         <v-list-item-content>
                             <v-list-item-title class="h4">&nbsp;{{item.userId}}</v-list-item-title>
@@ -29,13 +29,13 @@
                         <!-- <v-avatar size="40" left>
                         </v-avatar> -->
                         <span class="h4" right>{{item.total}}점</span>
-                       
+                    
                     </v-list-item>
                 </v-list-item-group>
             </v-list>
         </v-navigation-drawer>
     </v-container>
-         
+        
         <v-main>
         <v-container class="pt-15" fluid><p class="text-center">퀴즈 제목</p></v-container>
         <v-container class="text-xs-center" fluid>            

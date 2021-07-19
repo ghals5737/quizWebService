@@ -7,7 +7,7 @@
         <div class="flex h-full">
         <nav class="flex w-72 h-full">
             <div class="w-full flex mx-auto pr-6 py-8">
-            <div class="w-full h-fulltext-gray-900 text-xl">
+            <div class="w-full h-full text-gray-900 text-xl">
                 <p class="mt-2 mb-4 text-center font-extrabold text-xl">퀴즈:총 {{quiz.problemList.length}}문제</p>
                 <div class="relative">
                     <ul>
@@ -37,7 +37,10 @@
         <main class="flex flex-col w-full bg-gray-50 overflow-x-hidden overflow-y-auto mb-14">
             <div class="flex w-full mx-auto px-6 py-8">
             <div class="flex flex-col w-full h-full text-gray-900 text-xl">
-                    <input type="text" v-model="quiz.quizName" class="rounded px-4 w-full py-1 bg-gray-200  border border-gray-400 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none" placeholder="퀴즈 제목 입력">           
+                    <div class="text-center">
+                        <input type="text" v-model="quiz.quizName" class="rounded px-4 py-1 bg-gray-200  border border-gray-400 text-gray-700 placeholder-gray-700 focus:bg-white focus:outline-none" placeholder="퀴즈 제목 입력">
+                        <button @click="makeQuiz" class="ml-4 bg-gray-500 rounded-md w-32 h-10 text-white">퀴즈 만들기</button>
+                    </div>
                     <div class="text-center w-full mx-auto mt-3 h-full relative top-0 left-0">
                         <p>1번 문제</p>
                         <div class="mx-auto mt-4" id="time"></div>
@@ -46,7 +49,7 @@
                                 <li class="float-left w-1/2">
                                     <div class="p-3">
                                         <div class="border-2 solid w-full overflow-hidden font-semibold" id="content1">
-
+                                            {{problem.title}}
                                         </div>
                                     </div>
                                 </li>
@@ -64,6 +67,7 @@
                         </div>
                         <div class="block mt-5">
                             <ul 
+                                v-if="typeFlag1"
                                 class="w-full relative justify-center align-middle inline-flex flex-row"
                             >
                                 <li 
@@ -73,6 +77,21 @@
                                 >
                                     <span id="answerNumber">{{n+1}}</span>
                                     <p id="answerContent">{{exampleDes[n]}}</p>
+                                </li>
+                            </ul>
+                            <ul 
+                                v-if="typeFlag2"
+                                class="w-full relative justify-center align-middle inline-flex flex-row"
+                            >
+                                <li
+                                    id="selectAnswer"
+                                >
+                                    <p id="imgO"></p>
+                                </li>
+                                <li
+                                    id="selectAnswer"
+                                >
+                                    <p id="imgX"></p>
                                 </li>
                             </ul>
                         </div>
@@ -103,7 +122,7 @@
                                 <p class="text-gray-500 font-semibold">OX</p>
                             </div>
                         </li>
-                         <li v-if="typeFlag2" class="float-left mr-1 mb-1">
+                        <li v-if="typeFlag2" class="float-left mr-1 mb-1">
                             <div @click="changeType(1)" class="text-center border-solid border-2 border-yellow-500 w-20 h-20 rounded-lg">
                                 <img class="mx-auto mt-2" src="https://www.quizn.show/webdata/images/type-icon/ico_type2_on.png">
                                 <p class="text-yellow-500 font-semibold">OX</p>
@@ -123,9 +142,23 @@
                         </li>
                     </ul>
                 </div>
+                <p class="font-semibold text-lg text-yellow-500 mt-2">웅진백과 검색</p>
+                <div class="inline-block border-b-2 border-gray-300 py-3 w-full">
+                    <span>
+                        <input v-model="exampleDes[n]" type="text" class="w-48 bg-grey-lighter text-grey-darker py-2 font-normal rounded text-grey-darkest border border-grey-lighter">
+                    </span>
+                    <span>
+                        <button
+                            @click="addAnswer"
+                            class="font-semibold border-l mx-1  py-2 bg-yellow-500 hover:bg-yellow-400 text-white border-gray-400 w-14 rounded focus:outline-none cursor-pointer"
+                        >
+                            <span class="m-auto">검색</span>
+                        </button>
+                    </span>
+                </div>
                 <p class="font-extrabold font-mono text-xl text-yellow-500 mt-2">Question</p>
                 <div class="inline-block border-b-2 border-gray-300 py-3 w-full">
-                    <textarea id="questionInput"></textarea>
+                    <textarea v-model="problem.title" id="questionInput"></textarea>
                 </div>
                 <p class="font-extrabold font-mono text-xl text-yellow-500 mt-2">Score</p>
                 <div class="inline-block border-b-2 border-gray-300 py-3 w-full">

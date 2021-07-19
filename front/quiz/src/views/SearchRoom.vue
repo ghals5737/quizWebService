@@ -83,7 +83,7 @@ export default {
     },
     methods:{
         goRoom(value){            
-            router.push({name: 'SocketTest', query: {roomNo: value.roomNo}})
+            router.push({name: 'WaitingRoom', query: {roomNo: value.roomNo}})
         },
     },
     created(){
