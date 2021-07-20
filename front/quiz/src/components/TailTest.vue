@@ -15,6 +15,7 @@
                             v-for="(item, i) in quiz.problemList"
                             :key="i"
                             class="relative"
+                            @click="quizDetail(item)"
                         >
                             <div class="inline-block ml-4" id="preview">
                                 <p class="text-yellow-500 text-sm font-bold pl-1 pt-1" id="preview_type">[{{options[item.quizType].name}}]</p>
@@ -58,7 +59,20 @@
                                         <!-- <div class="border-2 solid w-full overflow-hidden font-semibold" id="content2">
                                             <p class="mt-28">No Image</p>
                                         </div> -->
-                                        <div v-bind:style="{ backgroundImage: 'url(' + imgUrl + ')center center;'}" class="border-2 solid w-full overflow-hidden font-semibold" id="content2">
+                                        <div
+                                            v-if="imgUrl!=='none'" 
+                                            v-bind:style="{ backgroundImage: 'url(' + imgUrl + ')'}" 
+                                            class="w-full overflow-hidden font-semibold"
+                                            id="content2"
+                                        >
+                                            
+                                        </div>
+                                        <div 
+                                            v-if="imgUrl=='none'" 
+                                            class="w-full overflow-hidden border-2"
+                                            style="border: 1px #d9d9d9 solid" 
+                                            id="content2"
+                                        >
                                             
                                         </div>
                                     </div>
@@ -190,7 +204,7 @@
             </div>
         </main>
         <nav class="flex w-1/4 h-full bg-white">
-            <div class="w-full block mx-auto px-6 py-8">
+            <div class="w-full block mx-auto px-3 py-8 overflow-y-auto">
                 <p class="font-extrabold font-mono text-xl">Type</p>
                 <div class="inline-block border-b-2 border-gray-300 py-4 w-full">
                     <ul class="">
@@ -253,7 +267,7 @@
                 <p class="font-extrabold font-mono text-xl text-yellow-500 mt-2">Score</p>
                 <div class="inline-block border-b-2 border-gray-300 py-3 w-full">
                     <div class="flex flex-row">
-                        <input type="number" name="price" class="w-full bg-grey-lighter text-grey-darker py-2 font-normal rounded text-grey-darkest border border-grey-lighter rounded-l-none">
+                        <input v-model="problem.score" type="number" name="price" class="w-full bg-grey-lighter text-grey-darker py-2 font-normal rounded text-grey-darkest border border-grey-lighter rounded-l-none">
                     </div>
                 </div>
                 <p class="font-extrabold font-mono text-xl text-yellow-500 mt-2">Answer</p>
@@ -312,7 +326,53 @@
                 </div>
                 <div class="py-3 w-full text-center">
                     <button @click="addOrder" class="bg-gray-500 rounded-md w-28 h-10 text-white">저장</button>
-                </div>
+                </div>                
+            </div>
+            <div class="text-center">
+                <v-app>
+                    <v-dialog
+                        v-model="dialog"
+                        width="1000"
+                    >
+                        <v-card>
+                            <div id="qcontent">
+                                <ul class="w-full h-full relative inline-block">
+                                    <li id="qdes">
+                                        <p id="qcontentdes">{{problem.title}}</p>                                                                                    
+                                    </li>
+                                    <li id="qimage">
+                                        <div id="qimgForm">
+                                            <div id="qimg"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="my-5" id="acontent">
+                                <ul v-if="problem.quizType==0" id="acontentUl">
+                                    <li 
+                                        v-for="(item,n) in problem.exampleList"
+                                        :key="n"
+                                        id="acontentli"
+                                        :style="{background:color[n]}" 
+                                        @click="goNextPrb(n)"
+                                    >
+                                        <span id="aNumber">{{n+1}}</span>
+                                        <div id="aText"></div>
+                                        <p id="aDes">{{item.des}}</p>
+                                    </li>
+                                </ul>
+                                <ul v-if="problem.quizType==1" id="acontentUlOX">
+                                    <li id="liO" @click="goNextPrb(0)">
+                                        <p id="imgO"></p>
+                                    </li>
+                                    <li id="liX" @click="goNextPrb(1)">
+                                        <p id="imgX"></p>
+                                    </li>
+                                </ul>
+                            </div> 
+                        </v-card>
+                    </v-dialog>
+                </v-app>
             </div>
         </nav>
         </div>
@@ -339,12 +399,14 @@ export default {
     },
     data(){
         return{
+        dialog:false,
         items:[],
         options:[
             {name: "선택형",value:0},
             {name: "OX",value:1},
             {name: "단답형",value:2}
         ],
+        color:['#02abb0','#318cff','#f8ac59','#ed5565'],
         mod:0,
         noImg:noImg,
         typeFlag1:true,
@@ -532,6 +594,12 @@ export default {
             }
             this.quizType=value
         },
+        quizDetail(item){
+            this.dialog=!this.dialog
+            this.problem.title=item.title
+            this.problem.quizType=item.quizType
+            this.problem.exampleList=item.exampleList
+        }
     },
     created(){
         
@@ -593,8 +661,6 @@ export default {
     #content2{
         height: 14vw;
         max-height: 14vw;
-        border: 1px #d9d9d9 solid;
-        background-color: #d9d9d9;
     }
     #selectAnswer{
         border: 1px #d9d9d9 solid;

@@ -17,6 +17,8 @@ import TailTest from '../components/TailTest.vue'
 import WaitingRoom from '../components/WaitingRoom.vue'
 import PlayTest from '../components/PlayTest.vue'
 import Result from '../components/Result.vue'
+import RoomDetailTest from '../components/RoomDetailTest.vue'
+import SearchRoomTest from '../components/SearchRoomTest.vue'
 //import SearchQuizTest from '../views/SearchQuizTest.vue'
 
 Vue.use(VueRouter)
@@ -59,8 +61,8 @@ const routes = [
   },   
   {
     path: '/searchroom',
-    name: 'SearchRoom',
-    component: SearchRoom
+    name: 'SearchRoomTest',
+    component: SearchRoomTest
   },
   {
     path: '/testplayquiz',
@@ -106,6 +108,11 @@ const routes = [
     path: '/result',
     name: 'Result',
     component: Result
+  },
+  {
+    path: '/detail',
+    name: 'RoomDetailTest',
+    component: RoomDetailTest
   },
 ]
 

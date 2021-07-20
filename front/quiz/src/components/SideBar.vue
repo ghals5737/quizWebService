@@ -12,26 +12,7 @@
         </v-list-item>
         
         <v-divider class="d-lg-none"></v-divider>
-        
-        <!-- <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title>
-              <v-menu offset-y>
-          <template v-slot:activator="{ on, attrs }">            
-          </template>
-          <v-list>
-            <v-list-item link>
-                Change
-            </v-list-item>
-            <v-list-item link>
-                Manage
-            </v-list-item>
-          </v-list>
-        </v-menu>
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item> -->
-        
+                
         <v-list dense>
           <v-list-item>
             <v-list-item-icon>

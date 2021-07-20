@@ -8,6 +8,29 @@
             <nav class="flex w-72 h-full ">
             <div class="w-full flex mx-auto pr-6 py-8">
                 <div class="w-full h-full  text-gray-900 text-xl">
+                    <div class="relative">
+                        <p class="mt-2 mb-4 text-center font-extrabold text-xl">퀴즈:총 {{regQuizList.length}}개</p>
+                        <ul>
+                            <li 
+                                v-for="(item, i) in regQuizList"
+                                :key="i"
+                                class="relative"
+                            >
+                                <div class="inline-block ml-4" id="preview">
+                                    <p class="text-yellow-500 text-sm font-bold pl-1 pt-1" id="preview_type">[{{item.quizName}}]</p>
+                                    <p class="pl-1 pt-1" id="preview_title">{{i+1}}번째 퀴즈</p>
+                                    <p class="pl-1 pt-1" id="preview_title">Q. {{item.problemList.length}}문제</p>
+                                    <ul class="absolute right-4 bottom-1">
+                                        <li class="inline">
+                                            <button class="border-none" @click="deleteOrder(i)">
+                                                <img src="https://www.quizn.show/webdata/images/delete.png">
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             </nav>
@@ -60,7 +83,13 @@
                                     </slide>
                                 </carousel>
                             </div>
-                            
+                            <div class="text-center mt-5">
+                                <button
+                                    class="font-semibold border-4 mx-1  py-2 bg-yellow-500 hover:bg-yellow-400 text-white border-gray-400 w-24 rounded focus:outline-none cursor-pointer"
+                                >
+                                    <span class="m-auto" @click="addQuiz">방만들기</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     
