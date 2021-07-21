@@ -25,7 +25,7 @@
                     <div id="quizCards">
                         <div id="cardWrap">
                             <p id="searchQuizTitle">퀴즈 목록</p>
-                            <div id="cardContainer">
+                            <div class="mt-3" id="cardContainer">
                                 <carousel 
                                     :per-page="5"
                                     :mouse-drag="false"
