@@ -85,7 +85,7 @@ export default {
         NavBar:NavBar, 
     },
     computed: {
-        ...mapGetters(["USER","QUIZLIST","TOTAL","QUIZ","ROOM"]),           
+        ...mapGetters(["USER","QUIZLIST","TOTAL","QUIZ","ROOM","USERNAMELIST"]),           
     },
     data(){      
         return {

@@ -1,23 +1,6 @@
 <template>
   <v-app>
-   <!-- <form>    
-    <v-text-field
-      v-model="userId"      
-      label="ID"
-      name="userId"
-      required      
-    ></v-text-field>    
-    <v-text-field
-      v-model="pw"      
-      :counter="10"
-      label="PASSWORD"
-      name="pw"
-      required      
-    ></v-text-field>
-    <v-btn class="mr-4" @click="logIn">logIn</v-btn>
-    <v-btn class="mr-4" @click="signUp">signUp</v-btn>
-    <v-btn >clear</v-btn>
-  </form> -->
+  
   <v-container class="mx-auto">    
         <v-card width="400">
           <v-card-title>
@@ -80,3 +63,6 @@
     },
   }
 </script>
+<style>
+
+</style>

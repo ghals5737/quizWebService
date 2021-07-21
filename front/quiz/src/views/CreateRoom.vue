@@ -1,7 +1,6 @@
 <template>
     <v-app id="inspire">
         <v-app id="inspire">
-            <side-bar></side-bar>
             <nav-bar></nav-bar>     
             <v-main>
 
@@ -96,13 +95,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import SideBar from '../components/SideBar.vue'
 import NavBar from '../components/NavBar.vue'
 
 export default {
     name: 'CreateRoom',
     components: {       
-        SideBar:SideBar,
         NavBar:NavBar, 
     },
     computed: {

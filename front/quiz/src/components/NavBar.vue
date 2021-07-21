@@ -54,7 +54,7 @@
                 color="primary"
                 size="30"
               >
-                 <Gravatar class="" :email="userId" :size="200" />
+                <Gravatar class="" :email="userId" :size="200" />
               </v-avatar>
             </v-btn>
           </template>
@@ -125,21 +125,25 @@ export default {
     },
     methods:{
         goCreateQuiz(){
+            for (let i = 1; i < 99999; i++)window.clearInterval(i);
             this.$store.dispatch("goCreateQuiz",{
                 userId: this.userId,
                 userNo: this.userNo
             })  
         },
         goSearchQuiz(){
+            for (let i = 1; i < 99999; i++)window.clearInterval(i);
             this.$store.dispatch("goSearchQuiz",{
                 userId: this.userId,
                 userNo: this.userNo
             })  
         },    
         goCreateRoom(){
+            for (let i = 1; i < 99999; i++)window.clearInterval(i);
             this.$store.dispatch("goCreateRoom")
         },   
         goSearchRoom(){
+            for (let i = 1; i < 99999; i++)window.clearInterval(i);
             this.$store.dispatch("goSearchRoom")
         },       
     },

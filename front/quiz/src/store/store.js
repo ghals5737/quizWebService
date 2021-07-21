@@ -28,6 +28,7 @@ const store = new Vuex.Store({
         encycDetail:null,    
         photoList:null,   
         userList:null,
+        userNameList:null,
     },
     getters: {
         USER: state => state.userInfo,        
@@ -41,6 +42,7 @@ const store = new Vuex.Store({
         ENCYCDETAIL:state=>state.encycDetail,
         PHOTOLIST:state=>state.photoList,
         USERLIST:state=>state.userList,
+        USERNAMELIST:state=>state.userNameList,
     },
     mutations: {
         addUser: (state,{user})=>{
@@ -81,6 +83,9 @@ const store = new Vuex.Store({
         },
         addUserList:(state,{userList})=>{
             state.userList=userList
+        },
+        addUserNameList:(state,{userNameList})=>{
+            state.userNameList=userNameList
         },
     },
     actions: {
@@ -171,7 +176,7 @@ const store = new Vuex.Store({
             return instanceWithAuth.post("/room",room)
             .then(res =>{                
                 store.commit('addRoom',{room:res.data})
-                router.push({name: 'RoomDetail', query: {roomNo: res.data.roomNo}})
+                router.push({name: 'RoomDetailTest', query: {roomNo: res.data.roomNo}})
             })
             .catch(()=>{
                 alert("실패")
@@ -259,11 +264,17 @@ const store = new Vuex.Store({
                 store.commit('addUserList',{userList:res.data})
             })
         },
-        getRank:(Store,{roomNo})=>{
+        getRank:(store,{roomNo})=>{
             return instanceWithAuth.get(`/answer/rank?roomNo=${roomNo}`)
             .then((res)=>{
                 console.log("rank",res.data)
                 store.commit('addUserList',{userList:res.data})
+            })
+        },
+        getUserNameByUserNo:(store,{userNoList})=>{
+            return instanceWithAuth.post("/users/userNames",userNoList)
+            .then((res)=>{
+                store.commit('addUserNameList',{userNameList:res.data})
             })
         },
     },
