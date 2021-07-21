@@ -61,4 +61,9 @@ public class UserController {
     private void delete(long userNo){
         userService.deleteUser(userNo);
     }
+
+    @PostMapping("/userNames")
+    private List<String> getUserNameByUserNo(@RequestBody List<Long> userNoList){
+        return userService.getUserNameByUserNo(userNoList);
+    }
 }

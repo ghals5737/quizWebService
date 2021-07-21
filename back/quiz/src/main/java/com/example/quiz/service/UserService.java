@@ -14,4 +14,5 @@ public interface UserService {
     User loginUser(User user);
     void deleteUser(long userNo);
     ResponseEntity<TokenDto>  authenticate(User user);
+    List<String> getUserNameByUserNo(List<Long> userNoList);
 }

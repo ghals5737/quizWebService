@@ -18,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -93,5 +94,14 @@ public class UserServiceImpl implements UserService{
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    @Override
+    public List<String> getUserNameByUserNo(List<Long> userNoList) {
+        ArrayList<String> result=new ArrayList<>();
+        for(Long userNo:userNoList){
+            result.add(userRepository.findUserByUserNo(userNo).getUserId());
+        }
+        return result;
     }
 }
