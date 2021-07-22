@@ -8,9 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Gravatar from 'vue-gravatar'
 import "./index.css";
-import VModal from 'vue-js-modal'
 
-Vue.use(VModal, { dynamic: true })
+
 Vue.use(BootstrapVue)
 Vue.component('v-gravatar', Gravatar)
 

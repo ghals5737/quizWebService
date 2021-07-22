@@ -115,7 +115,7 @@ const store = new Vuex.Store({
                     sessionStorage.setItem("userId",res.data.userId)                    
                     sessionStorage.setItem("userNo",res.data.userNo)
                     sessionStorage.setItem("accessToken",res.data.token)    
-                    router.push('/main')
+                    router.push('/createquiz')
                 })
                 .catch(()=>{
 

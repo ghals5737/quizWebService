@@ -24,8 +24,8 @@
                 </div>
                 <div id="quizCards">
                     <div id="cardWrap">
-                        <p id="searchQuizTitle">방 목록</p>
-                        <div id="cardContainer">
+                        <p class="" id="searchQuizTitle">방 목록</p>
+                        <div class="mt-3" id="cardContainer">
                             <carousel 
                                 :per-page="5"
                                 :mouse-drag="false"
@@ -35,7 +35,8 @@
                                 <slide
                                     v-for="(room, index) in roomList"
                                     :key="index"
-                                    id="quizCard"                                        
+                                    id="quizCard"
+                                    @click="goRoom(room)"                                        
                                 >
                                     <div id="quizCardThumb" @click="goDetail(index)">
                                         <div class="w-full h-full" style="background-size: contain;">
@@ -51,8 +52,8 @@
                                                 <dt id="quizCardInfoName">
                                                     <span class="pl-3">{{userNameList[index]}}</span>
                                                 </dt>
-                                                <dt id="quizCardInfoPreview" class="ml-5" @click="quizDetail(index)">
-                                                    <span class="pl-4">보기</span>
+                                                <dt id="roomRegTime" class="ml-5">
+                                                    <span class="pl-4">{{room.regTime}}</span>
                                                 </dt>
                                             </dl>
                                         </div>
@@ -63,14 +64,12 @@
                         
                     </div>
                 </div>
-                
             </div>
         </div>
         </main>
         <nav class="flex w-72 h-full ">
         <div class="w-full flex mx-auto px-6 py-8">
             <div class="w-full h-full flex items-center justify-center text-gray-900 text-xl">
-                
             </div>
         </div>
         </nav>
@@ -130,6 +129,18 @@ export default {
                 this.userNameList=this.USERNAMELIST
             });
         },
+        leftPad(value) {
+            if (value >= 10) {
+                  return value;
+            }
+            return `0${value}`;
+        },
+        toStringByFormatting(source, delimiter = '-') {
+            const year = source.getFullYear();
+            const month = this.leftPad(source.getMonth() + 1);
+            const day = this.leftPad(source.getDate());
+            return [year, month, day].join(delimiter);
+         },
     },
     created(){
         this.$store.dispatch("initRoom").then(()=>{
@@ -142,6 +153,7 @@ export default {
                     this.roomList=this.ROOMLIST
                     this.roomList.forEach(el=>{
                         this.userNoList.push(el.owner_no)
+                        el.regTime=this.toStringByFormatting(new Date(el.regTime))
                     })
                     this.getUserNameByUserNo()                        
                 })
@@ -162,5 +174,9 @@ export default {
 </script>
 
 <style>
-
+#roomRegTime{
+    text-align: right;
+    position: relative;
+    float: right;
+}
 </style>

@@ -338,19 +338,20 @@
                             <div id="qcontent">
                                 <ul class="w-full h-full relative inline-block">
                                     <li id="qdes">
-                                        <p id="qcontentdes">{{problem.title}}</p>                                                                                    
+                                        <p id="qcontentdes">{{dTitle}}</p>                                                                                    
                                     </li>
                                     <li id="qimage">
                                         <div id="qimgForm">
-                                            <div id="qimg"></div>
+                                            <div v-if="dUrl==='none'" id="qimg" :style="{ backgroundImage: 'url(' + noImg + ')'}"></div>
+                                            <div v-if="dUrl!=='none'" id="qimg" :style="{ backgroundImage: 'url(' + dUrl + ')'}"></div>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                             <div class="my-5" id="acontent">
-                                <ul v-if="problem.quizType==0" id="acontentUl">
+                                <ul v-if="dType==0" id="acontentUl">
                                     <li 
-                                        v-for="(item,n) in problem.exampleList"
+                                        v-for="(item,n) in dExampleList"
                                         :key="n"
                                         id="acontentli"
                                         :style="{background:color[n]}" 
@@ -361,7 +362,7 @@
                                         <p id="aDes">{{item.des}}</p>
                                     </li>
                                 </ul>
-                                <ul v-if="problem.quizType==1" id="acontentUlOX">
+                                <ul v-if="dType==1" id="acontentUlOX">
                                     <li id="liO" @click="goNextPrb(0)">
                                         <p id="imgO"></p>
                                     </li>
@@ -409,6 +410,10 @@ export default {
         color:['#02abb0','#318cff','#f8ac59','#ed5565'],
         mod:0,
         noImg:noImg,
+        dTitle:'',
+        dUrl:'',
+        dType:'',
+        dExampleList:[],
         typeFlag1:true,
         typeFlag2:false,
         typeFlag3:false,
@@ -596,9 +601,10 @@ export default {
         },
         quizDetail(item){
             this.dialog=!this.dialog
-            this.problem.title=item.title
-            this.problem.quizType=item.quizType
-            this.problem.exampleList=item.exampleList
+            this.dTitle=item.title
+            this.dUrl=item.imgUrl
+            this.dType=item.quizType
+            this.dExampleList=item.exampleList
         }
     },
     created(){

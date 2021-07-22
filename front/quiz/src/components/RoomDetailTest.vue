@@ -48,7 +48,7 @@
                     <div id="quizCards">
                         <div id="cardWrap">
                             <p id="searchQuizTitle">퀴즈 목록</p>
-                            <div id="cardContainer">
+                            <div class="mt-3" id="cardContainer">
                                 <carousel 
                                     :per-page="5"
                                     :mouse-drag="false"
@@ -121,7 +121,8 @@
                                                     </li>
                                                     <li id="qimage">
                                                         <div id="qimgForm">
-                                                            <div id="qimg"></div>
+                                                            <div v-if="problem.imgUrl==='none'" id="qimg" :style="{ backgroundImage: 'url(' + noImg + ')'}"></div>
+                                                            <div v-if="problem.imgUrl!=='none'" id="qimg" :style="{ backgroundImage: 'url(' + problem.imgUrl + ')'}"></div>
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -167,6 +168,7 @@
 import { mapGetters } from 'vuex'
 import NavBar from '../components/NavBar.vue'
 import { Carousel, Slide } from 'vue-carousel';
+import noImg from '@/assets/picture.png'
 
 export default {
     name: 'RoomDetailTest',
@@ -181,6 +183,7 @@ export default {
     data(){      
         return { 
             dialog: false,
+            noImg:noImg,
             color:['#02abb0','#318cff','#f8ac59','#ed5565'],
             room:{
                 capacity: 0,

@@ -122,7 +122,7 @@ export default {
 			}
 		},
 		connect() {
-			const serverURL = "http://localhost:8700/socket"
+			const serverURL = "https://project-intern08.wjthinkbig.com/socket"
 			let socket = new SockJS(serverURL,{});
 			console.log(sessionStorage.getItem("accessToken"))
 			this.stompClient = Stomp.over(socket);
