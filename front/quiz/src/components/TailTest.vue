@@ -596,9 +596,6 @@ export default {
         },
         quizDetail(item){
             this.dialog=!this.dialog
-            this.problem.title=item.title
-            this.problem.quizType=item.quizType
-            this.problem.exampleList=item.exampleList
         }
     },
     created(){
