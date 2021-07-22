@@ -36,7 +36,7 @@
                 <div class="flex w-full mx-auto px-6 py-8">
                     <div class="flex flex-col w-full h-full text-xl">
                         <div class="w-full relative" id="quizheader">
-                            <p id="roomName">room1</p>
+                            <p id="roomName">{{room.roomName}}</p>
                             <div id="progressBar">
                                 <div id="qNumber">
                                     {{currentIndex+1}}/{{problemList.length}}
@@ -70,7 +70,8 @@
                                                 </li>
                                                 <li id="qimage">
                                                     <div id="qimgForm">
-                                                        <div id="qimg"></div>
+                                                        <div v-if="problem.imgUrl==='none'" id="qimg" :style="{ backgroundImage: 'url(' + noImg + ')'}"></div>
+                                                        <div v-if="problem.imgUrl!=='none'" id="qimg" :style="{ backgroundImage: 'url(' + problem.imgUrl + ')'}"></div>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -124,6 +125,7 @@ import SockJS from 'sockjs-client'
 import router from '../router/index'
 import { Carousel, Slide } from 'vue-carousel';
 //import Gravatar from 'vue-gravatar'
+import noImg from '@/assets/picture.png'
 
 export default {
     name: 'TestPlayQuiz',
@@ -134,7 +136,7 @@ export default {
         //Gravatar,
     },
     computed: {
-        ...mapGetters(["USER","QUIZLIST","TOTAL","QUIZ"]),
+        ...mapGetters(["USER","QUIZLIST","TOTAL","QUIZ","ROOM"]),
         columns() {
             if (this.$vuetify.breakpoint.xl) {
                 return 1;
@@ -158,6 +160,7 @@ export default {
 			userId:'',
             userNo:'',
             length:0,
+            noImg:noImg,
             isConnected:false,
             color:['#02abb0','#318cff','#f8ac59','#ed5565'],
 			userList:[],
@@ -292,10 +295,10 @@ export default {
         }    
     },
     created(){
-        this.getRoomByRoomNo()
 		this.connect()
         this.userId=sessionStorage.getItem("userId")        
 		this.userNo=sessionStorage.getItem("userNo")  
+        this.getRoomByRoomNo()
         this.$store.dispatch("searchQuizByRoomNo",{
             roomNo:this.$route.query.roomNo
         }).then(()=>{  
@@ -310,7 +313,10 @@ export default {
                         submitAnswer: []
                     })
                 })                
-            });            
+            });
+            console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=")            
+            console.log(this.quizList)
+            console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=")            
         })
     },
     mounted () {
@@ -446,7 +452,6 @@ export default {
     padding-bottom: 54.3%;
 }
 #qimg{
-    background: url("../assets/picture.png") no-repeat center center;
     background-size: contain;
     width: 100%;
     height: 100%;

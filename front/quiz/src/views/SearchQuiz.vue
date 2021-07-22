@@ -92,7 +92,8 @@
                                                     </li>
                                                     <li id="qimage">
                                                         <div id="qimgForm">
-                                                            <div id="qimg"></div>
+                                                            <div v-if="problem.imgUrl==='none'" id="qimg" :style="{ backgroundImage: 'url(' + noImg + ')'}"></div>
+                                                            <div v-if="problem.imgUrl!=='none'" id="qimg" :style="{ backgroundImage: 'url(' + problem.imgUrl + ')'}"></div>
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -138,9 +139,11 @@
 import { mapGetters } from 'vuex'
 import NavBar from '../components/NavBar.vue'
 import { Carousel, Slide } from 'vue-carousel';
+import noImg from '@/assets/picture.png'
 
 export default {
     name: 'RoomDetailTest',
+    noImg:noImg,
     components: {
         NavBar:NavBar,
         Carousel,
