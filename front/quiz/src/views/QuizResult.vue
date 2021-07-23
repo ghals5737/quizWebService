@@ -182,10 +182,7 @@ export default {
 </script>
 
 <style>
-body {
-	font-family: 'Noto Sans KR', sans-serif;
-	color: #989c9b;
-}
+
 #resultcard{
    /* font-family: 'Lato', Arial, sans-serif;	 */
     font-weight: bold;

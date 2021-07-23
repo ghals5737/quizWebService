@@ -198,6 +198,14 @@
                                     <p id="imgX"></p>
                                 </li>
                             </ul>
+                            <ul 
+                                v-if="typeFlag3"
+                                class="w-full relative justify-center align-middle inline-flex flex-row"
+                            >
+                                <div id="contentShortArea">
+                                    <p id="contentShortAreaText">정답을 입력해 주세요</p>
+                                </div>
+                            </ul>
                         </div>
                     </div>
             </div>
@@ -324,6 +332,9 @@
                         </li>             
                     </ul>
                 </div>
+                <div v-if="typeFlag3" class="inline-block border-b-2 border-gray-300 py-3 w-full">
+                    <input v-model="shortAnswer" id="shortAnsr" placeholder="정답을 입력해주세요">
+                </div>
                 <div class="py-3 w-full text-center">
                     <button @click="addOrder" class="bg-gray-500 rounded-md w-28 h-10 text-white">저장</button>
                 </div>                
@@ -370,6 +381,16 @@
                                         <p id="imgX"></p>
                                     </li>
                                 </ul>
+                                <ul v-if="dType==2" id="acontentUlOX">
+                                    <li>
+                                        <input v-model="shortAnswer" readonly id="shortAnsr" placeholder="정답을 입력해주세요">
+                                    </li>
+                                    <li id="">
+                                        <div class="ml-3 py-3 w-full text-center">
+                                            <button class="bg-gray-500 rounded-md w-28 h-10 text-white">제출</button>
+                                        </div>                
+                                    </li>
+                                </ul>
                             </div> 
                         </v-card>
                     </v-dialog>
@@ -390,10 +411,7 @@ import noImg from '@/assets/picture.png'
 export default {
     name: 'TailTest',
     components: {      
-        //SideBar:SideBar,
         NavBar:NavBar,
-        //arousel,
-        //Slide 
     },
     computed: {
         ...mapGetters(["USER","ENCYCLIST","ENCYCDETAIL","PHOTOLIST"]),
@@ -409,6 +427,7 @@ export default {
         ],
         color:['#02abb0','#318cff','#f8ac59','#ed5565'],
         mod:0,
+        shortAnswer:"",
         noImg:noImg,
         dTitle:'',
         dUrl:'',
@@ -470,6 +489,10 @@ export default {
         addOrder(){            
             let copyExampleList=[]
             let cnt=1;
+            if(this.typeFlag3){
+                this.isAnswer=[]
+                this.isAnswer.push(this.shortAnswer)
+            }
             this.exampleDes.forEach(el=>{
                 copyExampleList.push({
                     des: el,
@@ -498,6 +521,7 @@ export default {
             this.oxAnswer2=false;
             this.order=this.quiz.problemList.length+1;
             this.rOrder=this.order
+            this.shortAnswer=""
         },
         deleteOrder(index){
             this.quiz.problemList.splice(index, 1);
@@ -588,6 +612,7 @@ export default {
                 this.typeFlag1=true
                 this.typeFlag2=false
                 this.typeFlag3=false
+                this.exampleDes=[]
             }else if(value==1){
                 this.typeFlag1=false
                 this.typeFlag2=true
@@ -596,6 +621,7 @@ export default {
                 this.typeFlag1=false
                 this.typeFlag2=false
                 this.typeFlag3=true
+                this.shortAnswer=""
             }
             this.quizType=value
         },
@@ -616,6 +642,7 @@ export default {
                 this.probleFlag[0]=true
                 this.probleFlag[1]=false
                 this.probleFlag[2]=false
+                this.exampleList=[{des: '',examNo: 1,exampleNO: 0},]
             }else if(this.quizType==1){
                 this.probleFlag[0]=false
                 this.probleFlag[1]=true
@@ -631,6 +658,11 @@ export default {
 </script>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap');
+
+    html, body {
+        font-family: 'Noto Sans KR', sans-serif;
+    }
     #questionInput {
         resize: none;
         width:100%;
@@ -729,4 +761,43 @@ export default {
         height: auto;
         position: relative;        
     }    
+    #shortAnsr{
+        border: 1px solid #dddddd;
+        border-radius: 3px;
+        height: 40px;
+        color: #333;
+        /* margin-right: 4px; */
+        width: 100%;
+        font-family: cwtexhei,'HGGGothicssi 60g',Sans-serif;
+    }
+    #contentShortArea{
+        border: 1px #d9d9d9 solid;
+        font-size: 24px;
+        color: #999;
+        line-height: 1.2;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        padding-bottom: 17.5%;
+        font-size: 1.25vw;
+        word-break: break-all;
+        word-wrap: break-word;
+        white-space: pre-line;
+        text-align: center;
+        font-family: cwtexhei,'HGGGothicssi 60g',Sans-serif;
+        display: inline-block;
+        margin: 0 auto;
+        position: relative;
+    }
+    #contentShortAreaText{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
 </style>

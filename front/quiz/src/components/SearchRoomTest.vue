@@ -131,7 +131,7 @@ export default {
         },
         leftPad(value) {
             if (value >= 10) {
-                  return value;
+                return value;
             }
             return `0${value}`;
         },
@@ -140,7 +140,7 @@ export default {
             const month = this.leftPad(source.getMonth() + 1);
             const day = this.leftPad(source.getDate());
             return [year, month, day].join(delimiter);
-         },
+        },
     },
     created(){
         this.$store.dispatch("initRoom").then(()=>{

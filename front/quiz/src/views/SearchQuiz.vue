@@ -120,6 +120,16 @@
                                                         <p id="imgX"></p>
                                                     </li>
                                                 </ul>
+                                                <ul v-if="problem.quizType==2" id="acontentUlOX">
+                                                    <li>
+                                                        <input v-model="shortAnswer" readonly id="shortAnsr" placeholder="정답을 입력해주세요">
+                                                    </li>
+                                                    <li id="">
+                                                        <div class="ml-3 py-3 w-full text-center">
+                                                            <button class="bg-gray-500 rounded-md w-28 h-10 text-white">제출</button>
+                                                        </div>                
+                                                    </li>
+                                                </ul>
                                             </div> 
                                         </v-carousel-item>
                                     </v-carousel>                                

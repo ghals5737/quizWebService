@@ -98,6 +98,16 @@
                                                     <p id="imgX"></p>
                                                 </li>
                                             </ul>
+                                            <ul v-if="problem.quizType==2" id="acontentUlOX">
+                                                <li>
+                                                    <input v-model="shortAnswer" id="shortAnsr" placeholder="정답을 입력해주세요">
+                                                </li>
+                                                <li id="">
+                                                    <div class="ml-3 py-3 w-full text-center">
+                                                        <button @click="goNextPrb(-1)" class="bg-gray-500 rounded-md w-28 h-10 text-white">제출</button>
+                                                    </div>                
+                                                </li>
+                                            </ul>
                                         </div> 
                                     </slide>
                                 </carousel>  
@@ -159,6 +169,7 @@ export default {
 			room:'',
 			userId:'',
             userNo:'',
+            shortAnswer:"",
             length:0,
             noImg:noImg,
             isConnected:false,
@@ -242,10 +253,10 @@ export default {
         },
         goNextPrb(n){            
             window.clearInterval(this.interval)
-            
             this.sleep(700).then(() => {
                     this.prog=-3
-                    this.userAnswerList[this.currentIndex].submitAnswer.push(n)  
+                    if(n==-1) this.userAnswerList[this.currentIndex].submitAnswer.push(this.shortAnswer)  
+                    else this.userAnswerList[this.currentIndex].submitAnswer.push(n)  
                     this.answer.userAnswerList=[]
                     this.answer.userAnswerList.push(this.userAnswerList[this.currentIndex])
                     this.sendAnswer()

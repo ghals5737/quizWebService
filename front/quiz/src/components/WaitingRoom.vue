@@ -37,6 +37,7 @@
                         </div>
                         <div class="mt-10 text-center">
                             <button 
+                                v-if="room.owner_no==userNo"                            
                                 id="startButton"
                                 @click="quizStart"
                             >
@@ -178,7 +179,6 @@ export default {
 			//router.push({name: 'TestPlayQuiz', query: {roomNo: this.roomNo}})		
 		},
 		getRank(){
-			alert("??")
 			this.$store.dispatch("getRank",{
 					roomNo:this.$route.query.roomNo
 			}).then(()=>{
@@ -215,6 +215,7 @@ export default {
 </script>
 
 <style>
+
 #titleBox{
     width: 68%;
     max-width: 720px;
