@@ -36,6 +36,7 @@ public class RoomQuizServiceImpl implements RoomQuizService{
 
     @Override
     public List<Quiz> findAllByRoomNo(long roomNo) {
+        System.out.println("roomNo "+roomNo);
         Room room=Room.builder().roomNo(roomNo).build();
         List<RoomQuiz> roomQuizList=roomQuizRepository.findRoomQuizByRoomOrderByQuizOrder(room);
         List<Quiz>result=new ArrayList<>();
