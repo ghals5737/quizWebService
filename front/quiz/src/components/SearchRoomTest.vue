@@ -82,11 +82,14 @@
 import { mapGetters } from 'vuex'
 import router from '../router/index'
 import NavBar from '../components/NavBar.vue'
+import { Carousel, Slide } from 'vue-carousel';
 
 export default {
     name: 'SearchRoomTest',
     components: {
         NavBar:NavBar, 
+        Carousel,
+        Slide
     },
     computed: {
         ...mapGetters(["USER","QUIZLIST","TOTAL","ROOMLIST","USERNAMELIST"]),

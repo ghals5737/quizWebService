@@ -4,10 +4,10 @@
         :clipped-left="$vuetify.breakpoint.lgAndUp"
         app
       >
-        <v-app-bar-nav-icon
+        <!-- <v-app-bar-nav-icon
           @click.stop="drawer = !drawer"
           class="hidden-lg-and-up"
-        ></v-app-bar-nav-icon>
+        ></v-app-bar-nav-icon> -->
         <span
          style="width: 300px"
          class="d-none d-sm-inline"
@@ -18,12 +18,13 @@
         </v-toolbar-title>
          
         </span>
-        <v-tabs align-with-title>
-          <v-tab @click="goCreateQuiz"><h6 class="font-weight-black">퀴즈 만들기</h6></v-tab>
-          <v-tab @click="goCreateRoom"><h6 class="font-weight-black">방 만들기</h6></v-tab>
-          <v-tab @click="goSearchQuiz"><h6 class="font-weight-black">퀴즈 찾아보기</h6></v-tab>
-          <v-tab @click="goSearchRoom"><h6 class="font-weight-black">방 찾아보기</h6></v-tab>
+        <v-tabs align-with-title v-model="selectedTab">
+          <v-tab key=0 @click="goCreateQuiz"><h6 class="font-weight-black">퀴즈 만들기</h6></v-tab>
+          <v-tab key=1 @click="goCreateRoom"><h6 class="font-weight-black">방 만들기</h6></v-tab>
+          <v-tab key=2 @click="goSearchQuiz"><h6 class="font-weight-black">퀴즈 찾아보기</h6></v-tab>
+          <v-tab key=3 @click="goSearchRoom"><h6 class="font-weight-black">방 찾아보기</h6></v-tab>
         </v-tabs>
+        
         <!-- <v-text-field
           flat
           solo
@@ -35,12 +36,12 @@
           class="hidden-sm-and-down"
         ></v-text-field> -->
         <v-spacer></v-spacer>
-        <v-btn icon>
+        <!-- <v-btn icon>
           <v-icon>mdi-apps</v-icon>
         </v-btn>
         <v-btn icon>
           <v-icon>mdi-bell</v-icon>
-        </v-btn>
+        </v-btn> -->
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
@@ -120,12 +121,22 @@ export default {
     data(){
       return{
         userId:'',
+        active_tab:3,
+        selectedTab:2,
+        tabs:[
+          '퀴즈 만들기',
+          '방 만들기',
+          '퀴즈 찾아보기',
+          '방 찾아보기'
+        ],
         pw:'',
       }
     },
     methods:{
+        
         goCreateQuiz(){
             for (let i = 1; i < 99999; i++)window.clearInterval(i);
+            sessionStorage.setItem("selected",0)
             this.$store.dispatch("goCreateQuiz",{
                 userId: this.userId,
                 userNo: this.userNo
@@ -133,6 +144,7 @@ export default {
         },
         goSearchQuiz(){
             for (let i = 1; i < 99999; i++)window.clearInterval(i);
+            sessionStorage.setItem("selected",2)
             this.$store.dispatch("goSearchQuiz",{
                 userId: this.userId,
                 userNo: this.userNo
@@ -140,16 +152,22 @@ export default {
         },    
         goCreateRoom(){
             for (let i = 1; i < 99999; i++)window.clearInterval(i);
+            sessionStorage.setItem("selected",1)
             this.$store.dispatch("goCreateRoom")
         },   
         goSearchRoom(){
             for (let i = 1; i < 99999; i++)window.clearInterval(i);
+            sessionStorage.setItem("selected",3)
             this.$store.dispatch("goSearchRoom")
         },       
     },
     created(){
         this.userId=sessionStorage.getItem("userId")        
         this.userNo=sessionStorage.getItem("userNo")
+        this.selectedTab=sessionStorage.getItem("selected")*1
+    },
+    mounted () {
+        
     },
 }
 </script>
