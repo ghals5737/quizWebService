@@ -1,5 +1,5 @@
 <template>
-   <v-navigation-drawer        
+  <v-navigation-drawer        
         :clipped="$vuetify.breakpoint.lgAndUp"
         app
       >
@@ -66,7 +66,7 @@ export default {
     components: {      
     },
     computed: {
-         ...mapGetters(["USER"]),
+        ...mapGetters(["USER"]),
     },
     data(){
       return{
