@@ -35,12 +35,16 @@ public class UserServiceImpl implements UserService{
     @Override
     public User createUser(User userdto)
     {
-        User user=User.builder()
-                .userId(userdto.getUserId())
-                .userPw(passwordEncoder.encode(userdto.getUserPw()))
-                .authorityName("ROLE_USER")
-                .build();
-        return userRepository.save(user);
+        if(userRepository.existsByUserId(userdto.getUserId())){
+            return userRepository.findUserByUserId(userdto.getUserId());
+        }else{
+            User user=User.builder()
+                    .userId(userdto.getUserId())
+                    .userPw(passwordEncoder.encode(userdto.getUserPw()))
+                    .authorityName("ROLE_USER")
+                    .build();
+            return userRepository.save(user);
+        }
     }
 
     @Override
