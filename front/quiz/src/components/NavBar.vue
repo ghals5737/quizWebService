@@ -60,12 +60,7 @@
             </v-btn>
           </template>
           <v-list>
-            <v-list-item>
-              <v-list-item-title>
-                View profile
-              </v-list-item-title>
-            </v-list-item>
-            <v-list-item>
+            <v-list-item @click="logout">
               <v-list-item-title>
                 Logout
               </v-list-item-title>
@@ -92,12 +87,7 @@
             </v-btn>
           </template>
           <v-list>
-            <v-list-item link>
-              <v-list-item-title>
-                View profile
-              </v-list-item-title>
-            </v-list-item>
-            <v-list-item link>
+            <v-list-item @click="logout" link>
               <v-list-item-title>
                 Logout
               </v-list-item-title>
@@ -133,7 +123,6 @@ export default {
       }
     },
     methods:{
-        
         goCreateQuiz(){
             for (let i = 1; i < 99999; i++)window.clearInterval(i);
             sessionStorage.setItem("selected",0)
@@ -159,7 +148,10 @@ export default {
             for (let i = 1; i < 99999; i++)window.clearInterval(i);
             sessionStorage.setItem("selected",3)
             this.$store.dispatch("goSearchRoom")
-        },       
+        },   
+        logout(){
+          this.$store.dispatch("logout")
+        } ,   
     },
     created(){
         this.userId=sessionStorage.getItem("userId")        

@@ -9,10 +9,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Gravatar from 'vue-gravatar'
 import "./index.css";
 
-
 Vue.use(BootstrapVue)
 Vue.component('v-gravatar', Gravatar)
-
 Vue.config.productionTip = false
 
 new Vue({

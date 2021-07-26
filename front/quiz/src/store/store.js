@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import router from '../router/index'
 import { instance, instanceWithAuth } from '../common/createInstance';
+import swal from 'sweetalert';
 Vue.use(Vuex);
 
 // let https = require('https')
@@ -109,17 +110,25 @@ const store = new Vuex.Store({
                     userId: userId,
                     userPw: pw
                 })
-                .then(res =>{                   
-                    store.commit('addUser',{user:res.data})                    
-                    store.commit('addToken',{token:res.data.token})
-                    sessionStorage.setItem("userId",res.data.userId)                    
-                    sessionStorage.setItem("userNo",res.data.userNo)
-                    sessionStorage.setItem("accessToken",res.data.token)    
-                    router.push('/createquiz')
+                .then(res =>{        
+                    if(res.data===""){
+                        swal('Warning', '잘못된 유저 정보 입니다.', 'warning')
+                    }else{
+                        store.commit('addUser',{user:res.data})                    
+                        store.commit('addToken',{token:res.data.token})
+                        sessionStorage.setItem("userId",res.data.userId)                    
+                        sessionStorage.setItem("userNo",res.data.userNo)
+                        sessionStorage.setItem("accessToken",res.data.token)    
+                        router.push('/createquiz')
+                    }        
                 })
                 .catch(()=>{
 
                 });
+        },
+        logout:()=>{
+            sessionStorage.clear()
+            router.push('/')
         },
         goCreateQuiz: (store,{userId,userNo})=>{
             store.commit('updateUser',{userId,userNo})
@@ -135,7 +144,7 @@ const store = new Vuex.Store({
                 return instanceWithAuth.post('/quiz',quiz)
                 .then(res =>{
                     console.log(res.data)
-                    alert("성공!!")                                               
+                    swal('Success', '퀴즈가 등록되었습니다.', 'success')                                               
                 }) 
             }catch(err){
                 console.log(err)
@@ -205,7 +214,7 @@ const store = new Vuex.Store({
                 quizNoList: quizNoList,
                 roomNo: roomNo
             }).then(()=>{
-                alert("addRoomQuizSuccess")
+                swal('Success', '방이 등록되었습니다.', 'success')
             });
         },
         goSearchRoom: ()=>{

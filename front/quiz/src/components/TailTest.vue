@@ -701,7 +701,7 @@ export default {
         max-height: 14vw;
     }
     #selectAnswer{
-        border: 1px #d9d9d9 solid;
+        border: 2px #d9d9d9 solid;
         border-radius: 6%;
         float: left;
         margin-right: 1.2%;
