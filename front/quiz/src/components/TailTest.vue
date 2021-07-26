@@ -60,17 +60,16 @@
                                             <p class="mt-28">No Image</p>
                                         </div> -->
                                         <div
-                                            v-if="imgUrl!=='none'" 
-                                            v-bind:style="{ backgroundImage: 'url(' + imgUrl + ')'}" 
+                                            v-if="imgUrl!=='none'"
+                                            v-bind:style="{ backgroundImage: 'url(' + imgUrl + ')'}"
                                             class="w-full overflow-hidden font-semibold"
                                             id="content2"
-                                        >
-                                            
+                                        >   
                                         </div>
                                         <div 
                                             v-if="imgUrl=='none'" 
                                             class="w-full overflow-hidden border-2"
-                                            style="border: 1px #d9d9d9 solid" 
+                                            style="border: 1px #8f8f8f solid" 
                                             id="content2"
                                         >
                                             
@@ -694,14 +693,14 @@ export default {
     #content1{
         height: 14vw;
         max-height: 14vw;
-        border: 1px #d9d9d9 solid;
+        border: 1px #8f8f8f solid;
     }
     #content2{
         height: 14vw;
         max-height: 14vw;
     }
     #selectAnswer{
-        border: 2px #d9d9d9 solid;
+        border: 2px #8f8f8f solid;
         border-radius: 6%;
         float: left;
         margin-right: 1.2%;
@@ -714,7 +713,7 @@ export default {
     }
     #answerNumber{
         font-weight: bold;
-        color: #d3d3d3;
+        color: #8f8f8f;
         float: right;
         /* font-style: italic; */
         /* font-family: 'Montserrat', sans-serif; */
