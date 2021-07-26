@@ -11,9 +11,9 @@
           style="width: 300px"
           class="d-none d-sm-inline"
         >
-          <v-toolbar-title>
-            <img src="../assets/quiz.png" class="w-1/2 h-1/2 object-cover">
-            quiz
+          <v-toolbar-title class="flex">
+            <img src="../assets/puzzle-piece.png" class="w-8 mr-2">
+            <p>Quiz</p>
           </v-toolbar-title>
         </span>
         <v-tabs align-with-title v-model="selectedTab">
