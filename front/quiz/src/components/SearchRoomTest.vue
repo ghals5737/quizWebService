@@ -36,26 +36,27 @@
                                     v-for="(room, index) in roomList"
                                     :key="index"
                                     id="quizCard"
-                                    @click="goRoom(room)"                                        
                                 >
-                                    <div id="quizCardThumb" @click="goDetail(index)">
-                                        <div class="w-full h-full" style="background-size: contain;">
-                                            <div id="thumb_quizNum">
-                                                <span>최대 {{room.capacity}}명</span>
+                                    <div @click="goRoom(room)">
+                                        <div id="quizCardThumb">
+                                            <div class="w-full h-full" style="background-size: contain;">
+                                                <div id="thumb_quizNum">
+                                                    <span>최대 {{room.capacity}}명</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div id="quizCardTitle">
-                                        <p class="pl-4 py-4">{{room.roomName}}</p>
-                                        <div id="quizCardInfo">
-                                            <dl class="inline-block bottom-3 absolute">
-                                                <dt id="quizCardInfoName">
-                                                    <span class="pl-3">{{userNameList[index]}}</span>
-                                                </dt>
-                                                <dt id="roomRegTime" class="ml-5">
-                                                    <span class="pl-4">{{room.regTime}}</span>
-                                                </dt>
-                                            </dl>
+                                        <div id="quizCardTitle">
+                                            <p class="pl-4 py-4">{{room.roomName}}</p>
+                                            <div id="quizCardInfo">
+                                                <dl class="inline-block bottom-3 absolute">
+                                                    <dt id="quizCardInfoName">
+                                                        <span class="pl-3">{{userNameList[index]}}</span>
+                                                    </dt>
+                                                    <dt id="roomRegTime" class="ml-5">
+                                                        <span class="pl-4">{{room.regTime}}</span>
+                                                    </dt>
+                                                </dl>
+                                            </div>
                                         </div>
                                     </div>
                                 </slide>
@@ -122,7 +123,7 @@ export default {
         }  
     },
     methods:{
-        goRoom(value){            
+        goRoom(value){
             router.push({name: 'WaitingRoom', query: {roomNo: value.roomNo}})
         },
         getUserNameByUserNo(){

@@ -88,7 +88,7 @@
                                             <div id="qcontent">
                                                 <ul class="w-full h-full relative inline-block">
                                                     <li id="qdes">
-                                                        <p id="qcontentdes">{{problem.title}}</p>                                                                                    
+                                                        <p id="qcontentdes" class="flex justify-center break-all w-full items-center h-full">{{problem.title}}</p>                                                                                    
                                                     </li>
                                                     <li id="qimage">
                                                         <div id="qimgForm">
@@ -109,7 +109,7 @@
                                                     >
                                                         <span id="aNumber">{{n+1}}</span>
                                                         <div id="aText"></div>
-                                                        <p id="aDes">{{item.des}}</p>
+                                                        <p id="aDes" class="flex justify-center break-all w-full items-center h-full">{{item.des}}</p>
                                                     </li>
                                                 </ul>
                                                 <ul v-if="problem.quizType==1" id="acontentUlOX">
@@ -237,12 +237,12 @@ export default {
         },
         quizDetail(value){
             this.dialog=!this.dialog
-            this.$store.dispatch("searchQuizByquizNo",{
-                quizNo: value+1,
-            }).then(()=>{
-                this.quiz=this.QUIZ
-            });
-            
+            this.quiz=this.quizList[value]
+            // this.$store.dispatch("searchQuizByquizNo",{
+            //     quizNo: value+1,
+            // }).then(()=>{
+            //     this.quiz=this.QUIZ
+            // });
         },
     },
     created(){       

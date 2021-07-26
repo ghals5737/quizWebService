@@ -1,6 +1,5 @@
 <template>
-   
-   <v-app-bar
+  <v-app-bar
         :clipped-left="$vuetify.breakpoint.lgAndUp"
         app
       >
@@ -9,14 +8,13 @@
           class="hidden-lg-and-up"
         ></v-app-bar-nav-icon> -->
         <span
-         style="width: 300px"
-         class="d-none d-sm-inline"
+          style="width: 300px"
+          class="d-none d-sm-inline"
         >
-         
-        <v-toolbar-title>
+          <v-toolbar-title>
+            <img src="../assets/quiz.png" class="w-1/2 h-1/2 object-cover">
             quiz
-        </v-toolbar-title>
-         
+          </v-toolbar-title>
         </span>
         <v-tabs align-with-title v-model="selectedTab">
           <v-tab key=0 @click="goCreateQuiz"><h6 class="font-weight-black">퀴즈 만들기</h6></v-tab>
@@ -106,7 +104,7 @@ export default {
       Gravatar     
     },
     computed: {
-         ...mapGetters(["USER"]),
+        ...mapGetters(["USER"]),
     },
     data(){
       return{

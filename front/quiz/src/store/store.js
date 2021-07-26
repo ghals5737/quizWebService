@@ -217,7 +217,7 @@ const store = new Vuex.Store({
                 swal('Success', '방이 등록되었습니다.', 'success')
             });
         },
-        goSearchRoom: ()=>{
+        goSearchRoom:()=>{
             router.push('/searchroom')
         },
         searchQuizByRoomNo: (store,{roomNo})=>{            
