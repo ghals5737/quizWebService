@@ -2,11 +2,7 @@
   <v-app-bar
         :clipped-left="$vuetify.breakpoint.lgAndUp"
         app
-      >
-        <!-- <v-app-bar-nav-icon
-          @click.stop="drawer = !drawer"
-          class="hidden-lg-and-up"
-        ></v-app-bar-nav-icon> -->
+      > 
         <span
           style="width: 300px"
           class="d-none d-sm-inline"
@@ -22,24 +18,8 @@
           <v-tab key=2 @click="goSearchQuiz"><h6 class="font-weight-black">퀴즈 찾아보기</h6></v-tab>
           <v-tab key=3 @click="goSearchRoom"><h6 class="font-weight-black">방 찾아보기</h6></v-tab>
         </v-tabs>
-        
-        <!-- <v-text-field
-          flat
-          solo
-          outlined
-          dense
-          hide-details
-          prepend-inner-icon="mdi-magnify"
-          label="Search"
-          class="hidden-sm-and-down"
-        ></v-text-field> -->
         <v-spacer></v-spacer>
-        <!-- <v-btn icon>
-          <v-icon>mdi-apps</v-icon>
-        </v-btn>
-        <v-btn icon>
-          <v-icon>mdi-bell</v-icon>
-        </v-btn> -->
+        
         <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
             <v-btn

@@ -8,7 +8,7 @@
         <nav class="flex w-72 h-full">
             <div class="w-full flex mx-auto pr-6 py-8">
             <div class="w-full h-full text-gray-900 text-xl">
-                <p class="mt-2 mb-4 text-center font-extrabold text-xl">퀴즈:총 {{quiz.problemList.length}}문제</p>
+                <p class="mt-2 mb-4 text-center font-extrabold text-xl">퀴즈: 총 {{quiz.problemList.length}} 문제</p>
                 <div class="relative">
                     <ul>
                         <li 
@@ -43,7 +43,7 @@
                         <button @click="makeQuiz" class="ml-4 bg-gray-500 rounded-md w-32 h-10 text-white">퀴즈 만들기</button>
                     </div>
                     <div class="text-center w-full mx-auto mt-3 h-full relative top-0 left-0">
-                        <p>{{quiz.problemList.length}}번 문제</p>
+                        <p>{{quiz.problemList.length+1}}번 문제</p>
                         <div class="mx-auto mt-4" id="time"></div>
                         <div class="mt-5">
                             <ul class="w-full inline-block">
@@ -734,8 +734,8 @@ export default {
         justify-content: center;
         align-items: center;
         line-height: 1.3;
-        font-size: .95vw;
-        color: #999;
+        font-size: 1.2vw;
+        color: rgb(49, 49, 49);
         position: absolute;
         width: 100%;
         height: 100%;
