@@ -1,8 +1,10 @@
 package com.example.quiz.service;
 
+import com.example.quiz.dto.Answer;
 import com.example.quiz.dto.Example;
 import com.example.quiz.dto.Problem;
 import com.example.quiz.dto.Quiz;
+import com.example.quiz.repository.AnswerRepository;
 import com.example.quiz.repository.ExampleRepository;
 import com.example.quiz.repository.ProblemRepository;
 import com.example.quiz.repository.QuizRepository;
@@ -26,6 +28,9 @@ public class QuizServiceImpl implements QuizService{
 
     @Autowired
     private final ExampleRepository exampleRepository;
+
+    @Autowired
+    private final AnswerRepository answerRepository;
 
     @Override
     public Quiz createQuiz(Quiz quiz) {
@@ -54,6 +59,8 @@ public class QuizServiceImpl implements QuizService{
     public void deleteQuiz(long quizNo) {
         Quiz quiz=quizRepository.findQuizByQuizNo(quizNo);
         quiz.getProblemList().forEach(el->{
+            List<Answer> answerList=answerRepository.findAllByProblem(el);
+            answerList.forEach(answerRepository::delete);
             el.getExampleList().forEach(exampleRepository::delete);
             problemRepository.delete(el);
         });
