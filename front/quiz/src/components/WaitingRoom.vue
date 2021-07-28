@@ -113,10 +113,10 @@ export default {
 		},
 		sendPlay(){
 			if (this.stompClient && this.stompClient.connected) {
-				// let msg = { 
-				// 	'roomNo':this.$route.query.roomNo	
-				// }              
-				this.stompClient.send("/pub/play", JSON.stringify(this.$route.query.roomNo),{} )     
+				// let msg = {
+				// 	'roomNo':this.$route.query.roomNo
+				// }
+				this.stompClient.send("/pub/play", JSON.stringify(this.$route.query.roomNo),{} )
 			}else{
 				alert('Send Fail')
 				console.log("Send Fail")

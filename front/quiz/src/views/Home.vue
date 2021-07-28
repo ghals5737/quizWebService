@@ -1,7 +1,7 @@
 <template>
   <v-app>
         <div class="flex items-center justify-center" id="logWrap">
-          <div class="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
+          <!-- <div class="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
             <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
               <h1 class="font-bold text-center text-2xl mb-5">Login</h1>  
               <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
@@ -28,10 +28,9 @@
                   </div>
                 </div>
               </div>
-             
             </div>
-          </div>
-          <!-- <v-card width="400">
+          </div> -->
+          <v-card width="400">
             <v-card-title>
               <h1 class="display-1">Login</h1>
             </v-card-title>
@@ -60,7 +59,7 @@
               <v-spacer></v-spacer>
               <v-btn color="info" @click="logIn">Login</v-btn>
             </v-card-actions>
-          </v-card> -->
+          </v-card>
         </div>
   </v-app>
 </template>

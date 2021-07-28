@@ -8,7 +8,7 @@
         <nav class="flex w-72 h-full">
             <div class="w-full flex mx-auto pr-6 py-8">
             <div class="w-full h-full text-gray-900 text-xl">
-                <p class="mt-2 mb-4 text-center font-extrabold text-xl">퀴즈:총 {{quiz.problemList.length}}문제</p>
+                <p class="mt-2 mb-4 text-center font-extrabold text-xl">퀴즈: 총 {{quiz.problemList.length}} 문제</p>
                 <div class="relative">
                     <ul>
                         <li 
@@ -43,14 +43,14 @@
                         <button @click="makeQuiz" class="ml-4 bg-gray-500 rounded-md w-32 h-10 text-white">퀴즈 만들기</button>
                     </div>
                     <div class="text-center w-full mx-auto mt-3 h-full relative top-0 left-0">
-                        <p>1번 문제</p>
+                        <p>{{quiz.problemList.length+1}}번 문제</p>
                         <div class="mx-auto mt-4" id="time"></div>
                         <div class="mt-5">
                             <ul class="w-full inline-block">
                                 <li class="float-left w-1/2">
                                     <div class="p-3">
-                                        <div class="border-2 solid w-full overflow-hidden font-semibold" id="content1">
-                                            {{problem.title}}
+                                        <div class="border-2 solid w-full overflow-y-auto inline-block font-semibold" id="content1">
+                                            <p class="flex justify-center break-all w-full items-center h-full">{{problem.title}}</p>
                                         </div>
                                     </div>
                                 </li>
@@ -60,17 +60,16 @@
                                             <p class="mt-28">No Image</p>
                                         </div> -->
                                         <div
-                                            v-if="imgUrl!=='none'" 
-                                            v-bind:style="{ backgroundImage: 'url(' + imgUrl + ')'}" 
+                                            v-if="imgUrl!=='none'"
+                                            v-bind:style="{ backgroundImage: 'url(' + imgUrl + ')'}"
                                             class="w-full overflow-hidden font-semibold"
                                             id="content2"
-                                        >
-                                            
+                                        >   
                                         </div>
                                         <div 
                                             v-if="imgUrl=='none'" 
                                             class="w-full overflow-hidden border-2"
-                                            style="border: 1px #d9d9d9 solid" 
+                                            style="border: 1px #8f8f8f solid" 
                                             id="content2"
                                         >
                                             
@@ -178,9 +177,10 @@
                                     v-for="(item,n) in exampleList"
                                     :key="n"
                                     id="selectAnswer"
+                                    class=" overflow-y-auto inline-block"
                                 >
                                     <span id="answerNumber">{{n+1}}</span>
-                                    <p id="answerContent">{{exampleDes[n]}}</p>
+                                    <p class="flex justify-center break-all w-full items-center h-full" id="answerContent">{{exampleDes[n]}}</p>
                                 </li>
                             </ul>
                             <ul 
@@ -348,8 +348,8 @@
                         <v-card>
                             <div id="qcontent">
                                 <ul class="w-full h-full relative inline-block">
-                                    <li id="qdes">
-                                        <p id="qcontentdes">{{dTitle}}</p>                                                                                    
+                                    <li id="qdes" class="">
+                                        <p id="qcontentdes" class="flex justify-center break-all w-full items-center h-full">{{dTitle}}</p>                                                                                    
                                     </li>
                                     <li id="qimage">
                                         <div id="qimgForm">
@@ -370,7 +370,7 @@
                                     >
                                         <span id="aNumber">{{n+1}}</span>
                                         <div id="aText"></div>
-                                        <p id="aDes">{{item.des}}</p>
+                                        <p id="aDes" class="flex justify-center break-all w-full items-center h-full">{{item.des}}</p>
                                     </li>
                                 </ul>
                                 <ul v-if="dType==1" id="acontentUlOX">
@@ -512,7 +512,9 @@ export default {
             })            
             this.isAnswer=[]   
             this.problem.answer=''
-            this.quizType=0
+            if(this.typeFlag1)this.quizType=0
+            if(this.typeFlag2)this.quizType=1
+            if(this.typeFlag3)this.quizType=2            
             this.problem.score=0
             this.problem.title=''
             this.problem.exampleList=[]            
@@ -694,14 +696,14 @@ export default {
     #content1{
         height: 14vw;
         max-height: 14vw;
-        border: 1px #d9d9d9 solid;
+        border: 1px #8f8f8f solid;
     }
     #content2{
         height: 14vw;
         max-height: 14vw;
     }
     #selectAnswer{
-        border: 1px #d9d9d9 solid;
+        border: 2px #8f8f8f solid;
         border-radius: 6%;
         float: left;
         margin-right: 1.2%;
@@ -714,7 +716,7 @@ export default {
     }
     #answerNumber{
         font-weight: bold;
-        color: #d3d3d3;
+        color: #8f8f8f;
         float: right;
         /* font-style: italic; */
         /* font-family: 'Montserrat', sans-serif; */
@@ -732,8 +734,8 @@ export default {
         justify-content: center;
         align-items: center;
         line-height: 1.3;
-        font-size: .95vw;
-        color: #999;
+        font-size: 1.2vw;
+        color: rgb(49, 49, 49);
         position: absolute;
         width: 100%;
         height: 100%;
