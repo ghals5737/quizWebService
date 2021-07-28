@@ -43,6 +43,11 @@
                                                 <div id="thumb_quizNum">
                                                     <span>최대 {{room.capacity}}명</span>
                                                 </div>
+                                                <button v-if="userNo==room.owner_no" @click="deleteRoom(index)" class="float-right">
+                                                    <v-icon dark>
+                                                        mdi-delete
+                                                    </v-icon>
+                                                </button>
                                             </div>
                                         </div>
                                         <div id="quizCardTitle">
@@ -84,6 +89,7 @@ import { mapGetters } from 'vuex'
 import router from '../router/index'
 import NavBar from '../components/NavBar.vue'
 import { Carousel, Slide } from 'vue-carousel';
+import swal from 'sweetalert';
 
 export default {
     name: 'SearchRoomTest',
@@ -144,6 +150,28 @@ export default {
             const month = this.leftPad(source.getMonth() + 1);
             const day = this.leftPad(source.getDate());
             return [year, month, day].join(delimiter);
+        },
+        deleteRoom(index){
+            this.$store.dispatch("deleteRoom",{
+                roomNo: this.roomList[index].roomNo,
+            }).then(()=>{
+                swal('Success', '방이 삭제되었습니다.', 'success')
+                this.$store.dispatch("initRoom").then(()=>{
+                    this.total=this.TOTAL
+                    this.pageCount=parseInt(this.total/this.itemsPerPage)+1
+                    this.$store.dispatch("searchRoom",{
+                        page:this.page,
+                        size:this.size
+                    }).then(()=>{
+                        this.roomList=this.ROOMLIST
+                        this.roomList.forEach(el=>{
+                            this.userNoList.push(el.owner_no)
+                            el.regTime=this.toStringByFormatting(new Date(el.regTime))
+                        })
+                        this.getUserNameByUserNo()                        
+                    })
+                })
+            });
         },
     },
     created(){

@@ -42,6 +42,11 @@
                                                 <div id="thumb_quizNum">
                                                     <span>Q. {{quiz.problemList.length}}문제</span>
                                                 </div>
+                                                <button v-if="userNo==quiz.userNo" @click="deleteQuiz(index)" class="float-right">
+                                                    <v-icon dark>
+                                                        mdi-delete
+                                                    </v-icon>
+                                                </button>
                                             </div>
                                         </div>
                                         <div id="quizCardTitle">
@@ -150,6 +155,7 @@ import { mapGetters } from 'vuex'
 import NavBar from '../components/NavBar.vue'
 import { Carousel, Slide } from 'vue-carousel';
 import noImg from '@/assets/picture.png'
+import swal from 'sweetalert';
 
 export default {
     name: 'RoomDetailTest',
@@ -244,6 +250,27 @@ export default {
             //     this.quiz=this.QUIZ
             // });
         },
+        deleteQuiz(index){
+            this.$store.dispatch("deleteQuiz",{
+                quizNo: this.quizList[index].quizNo,
+            }).then(()=>{
+                swal('Success', '퀴즈가 삭제되었습니다.', 'success')
+                this.$store.dispatch("initQuiz").then(()=>{
+                    this.total=this.TOTAL
+                    this.pageCount=parseInt(this.total/this.itemsPerPage)+1
+                    this.$store.dispatch("searchQuiz",{
+                        page:this.page,
+                        size:this.size
+                    }).then(()=>{
+                        this.quizList=this.QUIZLIST
+                        this.quizList.forEach(el=>{
+                            this.userNoList.push(el.userNo)
+                        })
+                        this.getUserNameByUserNo()
+                    })
+                })
+            });
+        }
     },
     created(){       
         this.userNo=sessionStorage.getItem('userNo')

@@ -286,6 +286,12 @@ const store = new Vuex.Store({
                 store.commit('addUserNameList',{userNameList:res.data})
             })
         },
+        deleteQuiz:(store,{quizNo})=>{
+            return instanceWithAuth.delete(`/quiz?quizNo=${quizNo}`)
+        },
+        deleteRoom:(store,{roomNo})=>{
+            return instanceWithAuth.delete(`/room?roomNo=${roomNo}`)
+        },
     },
 })
 

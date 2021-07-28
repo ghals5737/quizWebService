@@ -407,6 +407,7 @@ import NavBar from '../components/NavBar.vue'
 import { mapGetters } from 'vuex'
 import noImg from '@/assets/picture.png'
 //import { Carousel, Slide } from 'vue-carousel';
+import swal from 'sweetalert';
 
 export default {
     name: 'TailTest',
@@ -493,37 +494,42 @@ export default {
                 this.isAnswer=[]
                 this.isAnswer.push(this.shortAnswer)
             }
-            this.exampleDes.forEach(el=>{
-                copyExampleList.push({
-                    des: el,
-                    examNo: cnt++,
-                    exampleNO: 0
+            if(this.isAnswer.length===0){
+                swal('Error', '정답을 입력해주세요.', 'error')
+            }
+            else{
+                this.exampleDes.forEach(el=>{
+                    copyExampleList.push({
+                        des: el,
+                        examNo: cnt++,
+                        exampleNO: 0
+                    })
                 })
-            })
-            this.quiz.problemList.push({
-                answer: this.isAnswer[0],
-                exampleList: copyExampleList,
-                imgUrl: this.imgUrl,
-                prbNo: 0,
-                prbOder: 0,
-                quizType: this.quizType,
-                score: this.problem.score,
-                title: this.problem.title
-            })            
-            this.isAnswer=[]   
-            this.problem.answer=''
-            if(this.typeFlag1)this.quizType=0
-            if(this.typeFlag2)this.quizType=1
-            if(this.typeFlag3)this.quizType=2            
-            this.problem.score=0
-            this.problem.title=''
-            this.problem.exampleList=[]            
-            this.exampleDes=[]     
-            this.oxAnswer1=false;   
-            this.oxAnswer2=false;
-            this.order=this.quiz.problemList.length+1;
-            this.rOrder=this.order
-            this.shortAnswer=""
+                this.quiz.problemList.push({
+                    answer: this.isAnswer[0],
+                    exampleList: copyExampleList,
+                    imgUrl: this.imgUrl,
+                    prbNo: 0,
+                    prbOder: 0,
+                    quizType: this.quizType,
+                    score: this.problem.score,
+                    title: this.problem.title
+                })            
+                this.isAnswer=[]   
+                this.problem.answer=''
+                if(this.typeFlag1)this.quizType=0
+                if(this.typeFlag2)this.quizType=1
+                if(this.typeFlag3)this.quizType=2            
+                this.problem.score=0
+                this.problem.title=''
+                this.problem.exampleList=[]            
+                this.exampleDes=[]     
+                this.oxAnswer1=false;   
+                this.oxAnswer2=false;
+                this.order=this.quiz.problemList.length+1;
+                this.rOrder=this.order
+                this.shortAnswer=""
+            }
         },
         deleteOrder(index){
             this.quiz.problemList.splice(index, 1);
