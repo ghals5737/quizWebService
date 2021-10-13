@@ -8,5 +8,11 @@ class UserControllerTest {
 
     @Test
     void authorize() {
+
+    }
+
+    @Test
+    void getUser(){
+
     }
 }
