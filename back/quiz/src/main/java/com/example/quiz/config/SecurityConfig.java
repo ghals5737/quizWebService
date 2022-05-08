@@ -88,6 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/socket/**").permitAll()
                 .anyRequest().authenticated()
 
+
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider));
                 httpSecurity.csrf().ignoringAntMatchers("/api/**","/socket/**")//csrf예외처리
