@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="">
+    <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="UserServiceTest 코드 추가">
+      <change afterPath="$PROJECT_DIR$/../.idea/quizWebService.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/QuizApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/QuizApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/config/CorsConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +43,27 @@
     <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/jwt/JwtFilter.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/config/SecurityConfig.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserServiceImpl.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Room.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/RoomEntry.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/quiz/src/main/resources/application.properties" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Problem.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/UserAnswer.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Answer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/UserAnswer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Room.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Problem.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/RoomEntry.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="JPA Inspector" value="true" />
+        <entry key="JPA Palette" value="true" />
+        <entry key="JPA Structure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="JPA Inspector" value="false" />
+        <entry key="JPA Palette" value="false" />
+        <entry key="JPA Structure" value="false" />
+      </map>
+    </option>
   </component>
   <component name="ProblemsViewState">
     <option name="selectedIndex" value="1" />
@@ -70,18 +89,24 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/quiz/src/test/resources" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ghals\IdeaProjects\quizWebService\back\quiz\src\test\resources" />
+      <recent name="C:\Users\ghals\IdeaProjects\quizWebService\back\quiz\src\test\java\com\example\quiz" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.UserServiceTest.userCreateTest">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -93,6 +118,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserControllerTest.userCreateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="quiz" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.quiz.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.quiz.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.quiz.controller.UserControllerTest" />
+      <option name="METHOD_NAME" value="userCreateTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.userCreateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="quiz" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.quiz.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.quiz.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.quiz.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="userCreateTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="QuizApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="quiz" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.quiz.QuizApplication" />
@@ -100,6 +157,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserServiceTest.userCreateTest" />
+        <item itemvalue="JUnit.UserControllerTest.userCreateTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -119,7 +182,20 @@
       <workItem from="1624203348060" duration="67377000" />
       <workItem from="1624419620069" duration="27966000" />
       <workItem from="1624603385324" duration="58429000" />
+      <workItem from="1647952051391" duration="994000" />
+      <workItem from="1648895179786" duration="1000" />
+      <workItem from="1648895208089" duration="3374000" />
+      <workItem from="1650156403114" duration="22283000" />
+      <workItem from="1652279758051" duration="697000" />
     </task>
+    <task id="LOCAL-00001" summary="UserServiceTest 코드 추가">
+      <created>1652001079079</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1652001079079</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +215,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="UserServiceTest 코드 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="UserServiceTest 코드 추가" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
