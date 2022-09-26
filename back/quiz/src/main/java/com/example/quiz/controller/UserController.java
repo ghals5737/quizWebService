@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 @RestController
 public class UserController {
-    @Resource(name = "userService")
+
     private final UserService userService;
 
     @Resource(name ="roomEntryService")

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService{
 
     @Autowired

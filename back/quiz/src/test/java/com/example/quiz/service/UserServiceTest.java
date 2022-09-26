@@ -2,52 +2,49 @@ package com.example.quiz.service;
 
 import com.example.quiz.dto.User;
 import com.example.quiz.repository.UserRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
+import java.time.LocalDateTime;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserServiceTest {
-
-    @InjectMocks
-    private UserServiceImpl userService;
-
-    @Mock
+    @Autowired
+    private UserService userService;
+    @Autowired
     private UserRepository userRepository;
 
-    @Mock
-    private PasswordEncoder passwordEncoder;
-
-    private User user;
+    private User saveTestUser;
 
     @BeforeEach
-    void setUp() throws JsonProcessingException {
-        user= User.builder()
-                .userId("testId")
-                .userPw("testPw")
-                .userNo(0L)
-                .authorityName("ROLE_USER")
+    public void init(){
+        saveTestUser=User.builder()
+                .userId("saveTest")
+                .userPw("saveTest")
+                .regTime(LocalDateTime.now())
                 .build();
+        userRepository.save(
+                User.builder()
+                .userId("test")
+                .userPw("test")
+                .regTime(LocalDateTime.now())
+                .build());
+    }
+
+    @AfterEach
+    public void clear(){
+        userRepository.deleteAll();
     }
 
     @Test
-    void userCreateTest() throws Exception {
-        when(userRepository.existsByUserId("testId")).thenReturn(false);
-        when(passwordEncoder.encode("testPw")).thenReturn("testPw");
-        when(userRepository.save(user)).thenReturn(user);
-
-        User result=userService.createUser(user);
-
-        assertThat(result).isEqualTo(user);
+    @DisplayName("회원 가입이 정상 작동한다")
+    void createUserTest(){
+        userRepository.save(saveTestUser);
     }
+
 }
