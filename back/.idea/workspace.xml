@@ -4,26 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="UserServiceTest 코드 추가">
-      <change beforePath="$PROJECT_DIR$/../.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/jpa-buddy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+    <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="[refactoring]&lt;feat&gt; user service test 추가">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_19_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_assertj_assertj_core_3_23_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/repository/AnswerRepositoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/repository/ExampleRepositoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/repository/ProblemRepositoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/repository/QuizRepositoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/repository/RoomEntryRepositoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/repository/RoomQuizRepositoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/repository/RoomRepositoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/repository/UserRepositoryTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/service/AnswerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/service/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,6 +86,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "true",
     "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
     "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
@@ -112,7 +97,9 @@
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "da89e38d2085d08a94af46c0706b4cae"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -121,7 +108,7 @@
       <recent name="C:\Users\ghals\IdeaProjects\quizWebService\back\quiz\src\test\java\com\example\quiz" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserServiceTest.userCreateTest">
+  <component name="RunManager" selected="JUnit.UserServiceTest.getAllUsers">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -144,6 +131,38 @@
       <option name="PACKAGE_NAME" value="com.example.quiz.controller" />
       <option name="MAIN_CLASS_NAME" value="com.example.quiz.controller.UserControllerTest" />
       <option name="METHOD_NAME" value="userCreateTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.createUserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="quiz" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.quiz.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.quiz.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.quiz.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="createUserTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.getAllUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="quiz" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.quiz.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.quiz.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.quiz.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="getAllUsers" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -174,6 +193,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserServiceTest.getAllUsers" />
+        <item itemvalue="JUnit.UserServiceTest.createUserTest" />
         <item itemvalue="JUnit.UserServiceTest.userCreateTest" />
         <item itemvalue="JUnit.UserControllerTest.userCreateTest" />
       </list>
@@ -202,7 +223,8 @@
       <workItem from="1648895208089" duration="3374000" />
       <workItem from="1650156403114" duration="22283000" />
       <workItem from="1652279758051" duration="697000" />
-      <workItem from="1664158893813" duration="6854000" />
+      <workItem from="1664158893813" duration="11826000" />
+      <workItem from="1666328606868" duration="4092000" />
     </task>
     <task id="LOCAL-00001" summary="UserServiceTest 코드 추가">
       <created>1652001079079</created>
@@ -211,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652001079079</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="[refactoring]&lt;feat&gt; user service test 추가">
+      <created>1664177824670</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1664177824670</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,7 +260,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="UserServiceTest 코드 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="UserServiceTest 코드 추가" />
+    <MESSAGE value="[refactoring]&lt;feat&gt; user service test 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="[refactoring]&lt;feat&gt; user service test 추가" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
