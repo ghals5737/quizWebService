@@ -1,5 +1,6 @@
 package com.example.quiz.controller;
 
+import com.example.quiz.domain.user.User;
 import com.example.quiz.dto.*;
 import com.example.quiz.service.AnswerService;
 import com.example.quiz.service.RoomEntryService;

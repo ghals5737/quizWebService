@@ -1,14 +1,11 @@
 package com.example.quiz.controller;
 
-import com.example.quiz.dto.Quiz;
 import com.example.quiz.dto.Room;
-import com.example.quiz.dto.RoomEntry;
 import com.example.quiz.dto.RoomQuizNo;
 import com.example.quiz.exception.RestException;
 import com.example.quiz.service.RoomEntryService;
 import com.example.quiz.service.RoomQuizService;
 import com.example.quiz.service.RoomService;
-import com.example.quiz.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;

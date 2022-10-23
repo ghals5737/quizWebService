@@ -1,8 +1,8 @@
 package com.example.quiz.service;
 
-import com.example.quiz.dto.User;
+import com.example.quiz.domain.user.User;
+import com.example.quiz.dto.user.request.UserCreateRequest;
 import com.example.quiz.repository.UserRepository;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,19 +28,15 @@ public class UserServiceTest {
     @DisplayName("회원 가입이 정상 작동한다")
     void createUserTest(){
         //given
-        User saveTestUser=User.builder()
-                .userId("saveTest")
-                .userPw("saveTest")
-                .regTime(LocalDateTime.now())
-                .build();
+        UserCreateRequest request=UserCreateRequest.builder().userId("saveTest").userPw("saveTest").build();
         //when
-        userRepository.save(saveTestUser);
+        userService.saveUser(request);
 
         //then
         List<User> results=userRepository.findAll();
         assertThat(results).hasSize(1);
-        assertThat(results.get(0).getUserId()).isEqualTo(saveTestUser.getUserId());
-        assertThat(results.get(0).getUserPw()).isEqualTo(saveTestUser.getUserPw());
+        assertThat(results.get(0).getUserId()).isEqualTo("saveTest");
+        assertThat(results.get(0).getUserPw()).isEqualTo("saveTest");
     }
 
     @Test
@@ -48,13 +44,13 @@ public class UserServiceTest {
     void getAllUsers(){
         //given
         User saveTestUserA=User.builder()
-                .userId("saveTest")
-                .userPw("saveTest")
+                .userId("saveTestA")
+                .userPw("saveTestA")
                 .regTime(LocalDateTime.now())
                 .build();
         User saveTestUserB=User.builder()
-                .userId("saveTest")
-                .userPw("saveTest")
+                .userId("saveTestB")
+                .userPw("saveTestB")
                 .regTime(LocalDateTime.now())
                 .build();
         userRepository.save(saveTestUserA);
@@ -73,6 +69,18 @@ public class UserServiceTest {
                 .containsExactlyInAnyOrder(saveTestUserA.getUserPw(),saveTestUserB.getUserPw());
     }
 
+    @Test
+    @DisplayName("유저 업데이트가 정상 작동한다.")
+    void updateUser(){
+
+    }
+
+    @Test
+    @DisplayName("유저 삭제가 정상 작동한다.")
+    void deleteUser(){
+        //given
+
+    }
 
 
 }

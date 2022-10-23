@@ -1,18 +1,20 @@
 package com.example.quiz.service;
 
-import com.example.quiz.dto.TokenDto;
-import com.example.quiz.dto.User;
-import org.springframework.http.ResponseEntity;
+import com.example.quiz.domain.user.User;
+import com.example.quiz.dto.user.request.UserCreateRequest;
+import com.example.quiz.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+import javax.transaction.Transactional;
 
-public interface UserService {
-    User createUser(User user);
-    User getUser(Long user);
-    List<User> getAllUsers();
-    User updateUser(User user);
-    User loginUser(User user);
-    void deleteUser(long userNo);
-    ResponseEntity<TokenDto>  authenticate(User user);
-    List<String> getUserNameByUserNo(List<Long> userNoList);
+@Service
+@AllArgsConstructor
+public class UserService {
+    private UserRepository userRepository;
+
+    @Transactional
+    void saveUser(UserCreateRequest request){
+        User newUser=User.toUser(request.getUserId(),request.getUserPw());
+    }
 }

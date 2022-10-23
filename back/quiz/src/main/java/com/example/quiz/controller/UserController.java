@@ -1,13 +1,12 @@
 package com.example.quiz.controller;
 
 import com.example.quiz.dto.TokenDto;
-import com.example.quiz.dto.User;
+import com.example.quiz.domain.user.User;
 import com.example.quiz.exception.RestException;
 import com.example.quiz.service.RoomEntryService;
-import com.example.quiz.service.UserService;
+import com.example.quiz.service.UserService_Before;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -18,7 +17,7 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    private final UserService userService;
+    private final UserService_Before userService;
 
     @Resource(name ="roomEntryService")
     private final RoomEntryService roomEntryService;

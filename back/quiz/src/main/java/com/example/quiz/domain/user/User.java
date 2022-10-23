@@ -1,4 +1,4 @@
-package com.example.quiz.dto;
+package com.example.quiz.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -25,4 +25,12 @@ public class User {
     @CreationTimestamp
     private LocalDateTime regTime;
     private String authorityName;
+
+    static public User toUser(String userId,String UserPw){
+        return User.builder()
+                .userId(userId)
+                .userPw(UserPw)
+                .regTime(LocalDateTime.now())
+                .build();
+    }
 }

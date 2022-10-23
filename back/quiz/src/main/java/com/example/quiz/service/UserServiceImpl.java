@@ -1,7 +1,7 @@
 package com.example.quiz.service;
 
 import com.example.quiz.dto.TokenDto;
-import com.example.quiz.dto.User;
+import com.example.quiz.domain.user.User;
 import com.example.quiz.exception.RestException;
 import com.example.quiz.jwt.JwtFilter;
 import com.example.quiz.jwt.TokenProvider;
@@ -21,9 +21,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @AllArgsConstructor
-@Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService_Before {
 
     @Autowired
     private final UserRepository userRepository;

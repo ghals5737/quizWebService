@@ -1,13 +1,12 @@
 package com.example.quiz.service;
 
+import com.example.quiz.domain.user.User;
 import com.example.quiz.dto.*;
 import com.example.quiz.repository.AnswerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 

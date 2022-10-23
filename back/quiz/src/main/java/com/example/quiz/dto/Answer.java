@@ -1,5 +1,6 @@
 package com.example.quiz.dto;
 
+import com.example.quiz.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

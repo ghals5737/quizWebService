@@ -1,5 +1,6 @@
 package com.example.quiz.repository;
 
+import com.example.quiz.domain.user.User;
 import com.example.quiz.dto.*;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

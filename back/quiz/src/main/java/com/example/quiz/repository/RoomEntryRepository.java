@@ -3,7 +3,7 @@ package com.example.quiz.repository;
 import com.example.quiz.dto.Room;
 import com.example.quiz.dto.RoomEntry;
 import com.example.quiz.dto.RoomEntryId;
-import com.example.quiz.dto.User;
+import com.example.quiz.domain.user.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

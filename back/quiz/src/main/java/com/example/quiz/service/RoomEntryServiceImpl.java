@@ -3,7 +3,7 @@ package com.example.quiz.service;
 import com.example.quiz.dto.Room;
 import com.example.quiz.dto.RoomEntry;
 import com.example.quiz.dto.RoomEntryId;
-import com.example.quiz.dto.User;
+import com.example.quiz.domain.user.User;
 import com.example.quiz.repository.RoomEntryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
