@@ -26,6 +26,10 @@ public class User {
     private LocalDateTime regTime;
     private String authorityName;
 
+    public void updateUserId(String userId){
+        this.userId=userId;
+    }
+
     static public User toUser(String userId,String UserPw){
         return User.builder()
                 .userId(userId)

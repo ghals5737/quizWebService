@@ -2,6 +2,7 @@ package com.example.quiz.service;
 
 import com.example.quiz.domain.user.User;
 import com.example.quiz.dto.user.request.UserCreateRequest;
+import com.example.quiz.dto.user.request.UserUpdateRequest;
 import com.example.quiz.repository.UserRepository;
 import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.*;
@@ -72,7 +73,22 @@ public class UserServiceTest {
     @Test
     @DisplayName("유저 업데이트가 정상 작동한다.")
     void updateUser(){
+        //given
+        User savedUser=userRepository.save(User.builder()
+                .userId("saveTest")
+                .userPw("saveTest")
+                .regTime(LocalDateTime.now())
+                .build());
+        UserUpdateRequest request=UserUpdateRequest.builder().userNo(savedUser.getUserNo()).userId("updateTest").build();
 
+        //when
+        userService.updateUser(request);
+
+        //when
+        List<User> results=userRepository.findAll();
+
+        //then
+        assertThat(results).isEqualTo("updateTest");
     }
 
     @Test
@@ -82,5 +98,17 @@ public class UserServiceTest {
 
     }
 
+    @Test
+    @DisplayName("유저 로그인이 정상 작동한다.")
+    void loginUserTest(){
 
+    }
+
+    @Test
+    @DisplayName("유저 토큰 인증이 정상 작동한다.")
+    void authenticateTest(){}
+
+    @Test
+    @DisplayName("")
+    void getUserNameByUserNoTest(){}
 }

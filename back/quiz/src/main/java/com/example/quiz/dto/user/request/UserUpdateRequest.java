@@ -2,11 +2,10 @@ package com.example.quiz.dto.user.request;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 @Builder
-public class UserCreateRequest {
+public class UserUpdateRequest {
+    private long userNo;
     private String userId;
-    private String userPw;
 }
