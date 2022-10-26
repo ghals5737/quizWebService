@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="[refactoring]&lt;feat&gt; user service 조회 테스트 추가">
-      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/user/request/UserUpdateRequest.java" afterDir="false" />
+    <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="[refactoring]&lt;feat&gt; user service user 업데이트 테스트 추가">
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/global/common/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/global/error/code/ErroCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/global/error/exception/CustomException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/global/error/handler/CustomEceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/domain/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/domain/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/user/request/UserCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/user/request/UserCreateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/service/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +22,7 @@
       <list>
         <option value="package-info" />
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -226,7 +227,7 @@
       <workItem from="1650156403114" duration="22283000" />
       <workItem from="1652279758051" duration="697000" />
       <workItem from="1664158893813" duration="11826000" />
-      <workItem from="1666328606868" duration="6990000" />
+      <workItem from="1666328606868" duration="15615000" />
     </task>
     <task id="LOCAL-00001" summary="UserServiceTest 코드 추가">
       <created>1652001079079</created>
@@ -249,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666341820109</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="[refactoring]&lt;feat&gt; user service user 업데이트 테스트 추가">
+      <created>1666601390599</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1666601390599</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,7 +279,8 @@
     <MESSAGE value="UserServiceTest 코드 추가" />
     <MESSAGE value="[refactoring]&lt;feat&gt; user service test 추가" />
     <MESSAGE value="[refactoring]&lt;feat&gt; user service 조회 테스트 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="[refactoring]&lt;feat&gt; user service 조회 테스트 추가" />
+    <MESSAGE value="[refactoring]&lt;feat&gt; user service user 업데이트 테스트 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="[refactoring]&lt;feat&gt; user service user 업데이트 테스트 추가" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
