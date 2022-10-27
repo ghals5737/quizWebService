@@ -3,10 +3,12 @@ package com.example.quiz.service;
 import com.example.quiz.domain.user.User;
 import com.example.quiz.dto.user.request.UserCreateRequest;
 import com.example.quiz.dto.user.request.UserUpdateRequest;
-import com.example.quiz.repository.UserRepository;
+import com.example.quiz.repository.user.UserQuerydslRepository;
+import com.example.quiz.repository.user.UserRepository;
 import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,6 +16,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @SpringBootTest
 @NoArgsConstructor
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UserServiceTest {
     @Autowired
     private UserService userService;
@@ -95,8 +98,17 @@ public class UserServiceTest {
     @DisplayName("유저 삭제가 정상 작동한다.")
     void deleteUser(){
         //given
+        User savedUser=userRepository.save(User.builder()
+                .userId("saveTest")
+                .userPw("saveTest")
+                .regTime(LocalDateTime.now())
+                .build());
 
+        //when
+        userService.deleteUser("saveTest");
 
+        //then
+        assertThat(userRepository.findAll()).isEmpty();
     }
 
     @Test

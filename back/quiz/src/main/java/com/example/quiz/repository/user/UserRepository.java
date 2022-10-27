@@ -1,4 +1,4 @@
-package com.example.quiz.repository;
+package com.example.quiz.repository.user;
 
 import com.example.quiz.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;

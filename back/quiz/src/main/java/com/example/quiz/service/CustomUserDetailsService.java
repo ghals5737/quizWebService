@@ -1,7 +1,7 @@
 package com.example.quiz.service;
 
 import com.example.quiz.domain.user.User;
-import com.example.quiz.repository.UserRepository;
+import com.example.quiz.repository.user.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
