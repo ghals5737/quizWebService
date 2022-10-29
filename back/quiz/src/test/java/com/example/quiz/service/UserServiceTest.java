@@ -103,6 +103,7 @@ public class UserServiceTest {
                 .userPw("saveTest")
                 .regTime(LocalDateTime.now())
                 .build());
+        userRepository.save(savedUser);
 
         //when
         userService.deleteUser("saveTest");
