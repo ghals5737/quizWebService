@@ -1,10 +1,7 @@
 package com.example.quiz.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -13,7 +10,7 @@ import java.util.Set;
 
 @Entity
 @Builder
-@Data
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
@@ -28,13 +25,5 @@ public class User {
 
     public void updateUserId(String userId){
         this.userId=userId;
-    }
-
-    static public User toUser(String userId,String UserPw){
-        return User.builder()
-                .userId(userId)
-                .userPw(UserPw)
-                .regTime(LocalDateTime.now())
-                .build();
     }
 }

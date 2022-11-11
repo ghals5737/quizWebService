@@ -1,15 +1,16 @@
 package com.example.quiz.service;
 
-import com.example.quiz.dto.Quiz;
-import com.example.quiz.dto.Room;
-import org.springframework.data.domain.Pageable;
+import com.example.quiz.dto.room.request.RoomCreateRequest;
+import com.example.quiz.repository.room.RoomRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+@Service
+@AllArgsConstructor
+public class RoomService {
+    private final RoomRepository roomRepository;
 
-public interface RoomService {
-    Room createRoom(Room room);
-    Room searchRoomByRoomNo(Long roomNo);
-    void deleteRoom(Long roomNo);
-    Long getTotal();
-    List<Room> findAllByPageable(Pageable pageable);
+    public void createRoom(RoomCreateRequest request) {
+        roomRepository.save(request.toRoom("a"));
+    }
 }

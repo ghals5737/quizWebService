@@ -19,18 +19,18 @@ public class UserService {
     private UserQuerydslRepository userQuerydslRepository;
 
     @Transactional
-    void saveUser(UserCreateRequest request){
-        User newUser=User.toUser(request.getUserId(),request.getUserPw());
+    public void saveUser(UserCreateRequest request){
+        User newUser=request.toUser();
     }
 
     @Transactional
-    void updateUser(UserUpdateRequest request){
+    public void updateUser(UserUpdateRequest request){
         User user=userRepository.findById(request.getUserNo()).orElseThrow(()->new CustomException(ErrorCode.MEMBER_NOT_FOUND));
         user.updateUserId(request.getUserId());
     }
 
     @Transactional
-    void deleteUser(String userId) {
+    public void deleteUser(String userId) {
         User user=userQuerydslRepository.find(userId).orElseThrow(()->new CustomException(ErrorCode.MEMBER_NOT_FOUND));
         userRepository.delete(user);
     }

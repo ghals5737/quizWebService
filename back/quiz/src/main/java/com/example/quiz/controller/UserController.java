@@ -1,23 +1,21 @@
 package com.example.quiz.controller;
 
-import com.example.quiz.dto.TokenDto;
-import com.example.quiz.domain.user.User;
-import com.example.quiz.exception.RestException;
-import com.example.quiz.service.RoomEntryService;
-import com.example.quiz.service.UserService_Before;
+import com.example.quiz.dto.user.request.UserCreateRequest;
+import com.example.quiz.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
 @RestController
 public class UserController {
 
-//    private final UserService_Before userService;
+    private final UserService userService;
+
+    @PostMapping()
+    private void create(@RequestBody UserCreateRequest request){
+        userService.saveUser(request);
+    }
 
 //    @Resource(name ="roomEntryService")
 //    private final RoomEntryService roomEntryService;

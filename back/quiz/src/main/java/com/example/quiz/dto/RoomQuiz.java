@@ -1,5 +1,6 @@
 package com.example.quiz.dto;
 
+import com.example.quiz.domain.room.Room;
 import lombok.Data;
 
 import javax.persistence.*;

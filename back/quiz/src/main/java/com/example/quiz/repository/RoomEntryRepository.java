@@ -1,6 +1,5 @@
 package com.example.quiz.repository;
 
-import com.example.quiz.dto.Room;
 import com.example.quiz.dto.RoomEntry;
 import com.example.quiz.dto.RoomEntryId;
 import com.example.quiz.domain.user.User;
@@ -12,8 +11,8 @@ import java.util.List;
 
 @Repository
 public interface RoomEntryRepository extends CrudRepository<RoomEntry, RoomEntryId> {
-    List<RoomEntry> findRoomEntryByRoomOrderByUserScore(Room room);
-    List<RoomEntry> findRoomEntryByUserOrderByRoom(User user);
-    @Transactional
-    void deleteRoomEntriesByRoom(Room room);
+//    List<RoomEntry> findRoomEntryByRoomOrderByUserScore(Room room);
+//    List<RoomEntry> findRoomEntryByUserOrderByRoom(User user);
+//    @Transactional
+//    void deleteRoomEntriesByRoom(Room room);
 }
