@@ -4,36 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="[refactoring]&lt;feat&gt; user service user 삭제 테스트 추가&#10;- QueryDsl 추가&#10;- CustomExceptionHandler 추가">
-      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/domain/room/Room.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/room/request/RoomCreateRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/service/RoomServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="[refactoring]&lt;feat&gt; room service 생성&#10;- 방 생성 테스트 코드 추가">
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/domain/entry/Entry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/domain/quiz/Quiz.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/QuizController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/RoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/RoomEntryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/RoomEntryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/SocketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/SocketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/domain/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/domain/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Room.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/RoomEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/RoomEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/RoomQuiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/RoomQuiz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/user/request/UserCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/user/request/UserCreateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/global/common/ApiResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/RoomEntryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/RoomEntryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Quiz.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/QuizRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/QuizRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/RoomQuizRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/RoomQuizRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/RoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/room/RoomRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomEntryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomEntryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomEntryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomEntryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomQuizService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomQuizService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomQuizServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomQuizServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/UserService_Before.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/service/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +47,6 @@
     <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/config/SecurityConfig.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Answer.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Problem.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Quiz.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/RoomEntry.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/UserAnswer.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/jwt/JwtFilter.java" root0="FORCE_HIGHLIGHTING" />
@@ -272,7 +253,7 @@
       <workItem from="1666846292660" duration="7632000" />
       <workItem from="1667786791420" duration="3105000" />
       <workItem from="1667975625872" duration="599000" />
-      <workItem from="1668039933323" duration="13981000" />
+      <workItem from="1668039933323" duration="18445000" />
     </task>
     <task id="LOCAL-00001" summary="UserServiceTest 코드 추가">
       <created>1652001079079</created>
@@ -309,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666860952628</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="[refactoring]&lt;feat&gt; room service 생성&#10;- 방 생성 테스트 코드 추가">
+      <created>1668156326317</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1668156326317</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,7 +321,8 @@
     <MESSAGE value="[refactoring]&lt;feat&gt; user service 조회 테스트 추가" />
     <MESSAGE value="[refactoring]&lt;feat&gt; user service user 업데이트 테스트 추가" />
     <MESSAGE value="[refactoring]&lt;feat&gt; user service user 삭제 테스트 추가&#10;- QueryDsl 추가&#10;- CustomExceptionHandler 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="[refactoring]&lt;feat&gt; user service user 삭제 테스트 추가&#10;- QueryDsl 추가&#10;- CustomExceptionHandler 추가" />
+    <MESSAGE value="[refactoring]&lt;feat&gt; room service 생성&#10;- 방 생성 테스트 코드 추가" />
+    <option name="LAST_COMMIT_MESSAGE" value="[refactoring]&lt;feat&gt; room service 생성&#10;- 방 생성 테스트 코드 추가" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

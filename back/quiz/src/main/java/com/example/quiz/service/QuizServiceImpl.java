@@ -3,7 +3,6 @@ package com.example.quiz.service;
 import com.example.quiz.dto.Answer;
 import com.example.quiz.dto.Example;
 import com.example.quiz.dto.Problem;
-import com.example.quiz.dto.Quiz;
 import com.example.quiz.repository.AnswerRepository;
 import com.example.quiz.repository.ExampleRepository;
 import com.example.quiz.repository.ProblemRepository;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 @Service("quizService")

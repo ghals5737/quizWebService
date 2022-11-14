@@ -1,15 +1,7 @@
 package com.example.quiz.service;
 
-import com.example.quiz.dto.Quiz;
-import com.example.quiz.dto.RoomQuiz;
-import com.example.quiz.dto.RoomQuizNo;
-import com.example.quiz.repository.RoomQuizRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @AllArgsConstructor
 @Service("roomQuizService")

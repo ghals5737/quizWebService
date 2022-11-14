@@ -1,16 +1,7 @@
 package com.example.quiz.controller;
 
-import com.example.quiz.dto.Quiz;
-import com.example.quiz.exception.RestException;
-import com.example.quiz.service.QuizService;
-import com.example.quiz.service.RoomQuizService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/quiz")
