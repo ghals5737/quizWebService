@@ -1,5 +1,6 @@
 package com.example.quiz.repository;
 
+import com.example.quiz.domain.quiz.Quiz;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

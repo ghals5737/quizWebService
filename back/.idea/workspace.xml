@@ -4,18 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="[refactoring]&lt;feat&gt; room service 생성&#10;- 방 생성 테스트 코드 추가">
-      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/domain/entry/Entry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/domain/quiz/Quiz.java" afterDir="false" />
+    <list default="true" id="dffe2409-8b8f-43a2-8635-102b5f3b7ed7" name="Default Changelist" comment="[refactoring]&lt;feat&gt; quiz domain 수정&#10;- user 연관 관계 매핑">
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/domain/entry/EntryId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Entry/request/EntryCreateRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/entry/EntryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/EntryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/service/EntryServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/controller/QuizController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Quiz.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/domain/entry/Entry.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/domain/entry/Entry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Problem.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/Problem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/RoomQuiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/dto/RoomQuiz.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/QuizRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/QuizRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/RoomQuizRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/repository/RoomQuizRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/QuizServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomQuizService.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomQuizService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomQuizServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/main/java/com/example/quiz/service/RoomQuizServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/service/RoomServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/quiz/src/test/java/com/example/quiz/service/RoomServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +28,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -116,7 +118,7 @@
       <recent name="C:\Users\ghals\IdeaProjects\quizWebService\back\quiz\src\test\java\com\example\quiz" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RoomServiceTest.createRoomTest">
+  <component name="RunManager" selected="JUnit.EntryServiceTest.createEntryTest">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -124,6 +126,37 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EntryServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="quiz" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.quiz.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.quiz.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.quiz.service.EntryServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EntryServiceTest.createEntryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="quiz" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.quiz.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.quiz.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.quiz.service.EntryServiceTest" />
+      <option name="METHOD_NAME" value="createEntryTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -139,22 +172,6 @@
       <option name="PACKAGE_NAME" value="com.example.quiz.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.quiz.service.RoomServiceTest" />
       <option name="METHOD_NAME" value="createRoomTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserServiceTest.createUserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="quiz" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.quiz.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.quiz.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.quiz.service.UserServiceTest" />
-      <option name="METHOD_NAME" value="createUserTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -192,22 +209,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceTest.userCreateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="quiz" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.quiz.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.quiz.service" />
-      <option name="MAIN_CLASS_NAME" value="com.example.quiz.service.UserServiceTest" />
-      <option name="METHOD_NAME" value="userCreateTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="QuizApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="quiz" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.quiz.QuizApplication" />
@@ -217,11 +218,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.EntryServiceTest.createEntryTest" />
+        <item itemvalue="JUnit.EntryServiceTest" />
         <item itemvalue="JUnit.RoomServiceTest.createRoomTest" />
         <item itemvalue="JUnit.UserServiceTest.deleteUser" />
         <item itemvalue="JUnit.UserServiceTest.getAllUsers" />
-        <item itemvalue="JUnit.UserServiceTest.createUserTest" />
-        <item itemvalue="JUnit.UserServiceTest.userCreateTest" />
       </list>
     </recent_temporary>
   </component>
@@ -253,7 +254,9 @@
       <workItem from="1666846292660" duration="7632000" />
       <workItem from="1667786791420" duration="3105000" />
       <workItem from="1667975625872" duration="599000" />
-      <workItem from="1668039933323" duration="18445000" />
+      <workItem from="1668039933323" duration="23484000" />
+      <workItem from="1668646315620" duration="1337000" />
+      <workItem from="1668671670024" duration="3656000" />
     </task>
     <task id="LOCAL-00001" summary="UserServiceTest 코드 추가">
       <created>1652001079079</created>
@@ -297,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668156326317</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="[refactoring]&lt;feat&gt; quiz domain 수정&#10;- user 연관 관계 매핑">
+      <created>1668415687397</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1668415687397</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,7 +332,8 @@
     <MESSAGE value="[refactoring]&lt;feat&gt; user service user 업데이트 테스트 추가" />
     <MESSAGE value="[refactoring]&lt;feat&gt; user service user 삭제 테스트 추가&#10;- QueryDsl 추가&#10;- CustomExceptionHandler 추가" />
     <MESSAGE value="[refactoring]&lt;feat&gt; room service 생성&#10;- 방 생성 테스트 코드 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="[refactoring]&lt;feat&gt; room service 생성&#10;- 방 생성 테스트 코드 추가" />
+    <MESSAGE value="[refactoring]&lt;feat&gt; quiz domain 수정&#10;- user 연관 관계 매핑" />
+    <option name="LAST_COMMIT_MESSAGE" value="[refactoring]&lt;feat&gt; quiz domain 수정&#10;- user 연관 관계 매핑" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -43,4 +43,14 @@ public class RoomServiceTest {
         assertThat(results.get(0).getHostNo()).isEqualTo(1);
     }
 
+    @Test
+    @DisplayName("방에 있는 유저들의 정보 조회가 정상작동한다")
+    void selectUserByRoom(){
+        //given
+
+        //when
+
+        //then
+    }
+
 }

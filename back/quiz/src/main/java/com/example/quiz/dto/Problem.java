@@ -1,5 +1,6 @@
 package com.example.quiz.dto;
 
+import com.example.quiz.domain.quiz.Quiz;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;

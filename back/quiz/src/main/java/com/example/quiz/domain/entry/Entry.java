@@ -7,12 +7,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
+@IdClass(EntryId.class)
 @Builder
 @Getter
 @AllArgsConstructor
@@ -24,8 +23,8 @@ public class Entry {
     private Room room;
     @Id
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_no")
     private User user;
-    private long userScore;
-    private boolean isOwner;
+    private long score;
+    private LocalDateTime regTime;
 }
