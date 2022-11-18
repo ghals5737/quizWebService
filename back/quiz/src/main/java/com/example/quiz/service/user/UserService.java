@@ -1,4 +1,4 @@
-package com.example.quiz.service;
+package com.example.quiz.service.user;
 
 import com.example.quiz.domain.user.User;
 import com.example.quiz.dto.user.request.UserCreateRequest;

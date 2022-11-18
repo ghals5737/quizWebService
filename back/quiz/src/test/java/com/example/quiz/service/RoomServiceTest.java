@@ -3,7 +3,7 @@ package com.example.quiz.service;
 import com.example.quiz.domain.room.Room;
 import com.example.quiz.dto.room.request.RoomCreateRequest;
 import com.example.quiz.repository.room.RoomRepository;
-import com.example.quiz.repository.user.UserRepository;
+import com.example.quiz.service.room.RoomService;
 import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;

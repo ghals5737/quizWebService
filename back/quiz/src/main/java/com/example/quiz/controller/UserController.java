@@ -1,7 +1,7 @@
 package com.example.quiz.controller;
 
 import com.example.quiz.dto.user.request.UserCreateRequest;
-import com.example.quiz.service.UserService;
+import com.example.quiz.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

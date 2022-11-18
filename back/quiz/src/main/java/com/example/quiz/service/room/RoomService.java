@@ -1,4 +1,4 @@
-package com.example.quiz.service;
+package com.example.quiz.service.room;
 
 import com.example.quiz.dto.room.request.RoomCreateRequest;
 import com.example.quiz.repository.room.RoomRepository;
